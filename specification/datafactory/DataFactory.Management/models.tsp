@@ -14,6 +14,25 @@ namespace Microsoft.DataFactory;
 /** Current status of the change data capture resource. */
 @mediaTypeHint("application/json")
 scalar ChangeDataCaptureStatusResponse extends string;
+
+#suppress "@azure-tools/typespec-autorest/union-unsupported" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+@Azure.ClientGenerator.Core.alternateType(
+  {
+    identity: "Azure.Core.Expressions.DataFactoryElement",
+  },
+  "csharp"
+)
+@Azure.ClientGenerator.Core.alternateType(unknown, "!csharp")
+union Dfe<T> {
+  T,
+  DataFactoryElement,
+}
+
+model DataFactoryElement {
+  kind: "Expression";
+  value: string;
+}
+
 /**
  * The identity type.
  */
@@ -4611,14 +4630,12 @@ model Dataset {
   /**
    * Columns that define the structure of the dataset. Type: array (or Expression with resultType array), itemType: DatasetDataElement.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  structure?: unknown;
+  structure?: Dfe<DatasetDataElement[]>;
 
   /**
    * Columns that define the physical type schema of the dataset. Type: array (or Expression with resultType array), itemType: DatasetSchemaDataElement.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<DatasetSchemaDataElement[]>;
 
   /**
    * Linked service reference.
@@ -4809,8 +4826,7 @@ model UserProperty {
   /**
    * User property value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value: unknown;
+  value: Dfe<string>;
 }
 
 /**
@@ -5623,8 +5639,7 @@ model DataFlowStagingInfo {
   /**
    * Folder path for staging blob. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  folderPath?: unknown;
+  folderPath?: Dfe<string>;
 }
 
 /**
@@ -6406,14 +6421,12 @@ model AzureKeyVaultSecretReference extends SecretBase {
   /**
    * The name of the secret in Azure Key Vault. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  secretName: unknown;
+  secretName: Dfe<string>;
 
   /**
    * The version of the secret in Azure Key Vault. The default value is the latest version of the secret. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  secretVersion?: unknown;
+  secretVersion?: Dfe<string>;
 
   /**
    * Type of the secret.
@@ -6829,14 +6842,12 @@ model DatasetLocation {
   /**
    * Specify the folder path of dataset. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  folderPath?: unknown;
+  folderPath?: Dfe<string>;
 
   /**
    * Specify the file name of dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileName?: unknown;
+  fileName?: Dfe<string>;
 }
 
 /**
@@ -6846,8 +6857,7 @@ model AzureBlobStorageLocation extends DatasetLocation {
   /**
    * Specify the container of azure blob. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  container?: unknown;
+  container?: Dfe<string>;
 
   /**
    * Type of dataset storage location.
@@ -6863,8 +6873,7 @@ model AzureBlobFSLocation extends DatasetLocation {
   /**
    * Specify the fileSystem of azure blobFS. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileSystem?: unknown;
+  fileSystem?: Dfe<string>;
 
   /**
    * Type of dataset storage location.
@@ -6889,14 +6898,12 @@ model AmazonS3Location extends DatasetLocation {
   /**
    * Specify the bucketName of amazon S3. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bucketName?: unknown;
+  bucketName?: Dfe<string>;
 
   /**
    * Specify the version of amazon S3. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  version?: unknown;
+  version?: Dfe<string>;
 
   /**
    * Type of dataset storage location.
@@ -6931,14 +6938,12 @@ model AmazonS3CompatibleLocation extends DatasetLocation {
   /**
    * Specify the bucketName of Amazon S3 Compatible. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bucketName?: unknown;
+  bucketName?: Dfe<string>;
 
   /**
    * Specify the version of Amazon S3 Compatible. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  version?: unknown;
+  version?: Dfe<string>;
 
   /**
    * Type of dataset storage location.
@@ -6953,14 +6958,12 @@ model OracleCloudStorageLocation extends DatasetLocation {
   /**
    * Specify the bucketName of Oracle Cloud Storage. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bucketName?: unknown;
+  bucketName?: Dfe<string>;
 
   /**
    * Specify the version of Oracle Cloud Storage. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  version?: unknown;
+  version?: Dfe<string>;
 
   /**
    * Type of dataset storage location.
@@ -6975,14 +6978,12 @@ model GoogleCloudStorageLocation extends DatasetLocation {
   /**
    * Specify the bucketName of Google Cloud Storage. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bucketName?: unknown;
+  bucketName?: Dfe<string>;
 
   /**
    * Specify the version of Google Cloud Storage. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  version?: unknown;
+  version?: Dfe<string>;
 
   /**
    * Type of dataset storage location.
@@ -7017,8 +7018,7 @@ model HttpServerLocation extends DatasetLocation {
   /**
    * Specify the relativeUrl of http server. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  relativeUrl?: unknown;
+  relativeUrl?: Dfe<string>;
 
   /**
    * Type of dataset storage location.
@@ -7053,14 +7053,12 @@ model DatasetDataElement {
   /**
    * Name of the column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  name?: unknown;
+  name?: Dfe<string>;
 
   /**
    * Type of the column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  type?: unknown;
+  type?: Dfe<string>;
 }
 
 /**
@@ -7072,14 +7070,12 @@ model DatasetSchemaDataElement {
   /**
    * Name of the schema column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  name?: unknown;
+  name?: Dfe<string>;
 
   /**
    * Type of the schema column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  type?: unknown;
+  type?: Dfe<string>;
 }
 
 /**
@@ -7098,14 +7094,12 @@ model DatasetStorageFormat {
   /**
    * Serializer. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serializer?: unknown;
+  serializer?: Dfe<string>;
 
   /**
    * Deserializer. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deserializer?: unknown;
+  deserializer?: Dfe<string>;
 }
 
 /**
@@ -7115,56 +7109,47 @@ model TextFormat extends DatasetStorageFormat {
   /**
    * The column delimiter. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  columnDelimiter?: unknown;
+  columnDelimiter?: Dfe<string>;
 
   /**
    * The row delimiter. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rowDelimiter?: unknown;
+  rowDelimiter?: Dfe<string>;
 
   /**
    * The escape character. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  escapeChar?: unknown;
+  escapeChar?: Dfe<string>;
 
   /**
    * The quote character. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  quoteChar?: unknown;
+  quoteChar?: Dfe<string>;
 
   /**
    * The null value string. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  nullValue?: unknown;
+  nullValue?: Dfe<string>;
 
   /**
    * The code page name of the preferred encoding. If miss, the default value is ΓÇ£utf-8ΓÇ¥, unless BOM denotes another Unicode encoding. Refer to the ΓÇ£NameΓÇ¥ column of the table in the following link to set supported values: https://msdn.microsoft.com/library/system.text.encoding.aspx. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encodingName?: unknown;
+  encodingName?: Dfe<string>;
 
   /**
    * Treat empty column values in the text file as null. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  treatEmptyAsNull?: unknown;
+  treatEmptyAsNull?: Dfe<boolean>;
 
   /**
    * The number of lines/rows to be skipped when parsing text files. The default value is 0. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  skipLineCount?: unknown;
+  skipLineCount?: Dfe<int32>;
 
   /**
    * When used as input, treat the first row of data as headers. When used as output,write the headers into the output as the first row of data. The default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  firstRowAsHeader?: unknown;
+  firstRowAsHeader?: Dfe<boolean>;
 
   /**
    * Type of dataset storage format.
@@ -7179,26 +7164,22 @@ model JsonFormat extends DatasetStorageFormat {
   /**
    * File pattern of JSON. To be more specific, the way of separating a collection of JSON objects. The default value is 'setOfObjects'. It is case-sensitive.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   filePattern?: unknown;
 
   /**
    * The character used to separate nesting levels. Default value is '.' (dot). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  nestingSeparator?: unknown;
+  nestingSeparator?: Dfe<string>;
 
   /**
    * The code page name of the preferred encoding. If not provided, the default value is 'utf-8', unless the byte order mark (BOM) denotes another Unicode encoding. The full list of supported values can be found in the 'Name' column of the table of encodings in the following reference: https://go.microsoft.com/fwlink/?linkid=861078. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encodingName?: unknown;
+  encodingName?: Dfe<string>;
 
   /**
    * The JSONPath of the JSON array element to be flattened. Example: "$.ArrayPath". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  jsonNodeReference?: unknown;
+  jsonNodeReference?: Dfe<string>;
 
   /**
    * The JSONPath definition for each column mapping with a customized column name to extract data from JSON file. For fields under root object, start with "$"; for fields inside the array chosen by jsonNodeReference property, start from the array element. Example: {"Column1": "$.Column1Path", "Column2": "Column2PathInArray"}. Type: object (or Expression with resultType object).
@@ -7251,14 +7232,12 @@ model DatasetCompression {
   /**
    * Type of dataset compression. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  type: unknown;
+  type: Dfe<string>;
 
   /**
    * The dataset compression level. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  level?: unknown;
+  level?: Dfe<string>;
 }
 
 /**
@@ -7283,38 +7262,32 @@ model AmazonS3DatasetTypeProperties {
   /**
    * The name of the Amazon S3 bucket. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bucketName: unknown;
+  bucketName: Dfe<string>;
 
   /**
    * The key of the Amazon S3 object. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  key?: unknown;
+  key?: Dfe<string>;
 
   /**
    * The prefix filter for the S3 object name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  prefix?: unknown;
+  prefix?: Dfe<string>;
 
   /**
    * The version for the S3 object. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  version?: unknown;
+  version?: Dfe<string>;
 
   /**
    * The start of S3 object's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of S3 object's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The format of files.
@@ -7354,10 +7327,8 @@ model AvroDatasetTypeProperties {
   /**
    * The data avroCompressionCodec. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  avroCompressionCodec?: unknown;
+  avroCompressionCodec?: Dfe<string>;
 
-  #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @maxValue(9)
   @minValue(1)
   avroCompressionLevel?: int32;
@@ -7390,26 +7361,22 @@ model ExcelDatasetTypeProperties {
   /**
    * The sheet name of excel file. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sheetName?: unknown;
+  sheetName?: Dfe<string>;
 
   /**
    * The sheet index of excel file and default value is 0. Type: integer (or Expression with resultType integer)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sheetIndex?: unknown;
+  sheetIndex?: Dfe<int32>;
 
   /**
    * The partial data of one sheet. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  range?: unknown;
+  range?: Dfe<string>;
 
   /**
    * When used as input, treat the first row of data as headers. When used as output,write the headers into the output as the first row of data. The default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  firstRowAsHeader?: unknown;
+  firstRowAsHeader?: Dfe<boolean>;
 
   /**
    * The data compression method used for the json dataset.
@@ -7419,8 +7386,7 @@ model ExcelDatasetTypeProperties {
   /**
    * The null value string. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  nullValue?: unknown;
+  nullValue?: Dfe<string>;
 }
 
 /**
@@ -7450,8 +7416,7 @@ model ParquetDatasetTypeProperties {
   /**
    * The data compressionCodec. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  compressionCodec?: unknown;
+  compressionCodec?: Dfe<string>;
 }
 
 /**
@@ -7481,56 +7446,47 @@ model DelimitedTextDatasetTypeProperties {
   /**
    * The column delimiter. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  columnDelimiter?: unknown;
+  columnDelimiter?: Dfe<string>;
 
   /**
    * The row delimiter. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rowDelimiter?: unknown;
+  rowDelimiter?: Dfe<string>;
 
   /**
    * The code page name of the preferred encoding. If miss, the default value is UTF-8, unless BOM denotes another Unicode encoding. Refer to the name column of the table in the following link to set supported values: https://msdn.microsoft.com/library/system.text.encoding.aspx. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encodingName?: unknown;
+  encodingName?: Dfe<string>;
 
   /**
    * The data compressionCodec. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  compressionCodec?: unknown;
+  compressionCodec?: Dfe<string>;
 
   /**
    * The data compression method used for DelimitedText.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  compressionLevel?: unknown;
+  compressionLevel?: Dfe<string>;
 
   /**
    * The quote character. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  quoteChar?: unknown;
+  quoteChar?: Dfe<string>;
 
   /**
    * The escape character. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  escapeChar?: unknown;
+  escapeChar?: Dfe<string>;
 
   /**
    * When used as input, treat the first row of data as headers. When used as output,write the headers into the output as the first row of data. The default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  firstRowAsHeader?: unknown;
+  firstRowAsHeader?: Dfe<boolean>;
 
   /**
    * The null value string. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  nullValue?: unknown;
+  nullValue?: Dfe<string>;
 }
 
 /**
@@ -7560,8 +7516,7 @@ model JsonDatasetTypeProperties {
   /**
    * The code page name of the preferred encoding. If not specified, the default value is UTF-8, unless BOM denotes another Unicode encoding. Refer to the name column of the table in the following link to set supported values: https://msdn.microsoft.com/library/system.text.encoding.aspx. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encodingName?: unknown;
+  encodingName?: Dfe<string>;
 
   /**
    * The data compression method used for the json dataset.
@@ -7596,14 +7551,12 @@ model XmlDatasetTypeProperties {
   /**
    * The code page name of the preferred encoding. If not specified, the default value is UTF-8, unless BOM denotes another Unicode encoding. Refer to the name column of the table in the following link to set supported values: https://msdn.microsoft.com/library/system.text.encoding.aspx. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encodingName?: unknown;
+  encodingName?: Dfe<string>;
 
   /**
    * The null value string. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  nullValue?: unknown;
+  nullValue?: Dfe<string>;
 
   /**
    * The data compression method used for the json dataset.
@@ -7638,8 +7591,7 @@ model OrcDatasetTypeProperties {
   /**
    * The data orcCompressionCodec. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  orcCompressionCodec?: unknown;
+  orcCompressionCodec?: Dfe<string>;
 }
 
 /**
@@ -7719,32 +7671,27 @@ model AzureBlobDatasetTypeProperties {
   /**
    * The path of the Azure Blob storage. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  folderPath?: unknown;
+  folderPath?: Dfe<string>;
 
   /**
    * The root of blob path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableRootLocation?: unknown;
+  tableRootLocation?: Dfe<string>;
 
   /**
    * The name of the Azure Blob. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileName?: unknown;
+  fileName?: Dfe<string>;
 
   /**
    * The start of Azure Blob's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of Azure Blob's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The format of the Azure Blob storage.
@@ -7779,8 +7726,7 @@ model AzureTableDatasetTypeProperties {
   /**
    * The table name of the Azure Table storage. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName: unknown;
+  tableName: Dfe<string>;
 }
 
 /**
@@ -7805,20 +7751,17 @@ model AzureSqlTableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The schema name of the Azure SQL database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the Azure SQL database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -7845,20 +7788,17 @@ model AzureSqlMITableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The schema name of the Azure SQL Managed Instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the Azure SQL Managed Instance dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -7885,20 +7825,17 @@ model AzureSqlDWTableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The schema name of the Azure SQL Data Warehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the Azure SQL Data Warehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -7923,14 +7860,12 @@ model CassandraTableDatasetTypeProperties {
   /**
    * The table name of the Cassandra database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The keyspace of the Cassandra database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  keyspace?: unknown;
+  keyspace?: Dfe<string>;
 }
 
 /**
@@ -7940,7 +7875,6 @@ model CustomDataset extends Dataset {
   /**
    * Custom dataset properties.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   typeProperties?: unknown;
 
   /**
@@ -7971,8 +7905,7 @@ model CosmosDbSqlApiCollectionDatasetTypeProperties {
   /**
    * CosmosDB (SQL API) collection name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  collectionName: unknown;
+  collectionName: Dfe<string>;
 }
 
 /**
@@ -7997,8 +7930,7 @@ model DocumentDbCollectionDatasetTypeProperties {
   /**
    * Document Database collection name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  collectionName: unknown;
+  collectionName: Dfe<string>;
 }
 
 /**
@@ -8023,8 +7955,7 @@ model DynamicsEntityDatasetTypeProperties {
   /**
    * The logical name of the entity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  entityName?: unknown;
+  entityName?: Dfe<string>;
 }
 
 /**
@@ -8049,8 +7980,7 @@ model DynamicsCrmEntityDatasetTypeProperties {
   /**
    * The logical name of the entity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  entityName?: unknown;
+  entityName?: Dfe<string>;
 }
 
 /**
@@ -8075,8 +8005,7 @@ model CommonDataServiceForAppsEntityDatasetTypeProperties {
   /**
    * The logical name of the entity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  entityName?: unknown;
+  entityName?: Dfe<string>;
 }
 
 /**
@@ -8101,14 +8030,12 @@ model AzureDataLakeStoreDatasetTypeProperties {
   /**
    * Path to the folder in the Azure Data Lake Store. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  folderPath?: unknown;
+  folderPath?: Dfe<string>;
 
   /**
    * The name of the file in the Azure Data Lake Store. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileName?: unknown;
+  fileName?: Dfe<string>;
 
   /**
    * The format of the Data Lake Store.
@@ -8145,14 +8072,12 @@ model AzureBlobFSDatasetTypeProperties {
   /**
    * The path of the Azure Data Lake Storage Gen2 storage. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  folderPath?: unknown;
+  folderPath?: Dfe<string>;
 
   /**
    * The name of the Azure Data Lake Storage Gen2. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileName?: unknown;
+  fileName?: Dfe<string>;
 
   /**
    * The format of the Azure Data Lake Storage Gen2 storage.
@@ -8187,14 +8112,12 @@ model Office365DatasetTypeProperties {
   /**
    * Name of the dataset to extract from Office 365. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName: unknown;
+  tableName: Dfe<string>;
 
   /**
    * A predicate expression that can be used to filter the specific rows to extract from Office 365. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  predicate?: unknown;
+  predicate?: Dfe<string>;
 }
 
 /**
@@ -8219,26 +8142,22 @@ model FileShareDatasetTypeProperties {
   /**
    * The path of the on-premises file system. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  folderPath?: unknown;
+  folderPath?: Dfe<string>;
 
   /**
    * The name of the on-premises file system. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileName?: unknown;
+  fileName?: Dfe<string>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The format of the files.
@@ -8248,8 +8167,7 @@ model FileShareDatasetTypeProperties {
   /**
    * Specify a filter to be used to select a subset of files in the folderPath rather than all files. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileFilter?: unknown;
+  fileFilter?: Dfe<string>;
 
   /**
    * The data compression method used for the file system.
@@ -8279,8 +8197,7 @@ model MongoDbCollectionDatasetTypeProperties {
   /**
    * The table name of the MongoDB database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  collectionName: unknown;
+  collectionName: Dfe<string>;
 }
 
 /**
@@ -8305,8 +8222,7 @@ model MongoDbAtlasCollectionDatasetTypeProperties {
   /**
    * The collection name of the MongoDB Atlas database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  collection: unknown;
+  collection: Dfe<string>;
 }
 
 /**
@@ -8331,8 +8247,7 @@ model MongoDbV2CollectionDatasetTypeProperties {
   /**
    * The collection name of the MongoDB database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  collection: unknown;
+  collection: Dfe<string>;
 }
 
 /**
@@ -8357,14 +8272,12 @@ model CosmosDbMongoDbApiCollectionDatasetTypeProperties {
   /**
    * The collection name of the CosmosDB (MongoDB API) database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  collection: unknown;
+  collection: Dfe<string>;
 }
 
 /**
  * The Open Data Protocol (OData) resource dataset.
  */
-#suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model ODataResourceDataset extends Dataset {
   /**
    * OData dataset properties.
@@ -8385,8 +8298,7 @@ model ODataResourceDatasetTypeProperties {
   /**
    * The OData resource path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path?: unknown;
+  path?: Dfe<string>;
 }
 
 /**
@@ -8411,20 +8323,17 @@ model OracleTableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The schema name of the on-premises Oracle database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the on-premises Oracle database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -8449,14 +8358,12 @@ model AmazonRdsForOracleTableDatasetTypeProperties {
   /**
    * The schema name of the AmazonRdsForOracle database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the AmazonRdsForOracle database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -8481,14 +8388,12 @@ model TeradataTableDatasetTypeProperties {
   /**
    * The database name of Teradata. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * The table name of Teradata. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -8513,14 +8418,12 @@ model AzureMySqlTableDatasetTypeProperties {
   /**
    * The Azure MySQL database table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The name of Azure MySQL database table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -8545,20 +8448,17 @@ model AmazonRedshiftTableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The Amazon Redshift table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The Amazon Redshift schema name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -8583,20 +8483,17 @@ model Db2TableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The Db2 schema name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The Db2 table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -8621,8 +8518,7 @@ model RelationalTableDatasetTypeProperties {
   /**
    * The relational table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 }
 
 /**
@@ -8647,8 +8543,7 @@ model InformixTableDatasetTypeProperties {
   /**
    * The Informix table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 }
 
 /**
@@ -8673,8 +8568,7 @@ model OdbcTableDatasetTypeProperties {
   /**
    * The ODBC table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 }
 
 /**
@@ -8699,8 +8593,7 @@ model MySqlTableDatasetTypeProperties {
   /**
    * The MySQL table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 }
 
 /**
@@ -8725,20 +8618,17 @@ model PostgreSqlTableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The PostgreSQL table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The PostgreSQL schema name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -8763,14 +8653,12 @@ model PostgreSqlV2TableDatasetTypeProperties {
   /**
    * The PostgreSQL table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The PostgreSQL schema name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -8795,8 +8683,7 @@ model MicrosoftAccessTableDatasetTypeProperties {
   /**
    * The Microsoft Access table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 }
 
 /**
@@ -8821,8 +8708,7 @@ model SalesforceObjectDatasetTypeProperties {
   /**
    * The Salesforce object API name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  objectApiName?: unknown;
+  objectApiName?: Dfe<string>;
 }
 
 /**
@@ -8847,8 +8733,7 @@ model SalesforceServiceCloudObjectDatasetTypeProperties {
   /**
    * The Salesforce Service Cloud object API name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  objectApiName?: unknown;
+  objectApiName?: Dfe<string>;
 }
 
 /**
@@ -8873,8 +8758,7 @@ model SybaseTableDatasetTypeProperties {
   /**
    * The Sybase table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 }
 
 /**
@@ -8909,8 +8793,7 @@ model SapCloudForCustomerResourceDatasetTypeProperties {
   /**
    * The path of the SAP Cloud for Customer OData entity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path: unknown;
+  path: Dfe<string>;
 }
 
 /**
@@ -8935,8 +8818,7 @@ model SapEccResourceDatasetTypeProperties {
   /**
    * The path of the SAP ECC OData entity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path: unknown;
+  path: Dfe<string>;
 }
 
 /**
@@ -8961,14 +8843,12 @@ model SapHanaTableDatasetTypeProperties {
   /**
    * The schema name of SAP HANA. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of SAP HANA. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -8993,20 +8873,17 @@ model SapOpenHubTableDatasetTypeProperties {
   /**
    * The name of the Open Hub Destination with destination type as Database Table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  openHubDestinationName: unknown;
+  openHubDestinationName: Dfe<string>;
 
   /**
    * Whether to exclude the records of the last request. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  excludeLastRequest?: unknown;
+  excludeLastRequest?: Dfe<boolean>;
 
   /**
    * The ID of request for delta loading. Once it is set, only data with requestId larger than the value of this property will be retrieved. The default value is 0. Type: integer (or Expression with resultType integer ).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  baseRequestId?: unknown;
+  baseRequestId?: Dfe<int32>;
 }
 
 /**
@@ -9037,14 +8914,12 @@ model SqlServerTableDatasetTypeProperties {
   /**
    * The schema name of the SQL Server dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the SQL Server dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -9069,14 +8944,12 @@ model AmazonRdsForSqlServerTableDatasetTypeProperties {
   /**
    * The schema name of the SQL Server dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the SQL Server dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -9101,20 +8974,17 @@ model RestResourceDatasetTypeProperties {
   /**
    * The relative URL to the resource that the RESTful API provides. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  relativeUrl?: unknown;
+  relativeUrl?: Dfe<string>;
 
   /**
    * The HTTP method used to call the RESTful API. The default is GET. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestMethod?: unknown;
+  requestMethod?: Dfe<string>;
 
   /**
    * The HTTP request body to the RESTful API if requestMethod is POST. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestBody?: unknown;
+  requestBody?: Dfe<string>;
 
   /**
    * The additional HTTP headers in the request to the RESTful API.
@@ -9151,8 +9021,7 @@ model SapTableResourceDatasetTypeProperties {
   /**
    * The name of the SAP Table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName: unknown;
+  tableName: Dfe<string>;
 }
 
 /**
@@ -9177,14 +9046,12 @@ model SapOdpResourceDatasetTypeProperties {
   /**
    * The context of the SAP ODP Object. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  context: unknown;
+  context: Dfe<string>;
 
   /**
    * The name of the SAP ODP Object. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  objectName: unknown;
+  objectName: Dfe<string>;
 }
 
 /**
@@ -9209,14 +9076,12 @@ model WebTableDatasetTypeProperties {
   /**
    * The zero-based index of the table in the web page. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  index: unknown;
+  index: Dfe<int32>;
 
   /**
    * The relative URL to the web page from the linked service URL. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path?: unknown;
+  path?: Dfe<string>;
 }
 
 /**
@@ -9241,8 +9106,7 @@ model AzureSearchIndexDatasetTypeProperties {
   /**
    * The name of the Azure Search Index. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  indexName: unknown;
+  indexName: Dfe<string>;
 }
 
 /**
@@ -9267,28 +9131,24 @@ model HttpDatasetTypeProperties {
   /**
    * The relative URL based on the URL in the HttpLinkedService refers to an HTTP file Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  relativeUrl?: unknown;
+  relativeUrl?: Dfe<string>;
 
   /**
    * The HTTP method for the HTTP request. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestMethod?: unknown;
+  requestMethod?: Dfe<string>;
 
   /**
    * The body for the HTTP request. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestBody?: unknown;
+  requestBody?: Dfe<string>;
 
   /**
    * The headers for the HTTP Request. e.g. request-header-name-1:request-header-value-1
    * ...
    * request-header-name-n:request-header-value-n Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalHeaders?: unknown;
+  additionalHeaders?: Dfe<string>;
 
   /**
    * The format of files.
@@ -9308,8 +9168,7 @@ model GenericDatasetTypeProperties {
   /**
    * The table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 }
 
 /**
@@ -9350,20 +9209,17 @@ model AzurePostgreSqlTableDatasetTypeProperties {
   /**
    * The table name of the Azure PostgreSQL database which includes both schema and table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The table name of the Azure PostgreSQL database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Azure PostgreSQL database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -9424,14 +9280,12 @@ model DrillDatasetTypeProperties {
   /**
    * The table name of the Drill. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Drill. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -9477,14 +9331,12 @@ model GoogleBigQueryDatasetTypeProperties {
   /**
    * The table name of the Google BigQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The database name of the Google BigQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dataset?: unknown;
+  dataset?: Dfe<string>;
 }
 
 /**
@@ -9509,14 +9361,12 @@ model GoogleBigQueryV2DatasetTypeProperties {
   /**
    * The table name of the Google BigQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The database name of the Google BigQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dataset?: unknown;
+  dataset?: Dfe<string>;
 }
 
 /**
@@ -9541,20 +9391,17 @@ model GreenplumDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   tableName?: unknown;
 
   /**
    * The table name of Greenplum. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of Greenplum. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -9601,14 +9448,12 @@ model HiveDatasetTypeProperties {
   /**
    * The table name of the Hive. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Hive. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -9654,14 +9499,12 @@ model ImpalaDatasetTypeProperties {
   /**
    * The table name of the Impala. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Impala. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -9686,20 +9529,17 @@ model JiraTableDatasetTypeProperties {
   /**
    * This property is only supported in Jira V1 Dataset, please consider upgrading to V2 dataset.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The schema name of the Jira, applies only for Jira V2 dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the Jira, applies only for Jira V2 dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -9807,14 +9647,12 @@ model PhoenixDatasetTypeProperties {
   /**
    * The table name of the Phoenix. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Phoenix. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -9839,20 +9677,17 @@ model PrestoDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   tableName?: unknown;
 
   /**
    * The table name of the Presto. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Presto. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -9928,14 +9763,12 @@ model SparkDatasetTypeProperties {
   /**
    * The table name of the Spark. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Spark. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -10005,20 +9838,17 @@ model NetezzaTableDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * The table name of the Netezza. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Netezza. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -10049,14 +9879,12 @@ model VerticaDatasetTypeProperties {
   /**
    * The table name of the Vertica. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The schema name of the Vertica. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 }
 
 /**
@@ -10113,8 +9941,7 @@ model DynamicsAXResourceDatasetTypeProperties {
   /**
    * The path of the Dynamics AX OData entity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path: unknown;
+  path: Dfe<string>;
 }
 
 /**
@@ -10154,8 +9981,7 @@ model AzureDataExplorerDatasetTypeProperties {
   /**
    * The table name of the Azure Data Explorer database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -10195,14 +10021,12 @@ model SnowflakeDatasetTypeProperties {
   /**
    * The schema name of the Snowflake database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the Snowflake database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -10242,8 +10066,7 @@ model SharePointOnlineListDatasetTypeProperties {
   /**
    * The name of the SharePoint Online list. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  listName?: unknown;
+  listName?: Dfe<string>;
 }
 
 /**
@@ -10268,14 +10091,12 @@ model AzureDatabricksDeltaLakeDatasetTypeProperties {
   /**
    * The name of delta table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 
   /**
    * The database name of delta table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 }
 
 /**
@@ -10300,14 +10121,12 @@ model LakeHouseTableDatasetTypeProperties {
   /**
    * The schema name of Microsoft Fabric Lakehouse Table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The name of Microsoft Fabric Lakehouse Table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -10332,14 +10151,12 @@ model SalesforceV2ObjectDatasetTypeProperties {
   /**
    * The Salesforce V2 object API name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  objectApiName?: unknown;
+  objectApiName?: Dfe<string>;
 
   /**
    * The Salesforce V2 report Id. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  reportId?: unknown;
+  reportId?: Dfe<string>;
 }
 
 /**
@@ -10364,14 +10181,12 @@ model SalesforceServiceCloudV2ObjectDatasetTypeProperties {
   /**
    * The Salesforce Service Cloud V2 object API name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  objectApiName?: unknown;
+  objectApiName?: Dfe<string>;
 
   /**
    * The Salesforce Service Cloud V2 reportId. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  reportId?: unknown;
+  reportId?: Dfe<string>;
 }
 
 /**
@@ -10396,14 +10211,12 @@ model WarehouseTableDatasetTypeProperties {
   /**
    * The schema name of the Microsoft Fabric Warehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The table name of the Microsoft Fabric Warehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  table?: unknown;
+  table?: Dfe<string>;
 }
 
 /**
@@ -10428,8 +10241,7 @@ model ServiceNowV2DatasetTypeProperties {
   /**
    * The table name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableName?: unknown;
+  tableName?: Dfe<string>;
 
   /**
    * Type of value copied from source.
@@ -10867,14 +10679,12 @@ model CmdkeySetupTypeProperties {
   /**
    * The server name of data source access. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  targetName: unknown;
+  targetName: Dfe<string>;
 
   /**
    * The user name of data source access. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName: unknown;
+  userName: Dfe<string>;
 
   /**
    * The password of data source access.
@@ -11599,8 +11409,7 @@ model AzureStorageLinkedServiceTypeProperties {
   /**
    * The connection string. It is mutually exclusive with sasUri property. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of accountKey in connection string.
@@ -11610,8 +11419,7 @@ model AzureStorageLinkedServiceTypeProperties {
   /**
    * SAS URI of the Azure Storage resource. It is mutually exclusive with connectionString property. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sasUri?: unknown;
+  sasUri?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of sasToken in sas uri.
@@ -11647,8 +11455,7 @@ model AzureBlobStorageLinkedServiceTypeProperties {
   /**
    * The connection string. It is mutually exclusive with sasUri, serviceEndpoint property. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of accountKey in connection string.
@@ -11658,8 +11465,7 @@ model AzureBlobStorageLinkedServiceTypeProperties {
   /**
    * SAS URI of the Azure Blob Storage resource. It is mutually exclusive with connectionString, serviceEndpoint property. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sasUri?: unknown;
+  sasUri?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of sasToken in sas uri.
@@ -11669,14 +11475,12 @@ model AzureBlobStorageLinkedServiceTypeProperties {
   /**
    * Blob service endpoint of the Azure Blob Storage resource. It is mutually exclusive with connectionString, sasUri property.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceEndpoint?: unknown;
+  serviceEndpoint?: Dfe<string>;
 
   /**
    * The ID of the service principal used to authenticate against Azure SQL Data Warehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against Azure SQL Data Warehouse.
@@ -11686,20 +11490,17 @@ model AzureBlobStorageLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * Specify the kind of your storage account. Allowed values are: Storage (general purpose v1), StorageV2 (general purpose v2), BlobStorage, or BlockBlobStorage. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accountKind?: unknown;
+  accountKind?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -11720,8 +11521,7 @@ model AzureBlobStorageLinkedServiceTypeProperties {
   /**
    * Container uri of the Azure Blob Storage resource only support for anonymous access. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  containerUri?: unknown;
+  containerUri?: Dfe<string>;
 }
 
 /**
@@ -11748,8 +11548,7 @@ model AzureTableStorageLinkedServiceTypeProperties
   /**
    * Table service endpoint of the Azure Table Storage resource. It is mutually exclusive with connectionString, sasUri property.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceEndpoint?: unknown;
+  serviceEndpoint?: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -11764,116 +11563,97 @@ model SqlServerBaseLinkedServiceTypeProperties {
   /**
    * The name or network address of the instance of SQL Server to which to connect, used by recommended version. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * The name of the database, used by recommended version. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * Indicate whether TLS encryption is required for all data sent between the client and server, used by recommended version. Possible values are true/yes/mandatory, false/no/optional and strict. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encrypt?: unknown;
+  encrypt?: Dfe<string>;
 
   /**
    * Indicate whether the channel will be encrypted while bypassing walking the certificate chain to validate trust, used by recommended version. Type: Boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustServerCertificate?: unknown;
+  trustServerCertificate?: Dfe<boolean>;
 
   /**
    * The host name to use when validating the server certificate for the connection. When not specified, the server name from the Data Source is used for certificate validation, used by recommended version. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  hostNameInCertificate?: unknown;
+  hostNameInCertificate?: Dfe<string>;
 
   /**
    * The application workload type when connecting to a server, used by recommended version. Possible values are ReadOnly and ReadWrite. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  applicationIntent?: unknown;
+  applicationIntent?: Dfe<string>;
 
   /**
    * The length of time (in seconds) to wait for a connection to the server before terminating the attempt and generating an error, used by recommended version. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectTimeout?: unknown;
+  connectTimeout?: Dfe<int32>;
 
   /**
    * The number of re-connections attempted after identifying that there was an idle connection failure, used by recommended version. This must be an integer between 0 and 255. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectRetryCount?: unknown;
+  connectRetryCount?: Dfe<int32>;
 
   /**
    * The amount of time (in seconds) between each re-connection attempt after identifying that there was an idle connection failure, used by recommended version. This must be an integer between 1 and 60. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectRetryInterval?: unknown;
+  connectRetryInterval?: Dfe<int32>;
 
   /**
    * The minimum time, in seconds, for the connection to live in the connection pool before being destroyed, used by recommended version. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  loadBalanceTimeout?: unknown;
+  loadBalanceTimeout?: Dfe<int32>;
 
   /**
    * The default wait time (in seconds) before terminating the attempt to execute a command and generating an error, used by recommended version. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  commandTimeout?: unknown;
+  commandTimeout?: Dfe<int32>;
 
   /**
    * Indicate whether User ID and Password are specified in the connection (when false) or whether the current Windows account credentials are used for authentication (when true), used by recommended version. Type: Boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  integratedSecurity?: unknown;
+  integratedSecurity?: Dfe<boolean>;
 
   /**
    * The name or address of the partner server to connect to if the primary server is down, used by recommended version. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  failoverPartner?: unknown;
+  failoverPartner?: Dfe<string>;
 
   /**
    * The maximum number of connections allowed in the connection pool for this specific connection string, used by recommended version. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxPoolSize?: unknown;
+  maxPoolSize?: Dfe<int32>;
 
   /**
    * The minimum number of connections allowed in the connection pool for this specific connection string, used by recommended version. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  minPoolSize?: unknown;
+  minPoolSize?: Dfe<int32>;
 
   /**
    * When true, an application can maintain multiple active result sets (MARS). When false, an application must process or cancel all result sets from one batch before it can execute any other batch on that connection, used by recommended version. Type: Boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  multipleActiveResultSets?: unknown;
+  multipleActiveResultSets?: Dfe<boolean>;
 
   /**
    * If your application is connecting to an AlwaysOn availability group (AG) on different subnets, setting MultiSubnetFailover=true provides faster detection of and connection to the (currently) active server, used by recommended version. Type: Boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  multiSubnetFailover?: unknown;
+  multiSubnetFailover?: Dfe<boolean>;
 
   /**
    * The size in bytes of the network packets used to communicate with an instance of server, used by recommended version. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  packetSize?: unknown;
+  packetSize?: Dfe<int32>;
 
   /**
    * Indicate whether the connection will be pooled or explicitly opened every time that the connection is requested, used by recommended version. Type: Boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  pooling?: unknown;
+  pooling?: Dfe<boolean>;
 }
 
 /**
@@ -11902,8 +11682,7 @@ model AzureSqlDWLinkedServiceTypeProperties
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The type used for authentication. Type: string.
@@ -11913,8 +11692,7 @@ model AzureSqlDWLinkedServiceTypeProperties
   /**
    * The user name to be used when connecting to server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -11924,8 +11702,7 @@ model AzureSqlDWLinkedServiceTypeProperties
   /**
    * The ID of the service principal used to authenticate against Azure SQL Data Warehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against Azure SQL Data Warehouse.
@@ -11935,8 +11712,7 @@ model AzureSqlDWLinkedServiceTypeProperties
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -11946,14 +11722,12 @@ model AzureSqlDWLinkedServiceTypeProperties
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -11991,8 +11765,7 @@ model SqlServerLinkedServiceTypeProperties
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The type used for authentication. Type: string.
@@ -12002,8 +11775,7 @@ model SqlServerLinkedServiceTypeProperties
   /**
    * The on-premises Windows authentication user name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The on-premises Windows authentication password.
@@ -12039,8 +11811,7 @@ model SqlAlwaysEncryptedProperties {
   /**
    * The client ID of the application in Azure Active Directory used for Azure Key Vault authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against Azure Key Vault.
@@ -12077,8 +11848,7 @@ model AmazonRdsForSqlServerLinkedServiceTypeProperties
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The type used for authentication. Type: string.
@@ -12088,8 +11858,7 @@ model AmazonRdsForSqlServerLinkedServiceTypeProperties
   /**
    * The on-premises Windows authentication user name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The on-premises Windows authentication password.
@@ -12132,8 +11901,7 @@ model AzureSqlDatabaseLinkedServiceTypeProperties
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The type used for authentication. Type: string.
@@ -12143,8 +11911,7 @@ model AzureSqlDatabaseLinkedServiceTypeProperties
   /**
    * The user name to be used when connecting to server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -12154,8 +11921,7 @@ model AzureSqlDatabaseLinkedServiceTypeProperties
   /**
    * The ID of the service principal used to authenticate against Azure SQL Database. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against Azure SQL Database.
@@ -12165,8 +11931,7 @@ model AzureSqlDatabaseLinkedServiceTypeProperties
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -12176,14 +11941,12 @@ model AzureSqlDatabaseLinkedServiceTypeProperties
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -12228,8 +11991,7 @@ model AzureSqlMILinkedServiceTypeProperties
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The type used for authentication. Type: string.
@@ -12239,8 +12001,7 @@ model AzureSqlMILinkedServiceTypeProperties
   /**
    * The user name to be used when connecting to server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -12250,8 +12011,7 @@ model AzureSqlMILinkedServiceTypeProperties
   /**
    * The ID of the service principal used to authenticate against Azure SQL Managed Instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against Azure SQL Managed Instance.
@@ -12261,8 +12021,7 @@ model AzureSqlMILinkedServiceTypeProperties
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -12272,14 +12031,12 @@ model AzureSqlMILinkedServiceTypeProperties
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -12320,8 +12077,7 @@ model AzureBatchLinkedServiceTypeProperties {
   /**
    * The Azure Batch account name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accountName: unknown;
+  accountName: Dfe<string>;
 
   /**
    * The Azure Batch account access key.
@@ -12331,14 +12087,12 @@ model AzureBatchLinkedServiceTypeProperties {
   /**
    * The Azure Batch URI. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  batchUri: unknown;
+  batchUri: Dfe<string>;
 
   /**
    * The Azure Batch pool name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  poolName: unknown;
+  poolName: Dfe<string>;
 
   /**
    * The Azure Storage linked service reference.
@@ -12379,8 +12133,7 @@ model AzureKeyVaultLinkedServiceTypeProperties {
   /**
    * The base URL of the Azure Key Vault. e.g. https://myakv.vault.azure.net Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  baseUrl: unknown;
+  baseUrl: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -12410,20 +12163,17 @@ model CosmosDbLinkedServiceTypeProperties {
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The endpoint of the Azure CosmosDB account. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accountEndpoint?: unknown;
+  accountEndpoint?: Dfe<string>;
 
   /**
    * The name of the database. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * The account key of the Azure CosmosDB account. Type: SecureString or AzureKeyVaultSecretReference.
@@ -12433,14 +12183,12 @@ model CosmosDbLinkedServiceTypeProperties {
   /**
    * The client ID of the application in Azure Active Directory used for Server-To-Server authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -12450,14 +12198,12 @@ model CosmosDbLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * The connection mode used to access CosmosDB account. Type: string.
@@ -12498,50 +12244,42 @@ model DynamicsLinkedServiceTypeProperties {
   /**
    * The deployment type of the Dynamics instance. 'Online' for Dynamics Online and 'OnPremisesWithIfd' for Dynamics on-premises with Ifd. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deploymentType: unknown;
+  deploymentType: Dfe<string>;
 
   /**
    * The host name of the on-premises Dynamics server. The property is required for on-prem and not allowed for online. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  hostName?: unknown;
+  hostName?: Dfe<string>;
 
   /**
    * The port of on-premises Dynamics server. The property is required for on-prem and not allowed for online. Default is 443. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The URL to the Microsoft Dynamics server. The property is required for on-line and not allowed for on-prem. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceUri?: unknown;
+  serviceUri?: Dfe<string>;
 
   /**
    * The organization name of the Dynamics instance. The property is required for on-prem and required for online when there are more than one Dynamics instances associated with the user. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  organizationName?: unknown;
+  organizationName?: Dfe<string>;
 
   /**
    * The authentication type to connect to Dynamics server. 'Office365' for online scenario, 'Ifd' for on-premises with Ifd scenario, 'AADServicePrincipal' for Server-To-Server authentication in online scenario, 'Active Directory' for Dynamics on-premises with IFD. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType: unknown;
+  authenticationType: Dfe<string>;
 
   /**
    * The Active Directory domain that will verify user credentials. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  domain?: unknown;
+  domain?: Dfe<string>;
 
   /**
    * User name to access the Dynamics instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password to access the Dynamics instance.
@@ -12551,14 +12289,12 @@ model DynamicsLinkedServiceTypeProperties {
   /**
    * The client ID of the application in Azure Active Directory used for Server-To-Server authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -12599,50 +12335,42 @@ model DynamicsCrmLinkedServiceTypeProperties {
   /**
    * The deployment type of the Dynamics CRM instance. 'Online' for Dynamics CRM Online and 'OnPremisesWithIfd' for Dynamics CRM on-premises with Ifd. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deploymentType: unknown;
+  deploymentType: Dfe<string>;
 
   /**
    * The host name of the on-premises Dynamics CRM server. The property is required for on-prem and not allowed for online. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  hostName?: unknown;
+  hostName?: Dfe<string>;
 
   /**
    * The port of on-premises Dynamics CRM server. The property is required for on-prem and not allowed for online. Default is 443. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The URL to the Microsoft Dynamics CRM server. The property is required for on-line and not allowed for on-prem. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceUri?: unknown;
+  serviceUri?: Dfe<string>;
 
   /**
    * The organization name of the Dynamics CRM instance. The property is required for on-prem and required for online when there are more than one Dynamics CRM instances associated with the user. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  organizationName?: unknown;
+  organizationName?: Dfe<string>;
 
   /**
    * The authentication type to connect to Dynamics CRM server. 'Office365' for online scenario, 'Ifd' for on-premises with Ifd scenario, 'AADServicePrincipal' for Server-To-Server authentication in online scenario, 'Active Directory' for Dynamics on-premises with IFD. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType: unknown;
+  authenticationType: Dfe<string>;
 
   /**
    * The Active Directory domain that will verify user credentials. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  domain?: unknown;
+  domain?: Dfe<string>;
 
   /**
    * User name to access the Dynamics CRM instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password to access the Dynamics CRM instance.
@@ -12652,14 +12380,12 @@ model DynamicsCrmLinkedServiceTypeProperties {
   /**
    * The client ID of the application in Azure Active Directory used for Server-To-Server authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -12700,50 +12426,42 @@ model CommonDataServiceForAppsLinkedServiceTypeProperties {
   /**
    * The deployment type of the Common Data Service for Apps instance. 'Online' for Common Data Service for Apps Online and 'OnPremisesWithIfd' for Common Data Service for Apps on-premises with Ifd. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deploymentType: unknown;
+  deploymentType: Dfe<string>;
 
   /**
    * The host name of the on-premises Common Data Service for Apps server. The property is required for on-prem and not allowed for online. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  hostName?: unknown;
+  hostName?: Dfe<string>;
 
   /**
    * The port of on-premises Common Data Service for Apps server. The property is required for on-prem and not allowed for online. Default is 443. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The URL to the Microsoft Common Data Service for Apps server. The property is required for on-line and not allowed for on-prem. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceUri?: unknown;
+  serviceUri?: Dfe<string>;
 
   /**
    * The organization name of the Common Data Service for Apps instance. The property is required for on-prem and required for online when there are more than one Common Data Service for Apps instances associated with the user. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  organizationName?: unknown;
+  organizationName?: Dfe<string>;
 
   /**
    * The authentication type to connect to Common Data Service for Apps server. 'Office365' for online scenario, 'Ifd' for on-premises with Ifd scenario. 'AADServicePrincipal' for Server-To-Server authentication in online scenario, 'Active Directory' for Dynamics on-premises with IFD. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType: unknown;
+  authenticationType: Dfe<string>;
 
   /**
    * The Active Directory domain that will verify user credentials. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  domain?: unknown;
+  domain?: Dfe<string>;
 
   /**
    * User name to access the Common Data Service for Apps instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password to access the Common Data Service for Apps instance.
@@ -12753,14 +12471,12 @@ model CommonDataServiceForAppsLinkedServiceTypeProperties {
   /**
    * The client ID of the application in Azure Active Directory used for Server-To-Server authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -12798,8 +12514,7 @@ model HDInsightLinkedServiceTypeProperties {
   /**
    * HDInsight cluster URI. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterUri: unknown;
+  clusterUri: Dfe<string>;
 
   /**
    * HDInsight cluster authentication type.
@@ -12809,8 +12524,7 @@ model HDInsightLinkedServiceTypeProperties {
   /**
    * HDInsight cluster user name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * HDInsight cluster password.
@@ -12836,14 +12550,12 @@ model HDInsightLinkedServiceTypeProperties {
   /**
    * Specify if the HDInsight is created with ESP (Enterprise Security Package). Type: Boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isEspEnabled?: unknown;
+  isEspEnabled?: Dfe<boolean>;
 
   /**
    * Specify the FileSystem if the main storage for the HDInsight is ADLS Gen2. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileSystem?: unknown;
+  fileSystem?: Dfe<string>;
 
   /**
    * The credential reference containing MI authentication information for the HDInsight cluster.
@@ -12873,14 +12585,12 @@ model FileServerLinkedServiceTypeProperties {
   /**
    * Host name of the server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * User ID to logon the server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userId?: unknown;
+  userId?: Dfe<string>;
 
   /**
    * Password to logon the server.
@@ -12916,14 +12626,12 @@ model AzureFileStorageLinkedServiceTypeProperties {
   /**
    * Host name of the server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host?: unknown;
+  host?: Dfe<string>;
 
   /**
    * User ID to logon the server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userId?: unknown;
+  userId?: Dfe<string>;
 
   /**
    * Password to logon the server.
@@ -12933,8 +12641,7 @@ model AzureFileStorageLinkedServiceTypeProperties {
   /**
    * The connection string. It is mutually exclusive with sasUri property. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of accountKey in connection string.
@@ -12944,8 +12651,7 @@ model AzureFileStorageLinkedServiceTypeProperties {
   /**
    * SAS URI of the Azure File resource. It is mutually exclusive with connectionString property. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sasUri?: unknown;
+  sasUri?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of sasToken in sas uri.
@@ -12955,14 +12661,12 @@ model AzureFileStorageLinkedServiceTypeProperties {
   /**
    * The azure file share name. It is required when auth with accountKey/sasToken. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileShare?: unknown;
+  fileShare?: Dfe<string>;
 
   /**
    * The azure file share snapshot version. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  snapshot?: unknown;
+  snapshot?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -12973,8 +12677,7 @@ model AzureFileStorageLinkedServiceTypeProperties {
   /**
    * File service endpoint of the Azure File Storage resource. It is mutually exclusive with connectionString, sasUri property.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceEndpoint?: unknown;
+  serviceEndpoint?: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -13004,8 +12707,7 @@ model AmazonS3CompatibleLinkedServiceTypeProperties {
   /**
    * The access key identifier of the Amazon S3 Compatible Identity and Access Management (IAM) user. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accessKeyId?: unknown;
+  accessKeyId?: Dfe<string>;
 
   /**
    * The secret access key of the Amazon S3 Compatible Identity and Access Management (IAM) user.
@@ -13015,14 +12717,12 @@ model AmazonS3CompatibleLinkedServiceTypeProperties {
   /**
    * This value specifies the endpoint to access with the Amazon S3 Compatible Connector. This is an optional property; change it only if you want to try a different service endpoint or want to switch between https and http. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceUrl?: unknown;
+  serviceUrl?: Dfe<string>;
 
   /**
    * If true, use S3 path-style access instead of virtual hosted-style access. Default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  forcePathStyle?: unknown;
+  forcePathStyle?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -13053,8 +12753,7 @@ model OracleCloudStorageLinkedServiceTypeProperties {
   /**
    * The access key identifier of the Oracle Cloud Storage Identity and Access Management (IAM) user. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accessKeyId?: unknown;
+  accessKeyId?: Dfe<string>;
 
   /**
    * The secret access key of the Oracle Cloud Storage Identity and Access Management (IAM) user.
@@ -13064,8 +12763,7 @@ model OracleCloudStorageLinkedServiceTypeProperties {
   /**
    * This value specifies the endpoint to access with the Oracle Cloud Storage Connector. This is an optional property; change it only if you want to try a different service endpoint or want to switch between https and http. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceUrl?: unknown;
+  serviceUrl?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -13096,8 +12794,7 @@ model GoogleCloudStorageLinkedServiceTypeProperties {
   /**
    * The access key identifier of the Google Cloud Storage Identity and Access Management (IAM) user. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accessKeyId?: unknown;
+  accessKeyId?: Dfe<string>;
 
   /**
    * The secret access key of the Google Cloud Storage Identity and Access Management (IAM) user.
@@ -13107,8 +12804,7 @@ model GoogleCloudStorageLinkedServiceTypeProperties {
   /**
    * This value specifies the endpoint to access with the Google Cloud Storage Connector. This is an optional property; change it only if you want to try a different service endpoint or want to switch between https and http. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceUrl?: unknown;
+  serviceUrl?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -13139,14 +12835,12 @@ model OracleLinkedServiceTypeProperties {
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Only used for Version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The location of Oracle database you want to connect to, the supported forms include connector descriptor, Easy Connect (Plus) Naming and Oracle Net Services Name (Only self-hosted IR). Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * Authentication type for connecting to the Oracle database. Only used for Version 2.0.
@@ -13156,8 +12850,7 @@ model OracleLinkedServiceTypeProperties {
   /**
    * The Oracle database username. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -13167,68 +12860,57 @@ model OracleLinkedServiceTypeProperties {
   /**
    * Specifies the encryption client behavior. Supported values are accepted, rejected, requested or required, default value is required. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encryptionClient?: unknown;
+  encryptionClient?: Dfe<string>;
 
   /**
    * Specifies the encryption algorithms that client can use. Supported values are AES128, AES192, AES256, 3DES112, 3DES168, default value is (AES256). Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encryptionTypesClient?: unknown;
+  encryptionTypesClient?: Dfe<string>;
 
   /**
    * Specifies the desired data integrity behavior when this client connects to a server. Supported values are accepted, rejected, requested or required, default value is required. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  cryptoChecksumClient?: unknown;
+  cryptoChecksumClient?: Dfe<string>;
 
   /**
    * Specifies the crypto-checksum algorithms that client can use. Supported values are SHA1, SHA256, SHA384, SHA512, default value is (SHA512). Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  cryptoChecksumTypesClient?: unknown;
+  cryptoChecksumTypesClient?: Dfe<string>;
 
   /**
    * Specifies the amount that the source initially fetches for LOB columns, default value is 0. Type: integer. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  initialLobFetchSize?: unknown;
+  initialLobFetchSize?: Dfe<int32>;
 
   /**
    * Specifies the number of bytes that the driver allocates to fetch the data in one database round-trip, default value is 10485760. Type: integer. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fetchSize?: unknown;
+  fetchSize?: Dfe<int32>;
 
   /**
    * Specifies the number of cursors or statements to be cached for each database connection, default value is 0. Type: integer. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  statementCacheSize?: unknown;
+  statementCacheSize?: Dfe<int32>;
 
   /**
    * Specifies a command that is issued immediately after connecting to the database to manage session settings. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  initializationString?: unknown;
+  initializationString?: Dfe<string>;
 
   /**
    * Specifies whether to use bulk copy or batch insert when loading data into the database, default value is true. Type: boolean. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableBulkLoad?: unknown;
+  enableBulkLoad?: Dfe<boolean>;
 
   /**
    * Specifies whether to use the Version 1.0 data type mappings. Do not set this to true unless you want to keep backward compatibility with Version 1.0's data type mappings, default value is false. Type: boolean. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  supportV1DataTypes?: unknown;
+  supportV1DataTypes?: Dfe<boolean>;
 
   /**
    * Specifies whether the driver returns column value with the TIMESTAMP WITH TIME ZONE data type as DateTime or string. This setting is ignored if supportV1DataTypes is not true, default value is true. Type: boolean. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fetchTswtzAsTimestamp?: unknown;
+  fetchTswtzAsTimestamp?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -13259,14 +12941,12 @@ model AmazonRdsForLinkedServiceTypeProperties {
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Only used for Version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The location of AmazonRdsForOracle database you want to connect to, the supported forms include connector descriptor, Easy Connect (Plus) Naming and Oracle Net Services Name (Only self-hosted IR). Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * Authentication type for connecting to the AmazonRdsForOracle database. Only used for Version 2.0.
@@ -13276,8 +12956,7 @@ model AmazonRdsForLinkedServiceTypeProperties {
   /**
    * The AmazonRdsForOracle database username. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -13287,68 +12966,57 @@ model AmazonRdsForLinkedServiceTypeProperties {
   /**
    * Specifies the encryption client behavior. Supported values are accepted, rejected, requested or required, default value is required. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encryptionClient?: unknown;
+  encryptionClient?: Dfe<string>;
 
   /**
    * Specifies the encryption algorithms that client can use. Supported values are AES128, AES192, AES256, 3DES112, 3DES168, default value is (AES256). Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encryptionTypesClient?: unknown;
+  encryptionTypesClient?: Dfe<string>;
 
   /**
    * Specifies the desired data integrity behavior when this client connects to a server. Supported values are accepted, rejected, requested or required, default value is required. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  cryptoChecksumClient?: unknown;
+  cryptoChecksumClient?: Dfe<string>;
 
   /**
    * Specifies the crypto-checksum algorithms that client can use. Supported values are SHA1, SHA256, SHA384, SHA512, default value is (SHA512). Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  cryptoChecksumTypesClient?: unknown;
+  cryptoChecksumTypesClient?: Dfe<string>;
 
   /**
    * Specifies the amount that the source initially fetches for LOB columns, default value is 0. Type: integer. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  initialLobFetchSize?: unknown;
+  initialLobFetchSize?: Dfe<int32>;
 
   /**
    * Specifies the number of bytes that the driver allocates to fetch the data in one database round-trip, default value is 10485760. Type: integer. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fetchSize?: unknown;
+  fetchSize?: Dfe<int32>;
 
   /**
    * Specifies the number of cursors or statements to be cached for each database connection, default value is 0. Type: integer. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  statementCacheSize?: unknown;
+  statementCacheSize?: Dfe<int32>;
 
   /**
    * Specifies a command that is issued immediately after connecting to the database to manage session settings. Type: string. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  initializationString?: unknown;
+  initializationString?: Dfe<string>;
 
   /**
    * Specifies whether to use bulk copy or batch insert when loading data into the database, default value is true. Type: boolean. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableBulkLoad?: unknown;
+  enableBulkLoad?: Dfe<boolean>;
 
   /**
    * Specifies whether to use the Version 1.0 data type mappings. Do not set this to true unless you want to keep backward compatibility with Version 1.0's data type mappings, default value is false. Type: boolean. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  supportV1DataTypes?: unknown;
+  supportV1DataTypes?: Dfe<boolean>;
 
   /**
    * Specifies whether the driver returns column value with the TIMESTAMP WITH TIME ZONE data type as DateTime or string. This setting is ignored if supportV1DataTypes is not true, default value is true. Type: boolean. Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fetchTswtzAsTimestamp?: unknown;
+  fetchTswtzAsTimestamp?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -13379,8 +13047,7 @@ model AzureMySqlLinkedServiceTypeProperties {
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -13416,50 +13083,42 @@ model MySqlLinkedServiceTypeProperties {
   /**
    * The version of the MySQL driver. Type: string. V1 or empty for legacy driver, V2 for new driver. V1 can support connection string and property bag, V2 can only support connection string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  driverVersion?: unknown;
+  driverVersion?: Dfe<string>;
 
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Server name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Database name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * SSL mode for connection. Type: integer. 0: disable, 1: prefer, 2: require, 3: verify-ca, 4: verify-full.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslMode?: unknown;
+  sslMode?: Dfe<int32>;
 
   /**
    * Use system trust store for connection. Type: integer. 0: enable, 1: disable.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<int32>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -13475,44 +13134,37 @@ model MySqlLinkedServiceTypeProperties {
   /**
    * This allows the special “zero” date value 0000-00-00 to be retrieved from the database. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowZeroDateTime?: unknown;
+  allowZeroDateTime?: Dfe<boolean>;
 
   /**
    * The length of time (in seconds) to wait for a connection to the server before terminating the attempt and generating an error. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionTimeout?: unknown;
+  connectionTimeout?: Dfe<int32>;
 
   /**
    * True to return DateTime.MinValue for date or datetime columns that have disallowed values. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  convertZeroDateTime?: unknown;
+  convertZeroDateTime?: Dfe<boolean>;
 
   /**
    * Determines which column type (if any) should be read as a GUID. Type: string. None: No column types are automatically read as a Guid; Char36: All CHAR(36) columns are read/written as a Guid using lowercase hex with hyphens, which matches UUID.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  guidFormat?: unknown;
+  guidFormat?: Dfe<string>;
 
   /**
    * The path to the client’s SSL certificate file in PEM format. SslKey must also be specified. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslCert?: unknown;
+  sslCert?: Dfe<string>;
 
   /**
    * The path to the client’s SSL private key in PEM format. SslCert must also be specified. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslKey?: unknown;
+  sslKey?: Dfe<string>;
 
   /**
    * When set to true, TINYINT(1) values are returned as booleans. Type: bool.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  treatTinyAsBoolean?: unknown;
+  treatTinyAsBoolean?: Dfe<boolean>;
 }
 
 /**
@@ -13537,8 +13189,7 @@ model PostgreSqlLinkedServiceTypeProperties {
   /**
    * The connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -13574,110 +13225,92 @@ model PostgreSqlV2LinkedServiceTypeProperties {
   /**
    * Server name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server: unknown;
+  server: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username: unknown;
+  username: Dfe<string>;
 
   /**
    * Database name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 
   /**
    * The authentication type to use. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType: unknown;
+  authenticationType: Dfe<string>;
 
   /**
    * SSL mode for connection. Type: integer. 0: disable, 1:allow, 2: prefer, 3: require, 4: verify-ca, 5: verify-full. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslMode: unknown;
+  sslMode: Dfe<int32>;
 
   /**
    * Sets the schema search path. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * Whether connection pooling should be used. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  pooling?: unknown;
+  pooling?: Dfe<boolean>;
 
   /**
    * The time to wait (in seconds) while trying to establish a connection before terminating the attempt and generating an error. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionTimeout?: unknown;
+  connectionTimeout?: Dfe<int32>;
 
   /**
    * The time to wait (in seconds) while trying to execute a command before terminating the attempt and generating an error. Set to zero for infinity. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  commandTimeout?: unknown;
+  commandTimeout?: Dfe<int32>;
 
   /**
    * Whether to trust the server certificate without validating it. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustServerCertificate?: unknown;
+  trustServerCertificate?: Dfe<boolean>;
 
   /**
    * Location of a client certificate to be sent to the server. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslCertificate?: unknown;
+  sslCertificate?: Dfe<string>;
 
   /**
    * Location of a client key for a client certificate to be sent to the server. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslKey?: unknown;
+  sslKey?: Dfe<string>;
 
   /**
    * Password for a key for a client certificate. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslPassword?: unknown;
+  sslPassword?: Dfe<string>;
 
   /**
    * Determines the size of the internal buffer uses when reading. Increasing may improve performance if transferring large values from the database. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  readBufferSize?: unknown;
+  readBufferSize?: Dfe<int32>;
 
   /**
    * When enabled, parameter values are logged when commands are executed. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logParameters?: unknown;
+  logParameters?: Dfe<boolean>;
 
   /**
    * Gets or sets the session timezone. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timezone?: unknown;
+  timezone?: Dfe<string>;
 
   /**
    * Gets or sets the .NET encoding that will be used to encode/decode PostgreSQL string data. Type: string
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encoding?: unknown;
+  encoding?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string. Type: string.
@@ -13713,20 +13346,17 @@ model SybaseLinkedServiceTypeProperties {
   /**
    * Server name for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server: unknown;
+  server: Dfe<string>;
 
   /**
    * Database name for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 
   /**
    * Schema name for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * AuthenticationType to be used for connection.
@@ -13736,8 +13366,7 @@ model SybaseLinkedServiceTypeProperties {
   /**
    * Username for authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password for authentication.
@@ -13773,20 +13402,17 @@ model Db2LinkedServiceTypeProperties {
   /**
    * The connection string. It is mutually exclusive with server, database, authenticationType, userName, packageCollection and certificateCommonName property. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Server name for connection. It is mutually exclusive with connectionString property. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * Database name for connection. It is mutually exclusive with connectionString property. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * AuthenticationType to be used for connection. It is mutually exclusive with connectionString property.
@@ -13796,8 +13422,7 @@ model Db2LinkedServiceTypeProperties {
   /**
    * Username for authentication. It is mutually exclusive with connectionString property. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password for authentication.
@@ -13807,14 +13432,12 @@ model Db2LinkedServiceTypeProperties {
   /**
    * Under where packages are created when querying database. It is mutually exclusive with connectionString property. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  packageCollection?: unknown;
+  packageCollection?: Dfe<string>;
 
   /**
    * Certificate Common Name when TLS is enabled. It is mutually exclusive with connectionString property. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  certificateCommonName?: unknown;
+  certificateCommonName?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. It is mutually exclusive with connectionString property. Type: string.
@@ -13845,14 +13468,12 @@ model TeradataLinkedServiceTypeProperties {
   /**
    * Teradata ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Only applied for version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Server name for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * AuthenticationType to be used for connection.
@@ -13862,8 +13483,7 @@ model TeradataLinkedServiceTypeProperties {
   /**
    * Username for authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password for authentication.
@@ -13873,38 +13493,32 @@ model TeradataLinkedServiceTypeProperties {
   /**
    * SSL mode for connection. Valid values including: “Disable”, “Allow”, “Prefer”, “Require”, “Verify-CA”, “Verify-Full”. Default value is “Verify-Full”. Type: string (or Expression with resultType string). Only applied for version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslMode?: unknown;
+  sslMode?: Dfe<string>;
 
   /**
    * The port numbers when connecting to server through non HTTPS/TLS connections. Type: integer (or Expression with resultType integer). Only used for V2. Only applied for version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  portNumber?: unknown;
+  portNumber?: Dfe<int32>;
 
   /**
    * The port numbers when connecting to server through HTTPS/TLS connections. Type: integer (or Expression with resultType integer). Only applied for version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpsPortNumber?: unknown;
+  httpsPortNumber?: Dfe<int32>;
 
   /**
    * Specifies whether to encrypt all communication with the Teradata database. Allowed values are 0 or 1. This setting will be ignored for HTTPS/TLS connections. Type: integer (or Expression with resultType integer). Only applied for version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useDataEncryption?: unknown;
+  useDataEncryption?: Dfe<int32>;
 
   /**
    * The character set to use for the connection. Type: string (or Expression with resultType string). Only applied for version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  characterSet?: unknown;
+  characterSet?: Dfe<string>;
 
   /**
    * The maximum size of the response buffer for SQL requests, in bytes. Type: integer. Only applied for version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxRespSize?: unknown;
+  maxRespSize?: Dfe<int32>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -13937,8 +13551,7 @@ model AzureMLLinkedServiceTypeProperties {
   /**
    * The Batch Execution REST URL for an Azure ML Studio Web Service endpoint. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mlEndpoint: unknown;
+  mlEndpoint: Dfe<string>;
 
   /**
    * The API key for accessing the Azure ML model endpoint.
@@ -13948,14 +13561,12 @@ model AzureMLLinkedServiceTypeProperties {
   /**
    * The Update Resource REST URL for an Azure ML Studio Web Service endpoint. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  updateResourceEndpoint?: unknown;
+  updateResourceEndpoint?: Dfe<string>;
 
   /**
    * The ID of the service principal used to authenticate against the ARM-based updateResourceEndpoint of an Azure ML Studio web service. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against the ARM-based updateResourceEndpoint of an Azure ML Studio web service.
@@ -13965,8 +13576,7 @@ model AzureMLLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -13977,8 +13587,7 @@ model AzureMLLinkedServiceTypeProperties {
   /**
    * Type of authentication (Required to specify MSI) used to connect to AzureML. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authentication?: unknown;
+  authentication?: Dfe<string>;
 }
 
 /**
@@ -14005,32 +13614,27 @@ model AzureMLServiceLinkedServiceTypeProperties {
   /**
    * Azure ML Service workspace subscription ID. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  subscriptionId: unknown;
+  subscriptionId: Dfe<string>;
 
   /**
    * Azure ML Service workspace resource group name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  resourceGroupName: unknown;
+  resourceGroupName: Dfe<string>;
 
   /**
    * Azure ML Service workspace name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mlWorkspaceName: unknown;
+  mlWorkspaceName: Dfe<string>;
 
   /**
    * Type of authentication (Required to specify MSI) used to connect to AzureML. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authentication?: unknown;
+  authentication?: Dfe<string>;
 
   /**
    * The ID of the service principal used to authenticate against the endpoint of a published Azure ML Service pipeline. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against the endpoint of a published Azure ML Service pipeline.
@@ -14040,8 +13644,7 @@ model AzureMLServiceLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -14072,14 +13675,12 @@ model OdbcLinkedServiceTypeProperties {
   /**
    * The non-access credential portion of the connection string as well as an optional encrypted credential. Type: string, or SecureString, or AzureKeyVaultSecretReference, or Expression with resultType string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * Type of authentication used to connect to the ODBC data store. Possible values are: Anonymous and Basic. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The access credential portion of the connection string specified in driver-specific property-value format.
@@ -14089,8 +13690,7 @@ model OdbcLinkedServiceTypeProperties {
   /**
    * User name for Basic authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password for Basic authentication.
@@ -14126,14 +13726,12 @@ model InformixLinkedServiceTypeProperties {
   /**
    * The non-access credential portion of the connection string as well as an optional encrypted credential. Type: string, or SecureString, or AzureKeyVaultSecretReference, or Expression with resultType string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * Type of authentication used to connect to the Informix as ODBC data store. Possible values are: Anonymous and Basic. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The access credential portion of the connection string specified in driver-specific property-value format.
@@ -14143,8 +13741,7 @@ model InformixLinkedServiceTypeProperties {
   /**
    * User name for Basic authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password for Basic authentication.
@@ -14180,14 +13777,12 @@ model MicrosoftAccessLinkedServiceTypeProperties {
   /**
    * The non-access credential portion of the connection string as well as an optional encrypted credential. Type: string, or SecureString, or AzureKeyVaultSecretReference, or Expression with resultType string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * Type of authentication used to connect to the Microsoft Access as ODBC data store. Possible values are: Anonymous and Basic. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The access credential portion of the connection string specified in driver-specific property-value format.
@@ -14197,8 +13792,7 @@ model MicrosoftAccessLinkedServiceTypeProperties {
   /**
    * User name for Basic authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password for Basic authentication.
@@ -14234,14 +13828,12 @@ model HdfsLinkedServiceTypeProperties {
   /**
    * The URL of the HDFS service endpoint, e.g. http://myhostname:50070/webhdfs/v1 . Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * Type of authentication used to connect to the HDFS. Possible values are: Anonymous and Windows. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -14252,8 +13844,7 @@ model HdfsLinkedServiceTypeProperties {
   /**
    * User name for Windows authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password for Windows authentication.
@@ -14285,8 +13876,7 @@ model ODataLinkedServiceTypeProperties {
   /**
    * The URL of the OData service endpoint. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * Type of authentication used to connect to the OData service.
@@ -14296,8 +13886,7 @@ model ODataLinkedServiceTypeProperties {
   /**
    * User name of the OData service. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password of the OData service.
@@ -14307,32 +13896,27 @@ model ODataLinkedServiceTypeProperties {
   /**
    * The additional HTTP headers in the request to RESTful API used for authorization. Type: key value pairs (value should be string type).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authHeaders?: unknown;
+  authHeaders?: Dfe<Record<string>>;
 
   /**
    * Specify the tenant information (domain name or tenant ID) under which your application resides. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Specify the application id of your application registered in Azure Active Directory. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * Specify the resource you are requesting authorization to use Directory. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  aadResourceId?: unknown;
+  aadResourceId?: Dfe<string>;
 
   /**
    * Specify the credential type (key or cert) is used for service principal.
@@ -14384,8 +13968,7 @@ model WebLinkedServiceTypeProperties {
   /**
    * The URL of the web service endpoint, e.g. https://www.microsoft.com . Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * Type of authentication used to connect to the web table source.
@@ -14410,8 +13993,7 @@ model WebBasicAuthentication extends WebLinkedServiceTypeProperties {
   /**
    * User name for Basic authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username: unknown;
+  username: Dfe<string>;
 
   /**
    * The password for Basic authentication.
@@ -14467,26 +14049,22 @@ model CassandraLinkedServiceTypeProperties {
   /**
    * Host name for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * AuthenticationType to be used for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password for authentication.
@@ -14522,8 +14100,7 @@ model MongoDbLinkedServiceTypeProperties {
   /**
    * The IP address or server name of the MongoDB server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server: unknown;
+  server: Dfe<string>;
 
   /**
    * The authentication type to be used to connect to the MongoDB database.
@@ -14533,14 +14110,12 @@ model MongoDbLinkedServiceTypeProperties {
   /**
    * The name of the MongoDB database that you want to access. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  databaseName: unknown;
+  databaseName: Dfe<string>;
 
   /**
    * Username for authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password for authentication.
@@ -14550,26 +14125,22 @@ model MongoDbLinkedServiceTypeProperties {
   /**
    * Database to verify the username and password. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authSource?: unknown;
+  authSource?: Dfe<string>;
 
   /**
    * The TCP port number that the MongoDB server uses to listen for client connections. The default value is 27017. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Specifies whether the connections to the server are encrypted using SSL. The default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * Specifies whether to allow self-signed certificates from the server. The default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowSelfSignedServerCert?: unknown;
+  allowSelfSignedServerCert?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -14600,20 +14171,17 @@ model MongoDbAtlasLinkedServiceTypeProperties {
   /**
    * The MongoDB Atlas connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * The name of the MongoDB Atlas database that you want to access. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 
   /**
    * The driver version that you want to choose. Allowed value are v1 and v2. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  driverVersion?: unknown;
+  driverVersion?: Dfe<string>;
 }
 
 /**
@@ -14638,14 +14206,12 @@ model MongoDbV2LinkedServiceTypeProperties {
   /**
    * The MongoDB connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * The name of the MongoDB database that you want to access. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 }
 
 /**
@@ -14670,20 +14236,17 @@ model CosmosDbMongoDbApiLinkedServiceTypeProperties {
   /**
    * Whether the CosmosDB (MongoDB API) server version is higher than 3.2. The default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isServerVersionAbove32?: unknown;
+  isServerVersionAbove32?: Dfe<boolean>;
 
   /**
    * The CosmosDB (MongoDB API) connection string. Type: string, SecureString or AzureKeyVaultSecretReference. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * The name of the CosmosDB (MongoDB API) database that you want to access. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 }
 
 /**
@@ -14708,14 +14271,12 @@ model AzureDataLakeStoreLinkedServiceTypeProperties {
   /**
    * Data Lake Store service URI. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dataLakeStoreUri: unknown;
+  dataLakeStoreUri: Dfe<string>;
 
   /**
    * The ID of the application used to authenticate against the Azure Data Lake Store account. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The Key of the application used to authenticate against the Azure Data Lake Store account.
@@ -14725,32 +14286,27 @@ model AzureDataLakeStoreLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * Data Lake Store account name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accountName?: unknown;
+  accountName?: Dfe<string>;
 
   /**
    * Data Lake Store account subscription ID (if different from Data Factory account). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  subscriptionId?: unknown;
+  subscriptionId?: Dfe<string>;
 
   /**
    * Data Lake Store account resource group name (if different from Data Factory account). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  resourceGroupName?: unknown;
+  resourceGroupName?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -14788,20 +14344,17 @@ model AzureBlobFSLinkedServiceTypeProperties {
   /**
    * Endpoint for the Azure Data Lake Storage Gen2 service. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url?: unknown;
+  url?: Dfe<string>;
 
   /**
    * Account key for the Azure Data Lake Storage Gen2 service. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accountKey?: unknown;
+  accountKey?: Dfe<string>;
 
   /**
    * The ID of the application used to authenticate against the Azure Data Lake Storage Gen2 account. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The Key of the application used to authenticate against the Azure Data Lake Storage Gen2 account.
@@ -14811,14 +14364,12 @@ model AzureBlobFSLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -14834,8 +14385,7 @@ model AzureBlobFSLinkedServiceTypeProperties {
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -14845,8 +14395,7 @@ model AzureBlobFSLinkedServiceTypeProperties {
   /**
    * SAS URI of the Azure Data Lake Storage Gen2 service. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sasUri?: unknown;
+  sasUri?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of sasToken in sas uri.
@@ -14876,20 +14425,17 @@ model Office365LinkedServiceTypeProperties {
   /**
    * Azure tenant ID to which the Office 365 account belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  office365TenantId: unknown;
+  office365TenantId: Dfe<string>;
 
   /**
    * Specify the tenant information under which your Azure AD web application resides. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalTenantId: unknown;
+  servicePrincipalTenantId: Dfe<string>;
 
   /**
    * Specify the application's client ID. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId: unknown;
+  servicePrincipalId: Dfe<string>;
 
   /**
    * Specify the application's key.
@@ -14899,8 +14445,7 @@ model Office365LinkedServiceTypeProperties {
   /**
    * The service principal credential type for authentication.'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. If not specified, 'ServicePrincipalKey' is in use. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * Specify the base64 encoded certificate of your application registered in Azure Active Directory. Type: string (or Expression with resultType string).
@@ -14941,14 +14486,12 @@ model SalesforceLinkedServiceTypeProperties {
   /**
    * The URL of Salesforce instance. Default is 'https://login.salesforce.com'. To copy data from sandbox, specify 'https://test.salesforce.com'. To copy data from custom domain, specify, for example, 'https://[domain].my.salesforce.com'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  environmentUrl?: unknown;
+  environmentUrl?: Dfe<string>;
 
   /**
    * The username for Basic authentication of the Salesforce instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password for Basic authentication of the Salesforce instance.
@@ -14963,8 +14506,7 @@ model SalesforceLinkedServiceTypeProperties {
   /**
    * The Salesforce API version used in ADF. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  apiVersion?: unknown;
+  apiVersion?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -14995,14 +14537,12 @@ model SalesforceServiceCloudLinkedServiceTypeProperties {
   /**
    * The URL of Salesforce Service Cloud instance. Default is 'https://login.salesforce.com'. To copy data from sandbox, specify 'https://test.salesforce.com'. To copy data from custom domain, specify, for example, 'https://[domain].my.salesforce.com'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  environmentUrl?: unknown;
+  environmentUrl?: Dfe<string>;
 
   /**
    * The username for Basic authentication of the Salesforce instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password for Basic authentication of the Salesforce instance.
@@ -15017,14 +14557,12 @@ model SalesforceServiceCloudLinkedServiceTypeProperties {
   /**
    * The Salesforce API version used in ADF. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  apiVersion?: unknown;
+  apiVersion?: Dfe<string>;
 
   /**
    * Extended properties appended to the connection string. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  extendedProperties?: unknown;
+  extendedProperties?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -15055,14 +14593,12 @@ model SapCloudForCustomerLinkedServiceTypeProperties {
   /**
    * The URL of SAP Cloud for Customer OData API. For example, '[https://[tenantname].crm.ondemand.com/sap/c4c/odata/v1]'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * The username for Basic authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password for Basic authentication.
@@ -15098,14 +14634,12 @@ model SapEccLinkedServiceTypeProperties {
   /**
    * The URL of SAP ECC OData API. For example, '[https://hostname:port/sap/opu/odata/sap/servicename/]'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * The username for Basic authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password for Basic authentication.
@@ -15141,38 +14675,32 @@ model SapOpenHubLinkedServiceTypeProperties {
   /**
    * Host name of the SAP BW instance where the open hub destination is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * System number of the BW system where the open hub destination is located. (Usually a two-digit decimal number represented as a string.) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  systemNumber?: unknown;
+  systemNumber?: Dfe<string>;
 
   /**
    * Client ID of the client on the BW system where the open hub destination is located. (Usually a three-digit decimal number represented as a string) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * Language of the BW system where the open hub destination is located. The default value is EN. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  language?: unknown;
+  language?: Dfe<string>;
 
   /**
    * SystemID of the SAP system where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  systemId?: unknown;
+  systemId?: Dfe<string>;
 
   /**
    * Username to access the SAP BW server where the open hub destination is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password to access the SAP BW server where the open hub destination is located.
@@ -15182,20 +14710,17 @@ model SapOpenHubLinkedServiceTypeProperties {
   /**
    * The hostname of the SAP Message Server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  messageServer?: unknown;
+  messageServer?: Dfe<string>;
 
   /**
    * The service name or port number of the Message Server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  messageServerService?: unknown;
+  messageServerService?: Dfe<string>;
 
   /**
    * The Logon Group for the SAP System. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logonGroup?: unknown;
+  logonGroup?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -15226,38 +14751,32 @@ model SapOdpLinkedServiceTypeProperties {
   /**
    * Host name of the SAP instance where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * System number of the SAP system where the table is located. (Usually a two-digit decimal number represented as a string.) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  systemNumber?: unknown;
+  systemNumber?: Dfe<string>;
 
   /**
    * Client ID of the client on the SAP system where the table is located. (Usually a three-digit decimal number represented as a string) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * Language of the SAP system where the table is located. The default value is EN. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  language?: unknown;
+  language?: Dfe<string>;
 
   /**
    * SystemID of the SAP system where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  systemId?: unknown;
+  systemId?: Dfe<string>;
 
   /**
    * Username to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password to access the SAP server where the table is located.
@@ -15267,62 +14786,52 @@ model SapOdpLinkedServiceTypeProperties {
   /**
    * The hostname of the SAP Message Server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  messageServer?: unknown;
+  messageServer?: Dfe<string>;
 
   /**
    * The service name or port number of the Message Server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  messageServerService?: unknown;
+  messageServerService?: Dfe<string>;
 
   /**
    * SNC activation flag (Boolean) to access the SAP server where the table is located. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncMode?: unknown;
+  sncMode?: Dfe<boolean>;
 
   /**
    * Initiator's SNC name to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncMyName?: unknown;
+  sncMyName?: Dfe<string>;
 
   /**
    * Communication partner's SNC name to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncPartnerName?: unknown;
+  sncPartnerName?: Dfe<string>;
 
   /**
    * External security product's library to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncLibraryPath?: unknown;
+  sncLibraryPath?: Dfe<string>;
 
   /**
    * SNC Quality of Protection. Allowed value include: 1, 2, 3, 8, 9. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncQop?: unknown;
+  sncQop?: Dfe<string>;
 
   /**
    * SNC X509 certificate file path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  x509CertificatePath?: unknown;
+  x509CertificatePath?: Dfe<string>;
 
   /**
    * The Logon Group for the SAP System. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logonGroup?: unknown;
+  logonGroup?: Dfe<string>;
 
   /**
    * The subscriber name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  subscriberName?: unknown;
+  subscriberName?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -15353,14 +14862,12 @@ model RestServiceLinkedServiceTypeProperties {
   /**
    * The base URL of the REST service. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * Whether to validate server side SSL certificate when connecting to the endpoint.The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableServerCertificateValidation?: unknown;
+  enableServerCertificateValidation?: Dfe<boolean>;
 
   /**
    * Type of authentication used to connect to the REST service.
@@ -15370,8 +14877,7 @@ model RestServiceLinkedServiceTypeProperties {
   /**
    * The user name used in Basic authentication type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The password used in Basic authentication type.
@@ -15381,14 +14887,12 @@ model RestServiceLinkedServiceTypeProperties {
   /**
    * The additional HTTP headers in the request to RESTful API used for authorization. Type: object (or Expression with resultType object).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authHeaders?: unknown;
+  authHeaders?: Dfe<unknown>;
 
   /**
    * The application's client ID used in AadServicePrincipal authentication type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The application's key used in AadServicePrincipal authentication type.
@@ -15398,20 +14902,17 @@ model RestServiceLinkedServiceTypeProperties {
   /**
    * The tenant information (domain name or tenant ID) used in AadServicePrincipal authentication type under which your application resides. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * The resource you are requesting authorization to use. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  aadResourceId?: unknown;
+  aadResourceId?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -15427,8 +14928,7 @@ model RestServiceLinkedServiceTypeProperties {
   /**
    * The client ID associated with your application. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret associated with your application.
@@ -15438,26 +14938,22 @@ model RestServiceLinkedServiceTypeProperties {
   /**
    * The token endpoint of the authorization server to acquire access token. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tokenEndpoint?: unknown;
+  tokenEndpoint?: Dfe<string>;
 
   /**
    * The target service or resource to which the access will be requested. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  resource?: unknown;
+  resource?: Dfe<string>;
 
   /**
    * The scope of the access required. It describes what kind of access will be requested. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  scope?: unknown;
+  scope?: Dfe<string>;
 
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * Specify the base64 encoded certificate of your application registered in Azure Active Directory. Type: string (or Expression with resultType string).
@@ -15497,14 +14993,12 @@ model TeamDeskLinkedServiceTypeProperties {
   /**
    * The url to connect TeamDesk source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * The username of the TeamDesk source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The password of the TeamDesk source.
@@ -15545,8 +15039,7 @@ model QuickbaseLinkedServiceTypeProperties {
   /**
    * The url to connect Quickbase source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * The user token for the Quickbase source.
@@ -15618,14 +15111,12 @@ model ZendeskLinkedServiceTypeProperties {
   /**
    * The url to connect Zendesk source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * The username of the Zendesk source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * The password of the Zendesk source.
@@ -15697,8 +15188,7 @@ model AppFiguresLinkedServiceTypeProperties {
   /**
    * The username of the Appfigures source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName: unknown;
+  userName: Dfe<string>;
 
   /**
    * The password of the AppFigures source.
@@ -15764,8 +15254,7 @@ model TwilioLinkedServiceTypeProperties {
   /**
    * The Account SID of Twilio service. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName: unknown;
+  userName: Dfe<string>;
 
   /**
    * The auth token of Twilio service.
@@ -15826,14 +15315,12 @@ model AmazonS3LinkedServiceTypeProperties {
   /**
    * The authentication type of S3. Allowed value: AccessKey (default) or TemporarySecurityCredentials. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The access key identifier of the Amazon S3 Identity and Access Management (IAM) user. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accessKeyId?: unknown;
+  accessKeyId?: Dfe<string>;
 
   /**
    * The secret access key of the Amazon S3 Identity and Access Management (IAM) user.
@@ -15843,8 +15330,7 @@ model AmazonS3LinkedServiceTypeProperties {
   /**
    * This value specifies the endpoint to access with the S3 Connector. This is an optional property; change it only if you want to try a different service endpoint or want to switch between https and http. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceUrl?: unknown;
+  serviceUrl?: Dfe<string>;
 
   /**
    * The session token for the S3 temporary security credential.
@@ -15880,14 +15366,12 @@ model AmazonRedshiftLinkedServiceTypeProperties {
   /**
    * The name of the Amazon Redshift server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server: unknown;
+  server: Dfe<string>;
 
   /**
    * The username of the Amazon Redshift source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password of the Amazon Redshift source.
@@ -15897,14 +15381,12 @@ model AmazonRedshiftLinkedServiceTypeProperties {
   /**
    * The database name of the Amazon Redshift source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 
   /**
    * The TCP port number that the Amazon Redshift server uses to listen for client connections. The default value is 5439. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -15920,7 +15402,6 @@ model CustomDataSourceLinkedService extends LinkedService {
   /**
    * Custom linked service properties.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   typeProperties: unknown;
 
   /**
@@ -15951,8 +15432,7 @@ model AzureSearchLinkedServiceTypeProperties {
   /**
    * URL for Azure Search service. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * Admin Key for Azure Search service
@@ -15988,8 +15468,7 @@ model HttpLinkedServiceTypeProperties {
   /**
    * The base URL of the HTTP endpoint, e.g. https://www.microsoft.com. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * The authentication type to be used to connect to the HTTP server.
@@ -15999,8 +15478,7 @@ model HttpLinkedServiceTypeProperties {
   /**
    * User name for Basic, Digest, or Windows authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password for Basic, Digest, Windows, or ClientCertificate with EmbeddedCertData authentication.
@@ -16010,20 +15488,17 @@ model HttpLinkedServiceTypeProperties {
   /**
    * The additional HTTP headers in the request to RESTful API used for authorization. Type: key value pairs (value should be string type).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authHeaders?: unknown;
+  authHeaders?: Dfe<Record<string>>;
 
   /**
    * Base64 encoded certificate data for ClientCertificate authentication. For on-premises copy with ClientCertificate authentication, either CertThumbprint or EmbeddedCertData/Password should be specified. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  embeddedCertData?: unknown;
+  embeddedCertData?: Dfe<string>;
 
   /**
    * Thumbprint of certificate for ClientCertificate authentication. Only valid for on-premises copy. For on-premises copy with ClientCertificate authentication, either CertThumbprint or EmbeddedCertData/Password should be specified. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  certThumbprint?: unknown;
+  certThumbprint?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -16034,8 +15509,7 @@ model HttpLinkedServiceTypeProperties {
   /**
    * If true, validate the HTTPS server SSL certificate. Default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableServerCertificateValidation?: unknown;
+  enableServerCertificateValidation?: Dfe<boolean>;
 }
 
 /**
@@ -16060,14 +15534,12 @@ model FtpServerLinkedServiceTypeProperties {
   /**
    * Host name of the FTP server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port number that the FTP server uses to listen for client connections. Default value is 21. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The authentication type to be used to connect to the FTP server.
@@ -16077,8 +15549,7 @@ model FtpServerLinkedServiceTypeProperties {
   /**
    * Username to logon the FTP server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password to logon the FTP server.
@@ -16094,14 +15565,12 @@ model FtpServerLinkedServiceTypeProperties {
   /**
    * If true, connect to the FTP server over SSL/TLS channel. Default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * If true, validate the FTP server SSL certificate when connect over SSL/TLS channel. Default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableServerCertificateValidation?: unknown;
+  enableServerCertificateValidation?: Dfe<boolean>;
 }
 
 /**
@@ -16126,14 +15595,12 @@ model SftpServerLinkedServiceTypeProperties {
   /**
    * The SFTP server host name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port number that the SFTP server uses to listen for client connections. Default value is 22. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The authentication type to be used to connect to the FTP server.
@@ -16143,8 +15610,7 @@ model SftpServerLinkedServiceTypeProperties {
   /**
    * The username used to log on to the SFTP server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password to logon the SFTP server for Basic authentication.
@@ -16160,8 +15626,7 @@ model SftpServerLinkedServiceTypeProperties {
   /**
    * The SSH private key file path for SshPublicKey authentication. Only valid for on-premises copy. For on-premises copy with SshPublicKey authentication, either PrivateKeyPath or PrivateKeyContent should be specified. SSH private key should be OpenSSH format. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  privateKeyPath?: unknown;
+  privateKeyPath?: Dfe<string>;
 
   /**
    * Base64 encoded SSH private key content for SshPublicKey authentication. For on-premises copy with SshPublicKey authentication, either PrivateKeyPath or PrivateKeyContent should be specified. SSH private key should be OpenSSH format.
@@ -16176,14 +15641,12 @@ model SftpServerLinkedServiceTypeProperties {
   /**
    * If true, skip the SSH host key validation. Default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  skipHostKeyValidation?: unknown;
+  skipHostKeyValidation?: Dfe<boolean>;
 
   /**
    * The host key finger-print of the SFTP server. When SkipHostKeyValidation is false, HostKeyFingerprint should be specified. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  hostKeyFingerprint?: unknown;
+  hostKeyFingerprint?: Dfe<string>;
 }
 
 /**
@@ -16210,26 +15673,22 @@ model SapBWLinkedServiceTypeProperties {
   /**
    * Host name of the SAP BW instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server: unknown;
+  server: Dfe<string>;
 
   /**
    * System number of the BW system. (Usually a two-digit decimal number represented as a string.) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  systemNumber: unknown;
+  systemNumber: Dfe<string>;
 
   /**
    * Client ID of the client on the BW system. (Usually a three-digit decimal number represented as a string) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId: unknown;
+  clientId: Dfe<string>;
 
   /**
    * Username to access the SAP BW server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password to access the SAP BW server.
@@ -16265,14 +15724,12 @@ model SapHanaLinkedServiceProperties {
   /**
    * SAP HANA ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Host name of the SAP HANA server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * The authentication type to be used to connect to the SAP HANA server.
@@ -16282,8 +15739,7 @@ model SapHanaLinkedServiceProperties {
   /**
    * Username to access the SAP HANA server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password to access the SAP HANA server.
@@ -16321,22 +15777,17 @@ model AmazonMWSLinkedServiceTypeProperties {
   /**
    * The endpoint of the Amazon MWS server, (i.e. mws.amazonservices.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The Amazon Marketplace ID you want to retrieve data from. To retrieve data from multiple Marketplace IDs, separate them with a comma (,). (i.e. A2EUQ1WTGCTBG2)
    */
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  marketplaceID: unknown;
+  marketplaceID: Dfe<string>;
 
   /**
    * The Amazon seller ID.
    */
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sellerID: unknown;
+  sellerID: Dfe<string>;
 
   /**
    * The Amazon MWS authentication token.
@@ -16346,8 +15797,7 @@ model AmazonMWSLinkedServiceTypeProperties {
   /**
    * The access key id used to access data.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accessKeyId: unknown;
+  accessKeyId: Dfe<string>;
 
   /**
    * The secret key used to access data.
@@ -16357,20 +15807,17 @@ model AmazonMWSLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -16401,74 +15848,62 @@ model AzurePostgreSqlLinkedServiceTypeProperties {
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Server name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Database name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * SSL mode for connection. Type: integer. 0: disable, 1:allow, 2: prefer, 3: require, 4: verify-ca, 5: verify-full. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslMode?: unknown;
+  sslMode?: Dfe<int32>;
 
   /**
    * The time to wait (in seconds) while trying to establish a connection before terminating the attempt and generating an error. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeout?: unknown;
+  timeout?: Dfe<int32>;
 
   /**
    * The time to wait (in seconds) while trying to execute a command before terminating the attempt and generating an error. Set to zero for infinity. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  commandTimeout?: unknown;
+  commandTimeout?: Dfe<int32>;
 
   /**
    * Whether to trust the server certificate without validating it. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustServerCertificate?: unknown;
+  trustServerCertificate?: Dfe<boolean>;
 
   /**
    * Determines the size of the internal buffer uses when reading. Increasing may improve performance if transferring large values from the database. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  readBufferSize?: unknown;
+  readBufferSize?: Dfe<int32>;
 
   /**
    * Gets or sets the session timezone. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timezone?: unknown;
+  timezone?: Dfe<string>;
 
   /**
    * Gets or sets the .NET encoding that will be used to encode/decode PostgreSQL string data. Type: string
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  encoding?: unknown;
+  encoding?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -16484,8 +15919,7 @@ model AzurePostgreSqlLinkedServiceTypeProperties {
   /**
    * The ID of the service principal used to authenticate against Azure Database for PostgreSQL Flexible server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against Azure Database for PostgreSQL Flexible server.
@@ -16495,8 +15929,7 @@ model AzurePostgreSqlLinkedServiceTypeProperties {
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * Specify the base64 encoded certificate of your application registered in Azure Active Directory. Type: string (or Expression with resultType string).
@@ -16511,14 +15944,12 @@ model AzurePostgreSqlLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * Indicates the azure cloud type of the service principle auth. Allowed values are AzurePublic, AzureChina, AzureUsGovernment, AzureGermany. Default value is the data factory regions’ cloud type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureCloudType?: unknown;
+  azureCloudType?: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -16548,20 +15979,17 @@ model ConcurLinkedServiceTypeProperties {
   /**
    * Properties used to connect to Concur. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
    * Application client_id supplied by Concur App Management.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId: unknown;
+  clientId: Dfe<string>;
 
   /**
    * The user name that you use to access Concur Service.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username: unknown;
+  username: Dfe<string>;
 
   /**
    * The password corresponding to the user name that you provided in the username field.
@@ -16571,20 +15999,17 @@ model ConcurLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -16615,8 +16040,7 @@ model CouchbaseLinkedServiceTypeProperties {
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of credString in connection string.
@@ -16652,8 +16076,7 @@ model DrillLinkedServiceTypeProperties {
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -16689,14 +16112,12 @@ model EloquaLinkedServiceTypeProperties {
   /**
    * The endpoint of the Eloqua server. (i.e. eloqua.example.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The site name and user name of your Eloqua account in the form: sitename/username. (i.e. Eloqua/Alice)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username: unknown;
+  username: Dfe<string>;
 
   /**
    * The password corresponding to the user name.
@@ -16706,20 +16127,17 @@ model EloquaLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -16750,20 +16168,17 @@ model GoogleBigQueryLinkedServiceTypeProperties {
   /**
    * The default BigQuery project to query against. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  project: unknown;
+  project: Dfe<string>;
 
   /**
    * A comma-separated list of public BigQuery projects to access. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalProjects?: unknown;
+  additionalProjects?: Dfe<string>;
 
   /**
    * Whether to request access to Google Drive. Allowing Google Drive access enables support for federated tables that combine BigQuery data with data from Google Drive. The default value is false. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestGoogleDriveScope?: unknown;
+  requestGoogleDriveScope?: Dfe<boolean>;
 
   /**
    * The OAuth 2.0 authentication mechanism used for authentication. ServiceAuthentication can only be used on self-hosted IR.
@@ -16778,8 +16193,7 @@ model GoogleBigQueryLinkedServiceTypeProperties {
   /**
    * The client id of the google application used to acquire the refresh token. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret of the google application used to acquire the refresh token.
@@ -16789,26 +16203,22 @@ model GoogleBigQueryLinkedServiceTypeProperties {
   /**
    * The service account email ID that is used for ServiceAuthentication and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  email?: unknown;
+  email?: Dfe<string>;
 
   /**
    * The full path to the .p12 key file that is used to authenticate the service account email address and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  keyFilePath?: unknown;
+  keyFilePath?: Dfe<string>;
 
   /**
    * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -16839,8 +16249,7 @@ model GoogleBigQueryV2LinkedServiceTypeProperties {
   /**
    * The default BigQuery project id to query against. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  projectId: unknown;
+  projectId: Dfe<string>;
 
   /**
    * The OAuth 2.0 authentication mechanism used for authentication.
@@ -16850,8 +16259,7 @@ model GoogleBigQueryV2LinkedServiceTypeProperties {
   /**
    * The client id of the google application used to acquire the refresh token. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret of the google application used to acquire the refresh token.
@@ -16897,8 +16305,7 @@ model GreenplumLinkedServiceTypeProperties {
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -16919,44 +16326,37 @@ model GreenplumLinkedServiceTypeProperties {
   /**
    * Host name for connection. Type: string. Only used for V2.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host?: unknown;
+  host?: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer. Only used for V2.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string. Only used for V2.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Database name for connection. Type: string. Only used for V2.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * SSL mode for connection. Type: integer. 0: disable, 1:allow, 2: prefer, 3: require, 4: verify-ca, 5: verify-full. Type: integer. Only used for V2.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslMode?: unknown;
+  sslMode?: Dfe<int32>;
 
   /**
    * The time to wait (in seconds) while trying to establish a connection before terminating the attempt and generating an error. Type: integer. Only used for V2.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionTimeout?: unknown;
+  connectionTimeout?: Dfe<int32>;
 
   /**
    * The time to wait (in seconds) while trying to execute a command before terminating the attempt and generating an error. Set to zero for infinity. Type: integer. Only used for V2.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  commandTimeout?: unknown;
+  commandTimeout?: Dfe<int32>;
 }
 
 /**
@@ -16983,20 +16383,17 @@ model HBaseLinkedServiceTypeProperties {
   /**
    * The IP address or host name of the HBase server. (i.e. 192.168.222.160)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port that the HBase instance uses to listen for client connections. The default value is 9090.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The partial URL corresponding to the HBase server. (i.e. /gateway/sandbox/hbase/version)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpPath?: unknown;
+  httpPath?: Dfe<string>;
 
   /**
    * The authentication mechanism to use to connect to the HBase server.
@@ -17006,8 +16403,7 @@ model HBaseLinkedServiceTypeProperties {
   /**
    * The user name used to connect to the HBase instance.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name.
@@ -17017,27 +16413,22 @@ model HBaseLinkedServiceTypeProperties {
   /**
    * Specifies whether the connections to the server are encrypted using SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowHostNameCNMismatch?: unknown;
+  allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
    * Specifies whether to allow self-signed certificates from the server. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowSelfSignedServerCert?: unknown;
+  allowSelfSignedServerCert?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17068,14 +16459,12 @@ model HiveLinkedServiceTypeProperties {
   /**
    * IP address or host name of the Hive server, separated by ';' for multiple hosts (only when serviceDiscoveryMode is enable).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port that the Hive server uses to listen for client connections.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The type of Hive server.
@@ -17095,26 +16484,22 @@ model HiveLinkedServiceTypeProperties {
   /**
    * true to indicate using the ZooKeeper service, false not.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serviceDiscoveryMode?: unknown;
+  serviceDiscoveryMode?: Dfe<boolean>;
 
   /**
    * The namespace on ZooKeeper under which Hive Server 2 nodes are added.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  zooKeeperNameSpace?: unknown;
+  zooKeeperNameSpace?: Dfe<string>;
 
   /**
    * Specifies whether the driver uses native HiveQL queries,or converts them into an equivalent form in HiveQL.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useNativeQuery?: unknown;
+  useNativeQuery?: Dfe<boolean>;
 
   /**
    * The user name that you use to access Hive Server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name that you provided in the Username field
@@ -17124,45 +16509,37 @@ model HiveLinkedServiceTypeProperties {
   /**
    * The partial URL corresponding to the Hive server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpPath?: unknown;
+  httpPath?: Dfe<string>;
 
   /**
    * Specifies whether the connections to the server are encrypted using SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * Specifies whether the connections to the server will validate server certificate, the default value is True. Only used for Version 2.0
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableServerCertificateValidation?: unknown;
+  enableServerCertificateValidation?: Dfe<boolean>;
 
   /**
    * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<boolean>;
 
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowHostNameCNMismatch?: unknown;
+  allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
    * Specifies whether to allow self-signed certificates from the server. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowSelfSignedServerCert?: unknown;
+  allowSelfSignedServerCert?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17193,8 +16570,7 @@ model HubspotLinkedServiceTypeProperties {
   /**
    * The client ID associated with your Hubspot application.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId: unknown;
+  clientId: Dfe<string>;
 
   /**
    * The client secret associated with your Hubspot application.
@@ -17214,20 +16590,17 @@ model HubspotLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17258,14 +16631,12 @@ model ImpalaLinkedServiceTypeProperties {
   /**
    * The IP address or host name of the Impala server. (i.e. 192.168.222.160)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port that the Impala server uses to listen for client connections. The default value is 21050.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The authentication type to use.
@@ -17275,8 +16646,7 @@ model ImpalaLinkedServiceTypeProperties {
   /**
    * The user name used to access the Impala server. The default value is anonymous when using SASLUsername.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name when using UsernameAndPassword.
@@ -17291,39 +16661,32 @@ model ImpalaLinkedServiceTypeProperties {
   /**
    * Specifies whether the connections to the server are encrypted using SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * Specify whether to enable server SSL certificate validation when you connect.Always use System Trust Store (for V2 only). The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableServerCertificateValidation?: unknown;
+  enableServerCertificateValidation?: Dfe<boolean>;
 
   /**
    * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<boolean>;
 
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowHostNameCNMismatch?: unknown;
+  allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
    * Specifies whether to allow self-signed certificates from the server. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowSelfSignedServerCert?: unknown;
+  allowSelfSignedServerCert?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17354,20 +16717,17 @@ model JiraLinkedServiceTypeProperties {
   /**
    * The IP address or host name of the Jira service. (e.g. jira.example.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port that the Jira server uses to listen for client connections. The default value is 443 if connecting through HTTPS, or 8080 if connecting through HTTP.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The user name that you use to access Jira Service.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username: unknown;
+  username: Dfe<string>;
 
   /**
    * The password corresponding to the user name that you provided in the username field.
@@ -17377,20 +16737,17 @@ model JiraLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17421,8 +16778,7 @@ model MagentoLinkedServiceTypeProperties {
   /**
    * The URL of the Magento instance. (i.e. 192.168.222.110/magento3)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The access token from Magento.
@@ -17432,20 +16788,17 @@ model MagentoLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17478,50 +16831,42 @@ model MariaDBLinkedServiceTypeProperties {
   /**
    * The version of the MariaDB driver. Type: string. V1 or empty for legacy driver, V2 for new driver. V1 can support connection string and property bag, V2 can only support connection string. The legacy driver is scheduled for deprecation by October 2024.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  driverVersion?: unknown;
+  driverVersion?: Dfe<string>;
 
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Server name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Database name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * This option specifies whether the driver uses TLS encryption and verification when connecting to MariaDB. E.g., SSLMode=<0/1/2/3/4>. Options: DISABLED (0) / PREFERRED (1) (Default) / REQUIRED (2) / VERIFY_CA (3) / VERIFY_IDENTITY (4), REQUIRED (2) is recommended to only allow connections encrypted with SSL/TLS.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sslMode?: unknown;
+  sslMode?: Dfe<int32>;
 
   /**
    * This option specifies whether to use a CA certificate from the system trust store, or from a specified PEM file. E.g. UseSystemTrustStore=<0/1>; Options: Enabled (1) / Disabled (0) (Default)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<int32>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -17559,8 +16904,7 @@ model AzureMariaDBLinkedServiceTypeProperties {
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -17596,14 +16940,12 @@ model MarketoLinkedServiceTypeProperties {
   /**
    * The endpoint of the Marketo server. (i.e. 123-ABC-321.mktorest.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The client Id of your Marketo service.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId: unknown;
+  clientId: Dfe<string>;
 
   /**
    * The client secret of your Marketo service.
@@ -17613,20 +16955,17 @@ model MarketoLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17657,14 +16996,12 @@ model PaypalLinkedServiceTypeProperties {
   /**
    * The URL of the PayPal instance. (i.e. api.sandbox.paypal.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The client ID associated with your PayPal application.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId: unknown;
+  clientId: Dfe<string>;
 
   /**
    * The client secret associated with your PayPal application.
@@ -17674,20 +17011,17 @@ model PaypalLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17718,20 +17052,17 @@ model PhoenixLinkedServiceTypeProperties {
   /**
    * The IP address or host name of the Phoenix server. (i.e. 192.168.222.160)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port that the Phoenix server uses to listen for client connections. The default value is 8765.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The partial URL corresponding to the Phoenix server. (i.e. /gateway/sandbox/phoenix/version). The default value is hbasephoenix if using WindowsAzureHDInsightService.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpPath?: unknown;
+  httpPath?: Dfe<string>;
 
   /**
    * The authentication mechanism used to connect to the Phoenix server.
@@ -17741,8 +17072,7 @@ model PhoenixLinkedServiceTypeProperties {
   /**
    * The user name used to connect to the Phoenix server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name.
@@ -17752,33 +17082,27 @@ model PhoenixLinkedServiceTypeProperties {
   /**
    * Specifies whether the connections to the server are encrypted using SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<boolean>;
 
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowHostNameCNMismatch?: unknown;
+  allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
    * Specifies whether to allow self-signed certificates from the server. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowSelfSignedServerCert?: unknown;
+  allowSelfSignedServerCert?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17809,26 +17133,22 @@ model PrestoLinkedServiceTypeProperties {
   /**
    * The IP address or host name of the Presto server. (i.e. 192.168.222.160)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The version of the Presto server. (i.e. 0.148-t) Only used for Version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  serverVersion?: unknown;
+  serverVersion?: Dfe<string>;
 
   /**
    * The catalog context for all request against the server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  catalog: unknown;
+  catalog: Dfe<string>;
 
   /**
    * The TCP port that the Presto server uses to listen for client connections. The default value is 8080 when disable SSL, default value is 443 when enable SSL.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * The authentication mechanism used to connect to the Presto server.
@@ -17838,8 +17158,7 @@ model PrestoLinkedServiceTypeProperties {
   /**
    * The user name used to connect to the Presto server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name.
@@ -17849,46 +17168,37 @@ model PrestoLinkedServiceTypeProperties {
   /**
    * Specifies whether the connections to the server are encrypted using SSL. The default value for legacy version is False. The default value for version 2.0 is True.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * Specifies whether the connections to the server will validate server certificate, the default value is True. Only used for Version 2.0
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableServerCertificateValidation?: unknown;
+  enableServerCertificateValidation?: Dfe<boolean>;
 
   /**
    * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR. Only used for Version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false. Only used for Version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<boolean>;
 
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. Only used for Version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowHostNameCNMismatch?: unknown;
+  allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
    * Specifies whether to allow self-signed certificates from the server. The default value is false. Only used for Version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowSelfSignedServerCert?: unknown;
+  allowSelfSignedServerCert?: Dfe<boolean>;
 
   /**
    * The local time zone used by the connection. Valid values for this option are specified in the IANA Time Zone Database. The default value for Version 1.0 is the client system time zone. The default value for Version 2.0 is server system timeZone
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeZoneID?: unknown;
+  timeZoneID?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17919,26 +17229,22 @@ model QuickBooksLinkedServiceTypeProperties {
   /**
    * Properties used to connect to QuickBooks. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
    * The endpoint of the QuickBooks server. (i.e. quickbooks.api.intuit.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint?: unknown;
+  endpoint?: Dfe<string>;
 
   /**
    * The company ID of the QuickBooks company to authorize.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  companyId?: unknown;
+  companyId?: Dfe<string>;
 
   /**
    * The consumer key for OAuth 2.0 authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  consumerKey?: unknown;
+  consumerKey?: Dfe<string>;
 
   /**
    * The consumer secret for OAuth 2.0 authentication.
@@ -17963,8 +17269,7 @@ model QuickBooksLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Only used for version 1.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -17995,8 +17300,7 @@ model ServiceNowLinkedServiceTypeProperties {
   /**
    * The endpoint of the ServiceNow server. (i.e. <instance>.service-now.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The authentication type to use.
@@ -18006,8 +17310,7 @@ model ServiceNowLinkedServiceTypeProperties {
   /**
    * The user name used to connect to the ServiceNow server for Basic and OAuth2 authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name for Basic and OAuth2 authentication.
@@ -18017,8 +17320,7 @@ model ServiceNowLinkedServiceTypeProperties {
   /**
    * The client id for OAuth2 authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret for OAuth2 authentication.
@@ -18028,20 +17330,17 @@ model ServiceNowLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18072,8 +17371,7 @@ model ShopifyLinkedServiceTypeProperties {
   /**
    * The endpoint of the Shopify server. (i.e. mystore.myshopify.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The API access token that can be used to access Shopify’s data. The token won't expire if it is offline mode.
@@ -18083,20 +17381,17 @@ model ShopifyLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18127,14 +17422,12 @@ model SparkLinkedServiceTypeProperties {
   /**
    * IP address or host name of the Spark server
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The TCP port that the Spark server uses to listen for client connections.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port: unknown;
+  port: Dfe<int32>;
 
   /**
    * The type of Spark server.
@@ -18154,8 +17447,7 @@ model SparkLinkedServiceTypeProperties {
   /**
    * The user name that you use to access Spark Server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name that you provided in the Username field
@@ -18165,45 +17457,37 @@ model SparkLinkedServiceTypeProperties {
   /**
    * The partial URL corresponding to the Spark server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpPath?: unknown;
+  httpPath?: Dfe<string>;
 
   /**
    * Specifies whether the connections to the server are encrypted using SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSsl?: unknown;
+  enableSsl?: Dfe<boolean>;
 
   /**
    * Specifies whether the connections to the server will validate server certificate, the default value is True. Only used for Version 2.0
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableServerCertificateValidation?: unknown;
+  enableServerCertificateValidation?: Dfe<boolean>;
 
   /**
    * The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<boolean>;
 
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowHostNameCNMismatch?: unknown;
+  allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
    * Specifies whether to allow self-signed certificates from the server. The default value is false.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowSelfSignedServerCert?: unknown;
+  allowSelfSignedServerCert?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18240,14 +17524,12 @@ model SquareLinkedServiceTypeProperties {
   /**
    * The URL of the Square instance. (i.e. mystore.mysquare.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host?: unknown;
+  host?: Dfe<string>;
 
   /**
    * The client ID associated with your Square application.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret associated with your Square application.
@@ -18257,26 +17539,22 @@ model SquareLinkedServiceTypeProperties {
   /**
    * The redirect URL assigned in the Square application dashboard. (i.e. http://localhost:2500)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  redirectUri?: unknown;
+  redirectUri?: Dfe<string>;
 
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18313,8 +17591,7 @@ model XeroLinkedServiceTypeProperties {
   /**
    * The endpoint of the Xero server. (i.e. api.xero.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host?: unknown;
+  host?: Dfe<string>;
 
   /**
    * The consumer key associated with the Xero application.
@@ -18330,20 +17607,17 @@ model XeroLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18374,14 +17648,12 @@ model ZohoLinkedServiceTypeProperties {
   /**
    * Properties used to connect to Zoho. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
    * The endpoint of the Zoho server. (i.e. crm.zoho.com/crm/private)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint?: unknown;
+  endpoint?: Dfe<string>;
 
   /**
    * The access token for Zoho authentication.
@@ -18391,20 +17663,17 @@ model ZohoLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18435,32 +17704,27 @@ model VerticaLinkedServiceTypeProperties {
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Server name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  uid?: unknown;
+  uid?: Dfe<string>;
 
   /**
    * Database name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -18496,32 +17760,27 @@ model NetezzaLinkedServiceTypeProperties {
   /**
    * An ODBC connection string. Type: string, SecureString or AzureKeyVaultSecretReference.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString?: unknown;
+  connectionString?: Dfe<string>;
 
   /**
    * Server name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * The port for the connection. Type: integer.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  port?: unknown;
+  port?: Dfe<int32>;
 
   /**
    * Username for authentication. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  uid?: unknown;
+  uid?: Dfe<string>;
 
   /**
    * Database name for connection. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database?: unknown;
+  database?: Dfe<string>;
 
   /**
    * Specifies the security level for the driver connection to the data store. PreferredUnSecured : prefer unsecured, allow fallback to secured connection if required. OnlyUnSecured : strictly unsecured, no fallback.
@@ -18568,8 +17827,7 @@ model SalesforceMarketingCloudLinkedServiceTypeProperties {
   /**
    * The client ID associated with the Salesforce Marketing Cloud application. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret associated with the Salesforce Marketing Cloud application. Type: string (or Expression with resultType string).
@@ -18579,20 +17837,17 @@ model SalesforceMarketingCloudLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18631,14 +17886,12 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
   /**
    * The allowed idle time for the on-demand HDInsight cluster. Specifies how long the on-demand HDInsight cluster stays alive after completion of an activity run if there are no other active jobs in the cluster. The minimum value is 5 mins. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeToLive: unknown;
+  timeToLive: Dfe<string>;
 
   /**
    * Version of the HDInsight cluster.  Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  version: unknown;
+  version: Dfe<string>;
 
   /**
    * Azure Storage linked service to be used by the on-demand cluster for storing and processing data.
@@ -18648,14 +17901,12 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
   /**
    * The customer’s subscription to host the cluster. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  hostSubscriptionId: unknown;
+  hostSubscriptionId: Dfe<string>;
 
   /**
    * The service principal id for the hostSubscriptionId. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key for the service principal id.
@@ -18665,14 +17916,12 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
   /**
    * The Tenant id/name to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant: unknown;
+  tenant: Dfe<string>;
 
   /**
    * The resource group where the cluster belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterResourceGroup: unknown;
+  clusterResourceGroup: Dfe<string>;
 
   /**
    * HDInsight On-demand cluster resource group authentication type.
@@ -18682,14 +17931,12 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
   /**
    * The prefix of cluster name, postfix will be distinct with timestamp. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterNamePrefix?: unknown;
+  clusterNamePrefix?: Dfe<string>;
 
   /**
    * The username to access the cluster. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterUserName?: unknown;
+  clusterUserName?: Dfe<string>;
 
   /**
    * The password to access the cluster.
@@ -18699,8 +17946,7 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
   /**
    * The username to SSH remotely connect to cluster’s node (for Linux). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterSshUserName?: unknown;
+  clusterSshUserName?: Dfe<string>;
 
   /**
    * The password to SSH remotely connect cluster’s node (for Linux).
@@ -18721,14 +17967,12 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
   /**
    * The cluster type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterType?: unknown;
+  clusterType?: Dfe<string>;
 
   /**
    * The version of spark if the cluster type is 'spark'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sparkVersion?: unknown;
+  sparkVersion?: Dfe<string>;
 
   /**
    * Specifies the core configuration parameters (as in core-site.xml) for the HDInsight cluster to be created.
@@ -18811,14 +18055,12 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
   /**
    * The ARM resource ID for the vNet to which the cluster should be joined after creation. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  virtualNetworkId?: unknown;
+  virtualNetworkId?: Dfe<string>;
 
   /**
    * The ARM resource ID for the subnet in the vNet. If virtualNetworkId was specified, then this property is required. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  subnetName?: unknown;
+  subnetName?: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -18874,14 +18116,12 @@ model AzureDataLakeAnalyticsLinkedServiceTypeProperties {
   /**
    * The Azure Data Lake Analytics account name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accountName: unknown;
+  accountName: Dfe<string>;
 
   /**
    * The ID of the application used to authenticate against the Azure Data Lake Analytics account. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The Key of the application used to authenticate against the Azure Data Lake Analytics account.
@@ -18891,26 +18131,22 @@ model AzureDataLakeAnalyticsLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant: unknown;
+  tenant: Dfe<string>;
 
   /**
    * Data Lake Analytics account subscription ID (if different from Data Factory account). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  subscriptionId?: unknown;
+  subscriptionId?: Dfe<string>;
 
   /**
    * Data Lake Analytics account resource group name (if different from Data Factory account). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  resourceGroupName?: unknown;
+  resourceGroupName?: Dfe<string>;
 
   /**
    * Azure Data Lake Analytics URI Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dataLakeAnalyticsUri?: unknown;
+  dataLakeAnalyticsUri?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -18941,8 +18177,7 @@ model AzureDatabricksLinkedServiceTypeProperties {
   /**
    * <REGION>.azuredatabricks.net, domain name of your Databricks deployment. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  domain: unknown;
+  domain: Dfe<string>;
 
   /**
    * Access token for databricks REST API. Refer to https://docs.azuredatabricks.net/api/latest/authentication.html. Type: string (or Expression with resultType string).
@@ -18952,86 +18187,72 @@ model AzureDatabricksLinkedServiceTypeProperties {
   /**
    * Required to specify MSI, if using Workspace resource id for databricks REST API. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authentication?: unknown;
+  authentication?: Dfe<string>;
 
   /**
    * Workspace resource id for databricks REST API. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  workspaceResourceId?: unknown;
+  workspaceResourceId?: Dfe<string>;
 
   /**
    * The id of an existing interactive cluster that will be used for all runs of this activity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  existingClusterId?: unknown;
+  existingClusterId?: Dfe<string>;
 
   /**
    * The id of an existing instance pool that will be used for all runs of this activity. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  instancePoolId?: unknown;
+  instancePoolId?: Dfe<string>;
 
   /**
    * If not using an existing interactive cluster, this specifies the Spark version of a new job cluster or instance pool nodes created for each run of this activity. Required if instancePoolId is specified. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  newClusterVersion?: unknown;
+  newClusterVersion?: Dfe<string>;
 
   /**
    * If not using an existing interactive cluster, this specifies the number of worker nodes to use for the new job cluster or instance pool. For new job clusters, this a string-formatted Int32, like '1' means numOfWorker is 1 or '1:10' means auto-scale from 1 (min) to 10 (max). For instance pools, this is a string-formatted Int32, and can only specify a fixed number of worker nodes, such as '2'. Required if newClusterVersion is specified. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  newClusterNumOfWorker?: unknown;
+  newClusterNumOfWorker?: Dfe<string>;
 
   /**
    * The node type of the new job cluster. This property is required if newClusterVersion is specified and instancePoolId is not specified. If instancePoolId is specified, this property is ignored. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  newClusterNodeType?: unknown;
+  newClusterNodeType?: Dfe<string>;
 
   /**
    * A set of optional, user-specified Spark configuration key-value pairs.
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   newClusterSparkConf?: Record<unknown>;
 
   /**
    * A set of optional, user-specified Spark environment variables key-value pairs.
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   newClusterSparkEnvVars?: Record<unknown>;
 
   /**
    * Additional tags for cluster resources. This property is ignored in instance pool configurations.
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   newClusterCustomTags?: Record<unknown>;
 
   /**
    * Specify a location to deliver Spark driver, worker, and event logs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  newClusterLogDestination?: unknown;
+  newClusterLogDestination?: Dfe<string>;
 
   /**
    * The driver node type for the new job cluster. This property is ignored in instance pool configurations. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  newClusterDriverNodeType?: unknown;
+  newClusterDriverNodeType?: Dfe<string>;
 
   /**
    * User-defined initialization scripts for the new cluster. Type: array of strings (or Expression with resultType array of strings).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  newClusterInitScripts?: unknown;
+  newClusterInitScripts?: Dfe<string[]>;
 
   /**
    * Enable the elastic disk on the new cluster. This property is now ignored, and takes the default elastic disk behavior in Databricks (elastic disks are always enabled). Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  newClusterEnableElasticDisk?: unknown;
+  newClusterEnableElasticDisk?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19042,8 +18263,7 @@ model AzureDatabricksLinkedServiceTypeProperties {
   /**
    * The policy id for limiting the ability to configure clusters based on a user defined set of rules. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  policyId?: unknown;
+  policyId?: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -19053,8 +18273,7 @@ model AzureDatabricksLinkedServiceTypeProperties {
   /**
    * The data security mode for the Databricks Cluster. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dataSecurityMode?: unknown;
+  dataSecurityMode?: Dfe<string>;
 }
 
 /**
@@ -19079,8 +18298,7 @@ model AzureDatabricksDetltaLakeLinkedServiceTypeProperties {
   /**
    * <REGION>.azuredatabricks.net, domain name of your Databricks deployment. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  domain: unknown;
+  domain: Dfe<string>;
 
   /**
    * Access token for databricks REST API. Refer to https://docs.azuredatabricks.net/api/latest/authentication.html. Type: string, SecureString or AzureKeyVaultSecretReference.
@@ -19090,8 +18308,7 @@ model AzureDatabricksDetltaLakeLinkedServiceTypeProperties {
   /**
    * The id of an existing interactive cluster that will be used for all runs of this job. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterId?: unknown;
+  clusterId?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19107,8 +18324,7 @@ model AzureDatabricksDetltaLakeLinkedServiceTypeProperties {
   /**
    * Workspace resource id for databricks REST API. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  workspaceResourceId?: unknown;
+  workspaceResourceId?: Dfe<string>;
 }
 
 /**
@@ -19133,14 +18349,12 @@ model ResponsysLinkedServiceTypeProperties {
   /**
    * The endpoint of the Responsys server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The client ID associated with the Responsys application. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId: unknown;
+  clientId: Dfe<string>;
 
   /**
    * The client secret associated with the Responsys application. Type: string (or Expression with resultType string).
@@ -19150,20 +18364,17 @@ model ResponsysLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19196,31 +18407,27 @@ model DynamicsAXLinkedServiceTypeProperties {
   /**
    * The Dynamics AX (or Dynamics 365 Finance and Operations) instance OData endpoint.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * Specify the application's client ID. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId: unknown;
+  servicePrincipalId: Dfe<string>;
 
   /**
    * Specify the application's key. Mark this field as a SecureString to store it securely in Data Factory, or reference a secret stored in Azure Key Vault. Type: string (or Expression with resultType string).
    */
-  servicePrincipalKey: SecretBase;
+  servicePrincipalKey: Dfe<string>;
 
   /**
    * Specify the tenant information (domain name or tenant ID) under which your application resides. Retrieve it by hovering the mouse in the top-right corner of the Azure portal. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant: unknown;
+  tenant: Dfe<string>;
 
   /**
    * Specify the resource you are requesting authorization. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  aadResourceId: unknown;
+  aadResourceId: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19251,14 +18458,12 @@ model OracleServiceCloudLinkedServiceTypeProperties {
   /**
    * The URL of the Oracle Service Cloud instance.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host: unknown;
+  host: Dfe<string>;
 
   /**
    * The user name that you use to access Oracle Service Cloud server.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username: unknown;
+  username: Dfe<string>;
 
   /**
    * The password corresponding to the user name that you provided in the username key.
@@ -19268,20 +18473,17 @@ model OracleServiceCloudLinkedServiceTypeProperties {
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useEncryptedEndpoints?: unknown;
+  useEncryptedEndpoints?: Dfe<boolean>;
 
   /**
    * Specifies whether to require the host name in the server's certificate to match the host name of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useHostVerification?: unknown;
+  useHostVerification?: Dfe<boolean>;
 
   /**
    * Specifies whether to verify the identity of the server when connecting over SSL. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  usePeerVerification?: unknown;
+  usePeerVerification?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19312,15 +18514,12 @@ model GoogleAdWordsLinkedServiceTypeProperties {
   /**
    * (Deprecated) Properties used to connect to GoogleAds. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
    * The Client customer ID of the AdWords account that you want to fetch report data for. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientCustomerID?: unknown;
+  clientCustomerID?: Dfe<string>;
 
   /**
    * The developer token associated with the manager account that you use to grant access to the AdWords API.
@@ -19340,8 +18539,7 @@ model GoogleAdWordsLinkedServiceTypeProperties {
   /**
    * The client id of the google application used to acquire the refresh token. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret of the google application used to acquire the refresh token.
@@ -19351,26 +18549,22 @@ model GoogleAdWordsLinkedServiceTypeProperties {
   /**
    * The service account email ID that is used for ServiceAuthentication and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  email?: unknown;
+  email?: Dfe<string>;
 
   /**
    * (Deprecated) The full path to the .p12 key file that is used to authenticate the service account email address and can only be used on self-hosted IR. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  keyFilePath?: unknown;
+  keyFilePath?: Dfe<string>;
 
   /**
    * (Deprecated) The full path of the .pem file containing trusted CA certificates for verifying the server when connecting over SSL. This property can only be set when using SSL on self-hosted IR. The default value is the cacerts.pem file installed with the IR. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trustedCertPath?: unknown;
+  trustedCertPath?: Dfe<string>;
 
   /**
    * (Deprecated) Specifies whether to use a CA certificate from the system trust store or from a specified PEM file. The default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useSystemTrustStore?: unknown;
+  useSystemTrustStore?: Dfe<boolean>;
 
   /**
    * The private key that is used to authenticate the service account email address and can only be used on self-hosted IR.
@@ -19380,21 +18574,17 @@ model GoogleAdWordsLinkedServiceTypeProperties {
   /**
    * The customer ID of the Google Ads Manager account through which you want to fetch report data of specific Customer. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  loginCustomerID?: unknown;
+  loginCustomerID?: Dfe<string>;
 
   /**
    * The Google Ads API major version such as v14. The supported major versions could be found on https://developers.google.com/google-ads/api/docs/release-notes. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  googleAdsApiVersion?: unknown;
+  googleAdsApiVersion?: Dfe<string>;
 
   /**
    * Specifies whether to use the legacy data type mappings, which maps float, int32 and int64 from Google to string. Do not set this to true unless you want to keep backward compatibility with legacy driver's data type mappings. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  supportLegacyDataTypes?: unknown;
+  supportLegacyDataTypes?: Dfe<boolean>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19425,38 +18615,32 @@ model SapTableLinkedServiceTypeProperties {
   /**
    * Host name of the SAP instance where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  server?: unknown;
+  server?: Dfe<string>;
 
   /**
    * System number of the SAP system where the table is located. (Usually a two-digit decimal number represented as a string.) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  systemNumber?: unknown;
+  systemNumber?: Dfe<string>;
 
   /**
    * Client ID of the client on the SAP system where the table is located. (Usually a three-digit decimal number represented as a string) Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * Language of the SAP system where the table is located. The default value is EN. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  language?: unknown;
+  language?: Dfe<string>;
 
   /**
    * SystemID of the SAP system where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  systemId?: unknown;
+  systemId?: Dfe<string>;
 
   /**
    * Username to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName?: unknown;
+  userName?: Dfe<string>;
 
   /**
    * Password to access the SAP server where the table is located.
@@ -19466,50 +18650,42 @@ model SapTableLinkedServiceTypeProperties {
   /**
    * The hostname of the SAP Message Server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  messageServer?: unknown;
+  messageServer?: Dfe<string>;
 
   /**
    * The service name or port number of the Message Server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  messageServerService?: unknown;
+  messageServerService?: Dfe<string>;
 
   /**
    * SNC activation flag (Boolean) to access the SAP server where the table is located. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncMode?: unknown;
+  sncMode?: Dfe<boolean>;
 
   /**
    * Initiator's SNC name to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncMyName?: unknown;
+  sncMyName?: Dfe<string>;
 
   /**
    * Communication partner's SNC name to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncPartnerName?: unknown;
+  sncPartnerName?: Dfe<string>;
 
   /**
    * External security product's library to access the SAP server where the table is located. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncLibraryPath?: unknown;
+  sncLibraryPath?: Dfe<string>;
 
   /**
    * SNC Quality of Protection. Allowed value include: 1, 2, 3, 8, 9. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sncQop?: unknown;
+  sncQop?: Dfe<string>;
 
   /**
    * The Logon Group for the SAP System. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logonGroup?: unknown;
+  logonGroup?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19540,14 +18716,12 @@ model AzureDataExplorerLinkedServiceTypeProperties {
   /**
    * The endpoint of Azure Data Explorer (the engine's endpoint). URL will be in the format https://<clusterName>.<regionName>.kusto.windows.net. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The ID of the service principal used to authenticate against Azure Data Explorer. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate against Kusto.
@@ -19557,14 +18731,12 @@ model AzureDataExplorerLinkedServiceTypeProperties {
   /**
    * Database name for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -19594,8 +18766,7 @@ model AzureFunctionLinkedServiceTypeProperties {
   /**
    * The endpoint of the Azure Function App. URL will be in the format https://<accountName>.azurewebsites.net. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  functionAppUrl: unknown;
+  functionAppUrl: Dfe<string>;
 
   /**
    * Function or Host key for Azure Function App.
@@ -19616,14 +18787,12 @@ model AzureFunctionLinkedServiceTypeProperties {
   /**
    * Allowed token audiences for azure function. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  resourceId?: unknown;
+  resourceId?: Dfe<string>;
 
   /**
    * Type of authentication (Required to specify MSI) used to connect to AzureFunction. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authentication?: unknown;
+  authentication?: Dfe<string>;
 }
 
 /**
@@ -19648,8 +18817,7 @@ model SnowflakeLinkedServiceTypeProperties {
   /**
    * The connection string of snowflake. Type: string, SecureString.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  connectionString: unknown;
+  connectionString: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -19685,14 +18853,12 @@ model SnowflakeLinkedV2ServiceTypeProperties {
   /**
    * The account identifier of your Snowflake account, e.g. xy12345.east-us-2.azure
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  accountIdentifier: unknown;
+  accountIdentifier: Dfe<string>;
 
   /**
    * The name of the Snowflake user.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  user?: unknown;
+  user?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of password in connection string.
@@ -19702,14 +18868,12 @@ model SnowflakeLinkedV2ServiceTypeProperties {
   /**
    * The name of the Snowflake database.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  database: unknown;
+  database: Dfe<string>;
 
   /**
    * The name of the Snowflake warehouse.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  warehouse: unknown;
+  warehouse: Dfe<string>;
 
   /**
    * The type used for authentication. Type: string.
@@ -19719,8 +18883,7 @@ model SnowflakeLinkedV2ServiceTypeProperties {
   /**
    * The client ID of the application registered in Azure Active Directory for AADServicePrincipal authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of client secret for AADServicePrincipal authentication.
@@ -19730,14 +18893,12 @@ model SnowflakeLinkedV2ServiceTypeProperties {
   /**
    * The tenant ID of the application registered in Azure Active Directory for AADServicePrincipal authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenantId?: unknown;
+  tenantId?: Dfe<string>;
 
   /**
    * The scope of the application registered in Azure Active Directory for AADServicePrincipal authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  scope?: unknown;
+  scope?: Dfe<string>;
 
   /**
    * The Azure key vault secret reference of privateKey for KeyPair auth.
@@ -19752,20 +18913,17 @@ model SnowflakeLinkedV2ServiceTypeProperties {
   /**
    * The default access control role to use in the Snowflake session. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  role?: unknown;
+  role?: Dfe<string>;
 
   /**
    * The host name of the Snowflake account. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  host?: unknown;
+  host?: Dfe<string>;
 
   /**
    * Schema name for connection. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  schema?: unknown;
+  schema?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19776,8 +18934,7 @@ model SnowflakeLinkedV2ServiceTypeProperties {
   /**
    * Indicates whether to use UTC timezone for timestamp data types. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useUtcTimestamps?: unknown;
+  useUtcTimestamps?: Dfe<boolean>;
 }
 
 /**
@@ -19802,20 +18959,17 @@ model SharePointOnlineListLinkedServiceTypeProperties {
   /**
    * The URL of the SharePoint Online site. For example, https://contoso.sharepoint.com/sites/siteName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  siteUrl: unknown;
+  siteUrl: Dfe<string>;
 
   /**
    * The tenant ID under which your application resides. You can find it from Azure portal Active Directory overview page. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenantId: unknown;
+  tenantId: Dfe<string>;
 
   /**
    * The application (client) ID of your application registered in Azure Active Directory. Make sure to grant SharePoint site permission to this application. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId: unknown;
+  servicePrincipalId: Dfe<string>;
 
   /**
    * The client secret of your application registered in Azure Active Directory. Type: string (or Expression with resultType string).
@@ -19825,8 +18979,7 @@ model SharePointOnlineListLinkedServiceTypeProperties {
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * Specify the base64 encoded certificate of your application registered in Azure Active Directory. Type: string (or Expression with resultType string).
@@ -19867,20 +19020,17 @@ model AzureSynapseArtifactsLinkedServiceTypeProperties {
   /**
    * https://<workspacename>.dev.azuresynapse.net, Azure Synapse Analytics workspace URL. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * Required to specify MSI, if using system assigned managed identity as authentication method. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authentication?: unknown;
+  authentication?: Dfe<string>;
 
   /**
    * The resource ID of the Synapse workspace. The format should be: /subscriptions/{subscriptionID}/resourceGroups/{resourceGroup}/providers/Microsoft.Synapse/workspaces/{workspaceName}. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  workspaceResourceId?: unknown;
+  workspaceResourceId?: Dfe<string>;
 }
 
 /**
@@ -19905,14 +19055,12 @@ model LakeHouseLinkedServiceTypeProperties {
   /**
    * The ID of Microsoft Fabric workspace. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  workspaceId?: unknown;
+  workspaceId?: Dfe<string>;
 
   /**
    * The ID of Microsoft Fabric Lakehouse artifact. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  artifactId?: unknown;
+  artifactId?: Dfe<string>;
 
   /**
    * The authentication type to use.
@@ -19922,8 +19070,7 @@ model LakeHouseLinkedServiceTypeProperties {
   /**
    * The ID of the application used to authenticate against Microsoft Fabric Lakehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The Key of the application used to authenticate against Microsoft Fabric Lakehouse.
@@ -19933,8 +19080,7 @@ model LakeHouseLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -19945,8 +19091,7 @@ model LakeHouseLinkedServiceTypeProperties {
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -19981,20 +19126,17 @@ model SalesforceV2LinkedServiceTypeProperties {
   /**
    * The URL of Salesforce instance. For example, 'https://[domain].my.salesforce.com'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  environmentUrl?: unknown;
+  environmentUrl?: Dfe<string>;
 
   /**
    * The authentication type to be used to connect to the Salesforce. Currently, we only support OAuth2ClientCredentials, it is also the default value
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The client Id for OAuth 2.0 Client Credentials Flow authentication of the Salesforce instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret for OAuth 2.0 Client Credentials Flow authentication of the Salesforce instance.
@@ -20004,8 +19146,7 @@ model SalesforceV2LinkedServiceTypeProperties {
   /**
    * The Salesforce API version used in ADF. The version must be larger than or equal to 47.0 which is required by Salesforce BULK API 2.0. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  apiVersion?: unknown;
+  apiVersion?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -20036,20 +19177,17 @@ model SalesforceServiceCloudV2LinkedServiceTypeProperties {
   /**
    * The URL of Salesforce Service Cloud instance. For example, 'https://[domain].my.salesforce.com'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  environmentUrl?: unknown;
+  environmentUrl?: Dfe<string>;
 
   /**
    * The authentication type to be used to connect to the Salesforce. Currently, we only support OAuth2ClientCredentials, it is also the default value
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  authenticationType?: unknown;
+  authenticationType?: Dfe<string>;
 
   /**
    * The client Id for OAuth 2.0 Client Credentials Flow authentication of the Salesforce instance. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret for OAuth 2.0 Client Credentials Flow authentication of the Salesforce instance.
@@ -20059,8 +19197,7 @@ model SalesforceServiceCloudV2LinkedServiceTypeProperties {
   /**
    * The Salesforce API version used in ADF. The version must be larger than or equal to 47.0 which is required by Salesforce BULK API 2.0. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  apiVersion?: unknown;
+  apiVersion?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -20091,20 +19228,17 @@ model WarehouseLinkedServiceTypeProperties {
   /**
    * The ID of Microsoft Fabric Warehouse artifact. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  artifactId: unknown;
+  artifactId: Dfe<string>;
 
   /**
    * The endpoint of Microsoft Fabric Warehouse server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The ID of Microsoft Fabric workspace. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  workspaceId?: unknown;
+  workspaceId?: Dfe<string>;
 
   /**
    * The authentication type to use.
@@ -20114,8 +19248,7 @@ model WarehouseLinkedServiceTypeProperties {
   /**
    * The ID of the application used to authenticate against Microsoft Fabric Warehouse. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The Key of the application used to authenticate against Microsoft Fabric Warehouse.
@@ -20125,8 +19258,7 @@ model WarehouseLinkedServiceTypeProperties {
   /**
    * The name or ID of the tenant to which the service principal belongs. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -20137,8 +19269,7 @@ model WarehouseLinkedServiceTypeProperties {
   /**
    * The service principal credential type to use in Server-To-Server authentication. 'ServicePrincipalKey' for key/secret, 'ServicePrincipalCert' for certificate. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalCredentialType?: unknown;
+  servicePrincipalCredentialType?: Dfe<string>;
 
   /**
    * The credential of the service principal object in Azure Active Directory. If servicePrincipalCredentialType is 'ServicePrincipalKey', servicePrincipalCredential can be SecureString or AzureKeyVaultSecretReference. If servicePrincipalCredentialType is 'ServicePrincipalCert', servicePrincipalCredential can only be AzureKeyVaultSecretReference.
@@ -20173,8 +19304,7 @@ model ServiceNowV2LinkedServiceTypeProperties {
   /**
    * The endpoint of the ServiceNowV2 server. (i.e. <instance>.service-now.com)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endpoint: unknown;
+  endpoint: Dfe<string>;
 
   /**
    * The authentication type to use.
@@ -20184,8 +19314,7 @@ model ServiceNowV2LinkedServiceTypeProperties {
   /**
    * The user name used to connect to the ServiceNowV2 server for Basic and OAuth2 authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * The password corresponding to the user name for Basic and OAuth2 authentication.
@@ -20195,8 +19324,7 @@ model ServiceNowV2LinkedServiceTypeProperties {
   /**
    * The client id for OAuth2 authentication.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clientId?: unknown;
+  clientId?: Dfe<string>;
 
   /**
    * The client secret for OAuth2 authentication.
@@ -20206,8 +19334,7 @@ model ServiceNowV2LinkedServiceTypeProperties {
   /**
    * GrantType for OAuth2 authentication. Default value is password.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  grantType?: unknown;
+  grantType?: Dfe<string>;
 
   /**
    * The encrypted credential used for authentication. Credentials are encrypted using the integration runtime credential manager. Type: string.
@@ -20248,14 +19375,12 @@ model ActivityPolicy {
   /**
    * Specifies the timeout for the activity to run. The default timeout is 7 days. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeout?: unknown;
+  timeout?: Dfe<string>;
 
   /**
    * Maximum ordinary retry attempts. Default is 0. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  retry?: unknown;
+  retry?: Dfe<int32>;
 
   /**
    * Interval between each retry attempt (in seconds). The default is 30 sec.
@@ -20291,14 +19416,12 @@ model StoreReadSettings {
   /**
    * The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxConcurrentConnections?: unknown;
+  maxConcurrentConnections?: Dfe<int32>;
 
   /**
    * If true, disable data store metrics collection. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  disableMetricsCollection?: unknown;
+  disableMetricsCollection?: Dfe<boolean>;
 }
 
 /**
@@ -20308,62 +19431,52 @@ model AzureBlobStorageReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Azure blob wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Azure blob wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * The prefix filter for the Azure Blob name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  prefix?: unknown;
+  prefix?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20379,56 +19492,47 @@ model AzureBlobFSReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Azure blobFS wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Azure blobFS wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20443,68 +19547,57 @@ model AzureDataLakeStoreReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * ADLS wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * ADLS wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Lists files after the value (exclusive) based on file/folder names’ lexicographical order. Applies under the folderPath in data set, and filter files/sub-folders under the folderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  listAfter?: unknown;
+  listAfter?: Dfe<string>;
 
   /**
    * Lists files before the value (inclusive) based on file/folder names’ lexicographical order. Applies under the folderPath in data set, and filter files/sub-folders under the folderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  listBefore?: unknown;
+  listBefore?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20519,62 +19612,52 @@ model AmazonS3ReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * AmazonS3 wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * AmazonS3 wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * The prefix filter for the S3 object name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  prefix?: unknown;
+  prefix?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20589,62 +19672,52 @@ model FileServerReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * FileServer wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * FileServer wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * Specify a filter to be used to select a subset of files in the folderPath rather than all files. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileFilter?: unknown;
+  fileFilter?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20659,62 +19732,52 @@ model AzureFileStorageReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Azure File Storage wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Azure File Storage wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * The prefix filter for the Azure File name starting from root path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  prefix?: unknown;
+  prefix?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20729,14 +19792,12 @@ model SftpWriteSettings extends StoreWriteSettings {
   /**
    * Specifies the timeout for writing each chunk to SFTP server. Default value: 01:00:00 (one hour). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  operationTimeout?: unknown;
+  operationTimeout?: Dfe<string>;
 
   /**
    * Upload to temporary file(s) and rename. Disable this option if your SFTP server doesn't support rename operation. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useTempFileRename?: unknown;
+  useTempFileRename?: Dfe<boolean>;
 
   /**
    * The write setting type.
@@ -20760,20 +19821,17 @@ model StoreWriteSettings {
   /**
    * The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxConcurrentConnections?: unknown;
+  maxConcurrentConnections?: Dfe<int32>;
 
   /**
    * If true, disable data store metrics collection. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  disableMetricsCollection?: unknown;
+  disableMetricsCollection?: Dfe<boolean>;
 
   /**
    * The type of copy behavior for copy sink.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  copyBehavior?: unknown;
+  copyBehavior?: Dfe<string>;
 
   /**
    * Specify the custom metadata to be added to sink data. Type: array of objects (or Expression with resultType array of objects).
@@ -20789,14 +19847,12 @@ model MetadataItem {
   /**
    * Metadata item key name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  name?: unknown;
+  name?: Dfe<string>;
 
   /**
    * Metadata item value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<string>;
 }
 
 /**
@@ -20806,62 +19862,52 @@ model AmazonS3CompatibleReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Amazon S3 Compatible wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Amazon S3 Compatible wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * The prefix filter for the S3 Compatible object name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  prefix?: unknown;
+  prefix?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20876,62 +19922,52 @@ model OracleCloudStorageReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Oracle Cloud Storage wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Oracle Cloud Storage wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * The prefix filter for the Oracle Cloud Storage object name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  prefix?: unknown;
+  prefix?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -20946,62 +19982,52 @@ model GoogleCloudStorageReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Google Cloud Storage wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Google Cloud Storage wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * The prefix filter for the Google Cloud Storage object name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  prefix?: unknown;
+  prefix?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -21016,56 +20042,47 @@ model FtpReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Ftp wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Ftp wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Specify whether to use binary transfer mode for FTP stores. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useBinaryTransfer?: unknown;
+  useBinaryTransfer?: Dfe<boolean>;
 
   /**
    * If true, disable parallel reading within each file. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  disableChunking?: unknown;
+  disableChunking?: Dfe<boolean>;
 
   /**
    * The read setting type.
@@ -21080,62 +20097,52 @@ model SftpReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Sftp wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Sftp wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * If true, disable parallel reading within each file. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  disableChunking?: unknown;
+  disableChunking?: Dfe<boolean>;
 
   /**
    * The read setting type.
@@ -21150,31 +20157,26 @@ model HttpReadSettings extends StoreReadSettings {
   /**
    * The HTTP method used to call the RESTful API. The default is GET. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestMethod?: unknown;
+  requestMethod?: Dfe<string>;
 
   /**
    * The HTTP request body to the RESTful API if requestMethod is POST. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestBody?: unknown;
+  requestBody?: Dfe<string>;
 
   /**
    * The additional HTTP headers in the request to the RESTful API. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalHeaders?: unknown;
+  additionalHeaders?: Dfe<string>;
 
   /**
    * Specifies the timeout for a HTTP client to get HTTP response from HTTP server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestTimeout?: unknown;
+  requestTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   additionalColumns?: unknown;
 
   /**
@@ -21190,50 +20192,42 @@ model HdfsReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * HDFS wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * HDFS wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * Specifies Distcp-related settings.
@@ -21243,8 +20237,7 @@ model HdfsReadSettings extends StoreReadSettings {
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The read setting type.
@@ -21259,20 +20252,17 @@ model DistcpSettings {
   /**
    * Specifies the Yarn ResourceManager endpoint. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  resourceManagerEndpoint: unknown;
+  resourceManagerEndpoint: Dfe<string>;
 
   /**
    * Specifies an existing folder path which will be used to store temp Distcp command script. The script file is generated by ADF and will be removed after Copy job finished. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tempScriptPath: unknown;
+  tempScriptPath: Dfe<string>;
 
   /**
    * Specifies the Distcp options. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  distcpOptions?: unknown;
+  distcpOptions?: Dfe<string>;
 }
 
 /**
@@ -21282,56 +20272,47 @@ model LakeHouseReadSettings extends StoreReadSettings {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Microsoft Fabric Lakehouse Files wildcardFolderPath. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFolderPath?: unknown;
+  wildcardFolderPath?: Dfe<string>;
 
   /**
    * Microsoft Fabric Lakehouse Files wildcardFileName. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  wildcardFileName?: unknown;
+  wildcardFileName?: Dfe<string>;
 
   /**
    * Point to a text file that lists each file (relative path to the path configured in the dataset) that you want to copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileListPath?: unknown;
+  fileListPath?: Dfe<string>;
 
   /**
    * Indicates whether to enable partition discovery. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enablePartitionDiscovery?: unknown;
+  enablePartitionDiscovery?: Dfe<boolean>;
 
   /**
    * Specify the root path where partition discovery starts from. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionRootPath?: unknown;
+  partitionRootPath?: Dfe<string>;
 
   /**
    * Indicates whether the source files need to be deleted after copy completion. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  deleteFilesAfterCompletion?: unknown;
+  deleteFilesAfterCompletion?: Dfe<boolean>;
 
   /**
    * The start of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeStart?: unknown;
+  modifiedDatetimeStart?: Dfe<string>;
 
   /**
    * The end of file's modified datetime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  modifiedDatetimeEnd?: unknown;
+  modifiedDatetimeEnd?: Dfe<string>;
 
   /**
    * The read setting type.
@@ -21346,9 +20327,7 @@ model AzureBlobStorageWriteSettings extends StoreWriteSettings {
   /**
    * Indicates the block size(MB) when writing data to blob. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  blockSizeInMB?: unknown;
+  blockSizeInMB?: Dfe<int32>;
 
   /**
    * The write setting type.
@@ -21364,9 +20343,7 @@ model AzureBlobFSWriteSettings extends StoreWriteSettings {
   /**
    * Indicates the block size(MB) when writing data to blob. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  blockSizeInMB?: unknown;
+  blockSizeInMB?: Dfe<int32>;
 
   /**
    * The write setting type.
@@ -21381,8 +20358,7 @@ model AzureDataLakeStoreWriteSettings extends StoreWriteSettings {
   /**
    * Specifies the expiry time of the written files. The time is applied to the UTC time zone in the format of "2018-12-01T05:00:00Z". Default value is NULL. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  expiryDateTime?: unknown;
+  expiryDateTime?: Dfe<string>;
 
   /**
    * The write setting type.
@@ -21455,8 +20431,7 @@ model ZipDeflateReadSettings extends CompressionReadSettings {
   /**
    * Preserve the zip file name as folder path. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preserveZipFileNameAsFolder?: unknown;
+  preserveZipFileNameAsFolder?: Dfe<boolean>;
 
   /**
    * The Compression setting type.
@@ -21471,8 +20446,7 @@ model TarReadSettings extends CompressionReadSettings {
   /**
    * Preserve the compression file name as folder path. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preserveCompressionFileNameAsFolder?: unknown;
+  preserveCompressionFileNameAsFolder?: Dfe<boolean>;
 
   /**
    * The Compression setting type.
@@ -21488,8 +20462,7 @@ model TarGZipReadSettings extends CompressionReadSettings {
   /**
    * Preserve the compression file name as folder path. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preserveCompressionFileNameAsFolder?: unknown;
+  preserveCompressionFileNameAsFolder?: Dfe<boolean>;
 
   /**
    * The Compression setting type.
@@ -21519,8 +20492,7 @@ model DelimitedTextReadSettings extends FormatReadSettings {
   /**
    * Indicates the number of non-empty rows to skip when reading data from input files. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  skipLineCount?: unknown;
+  skipLineCount?: Dfe<int32>;
 
   /**
    * Compression settings.
@@ -21560,26 +20532,22 @@ model XmlReadSettings extends FormatReadSettings {
   /**
    * Indicates what validation method is used when reading the xml files. Allowed values: 'none', 'xsd', or 'dtd'. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  validationMode?: unknown;
+  validationMode?: Dfe<string>;
 
   /**
    * Indicates whether type detection is enabled when reading the xml files. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  detectDataType?: unknown;
+  detectDataType?: Dfe<boolean>;
 
   /**
    * Indicates whether namespace is enabled when reading the xml files. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  namespaces?: unknown;
+  namespaces?: Dfe<boolean>;
 
   /**
    * Namespace uri to prefix mappings to override the prefixes in column names when namespace is enabled, if no prefix is defined for a namespace uri, the prefix of xml element/attribute name in the xml data file will be used. Example: "{"http://www.example.com/xml":"prefix"}" Type: object (or Expression with resultType object).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  namespacePrefixes?: unknown;
+  namespacePrefixes?: Dfe<Record<string>>;
 
   /**
    * The read setting type.
@@ -21634,14 +20602,12 @@ model AvroWriteSettings extends FormatWriteSettings {
   /**
    * Limit the written file's row count to be smaller than or equal to the specified count. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxRowsPerFile?: unknown;
+  maxRowsPerFile?: Dfe<int32>;
 
   /**
    * Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileNamePrefix?: unknown;
+  fileNamePrefix?: Dfe<string>;
 
   /**
    * The write setting type.
@@ -21656,14 +20622,12 @@ model OrcWriteSettings extends FormatWriteSettings {
   /**
    * Limit the written file's row count to be smaller than or equal to the specified count. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxRowsPerFile?: unknown;
+  maxRowsPerFile?: Dfe<int32>;
 
   /**
    * Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileNamePrefix?: unknown;
+  fileNamePrefix?: Dfe<string>;
 
   /**
    * The write setting type.
@@ -21678,14 +20642,12 @@ model ParquetWriteSettings extends FormatWriteSettings {
   /**
    * Limit the written file's row count to be smaller than or equal to the specified count. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxRowsPerFile?: unknown;
+  maxRowsPerFile?: Dfe<int32>;
 
   /**
    * Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileNamePrefix?: unknown;
+  fileNamePrefix?: Dfe<string>;
 
   /**
    * The write setting type.
@@ -21700,26 +20662,22 @@ model DelimitedTextWriteSettings extends FormatWriteSettings {
   /**
    * Indicates whether string values should always be enclosed with quotes. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  quoteAllText?: unknown;
+  quoteAllText?: Dfe<boolean>;
 
   /**
    * The file extension used to create the files. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileExtension: unknown;
+  fileExtension: Dfe<string>;
 
   /**
    * Limit the written file's row count to be smaller than or equal to the specified count. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxRowsPerFile?: unknown;
+  maxRowsPerFile?: Dfe<int32>;
 
   /**
    * Specifies the file name pattern <fileNamePrefix>_<fileIndex>.<fileExtension> when copy from non-file based store without partitionOptions. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileNamePrefix?: unknown;
+  fileNamePrefix?: Dfe<string>;
 
   /**
    * The write setting type.
@@ -21734,8 +20692,7 @@ model JsonWriteSettings extends FormatWriteSettings {
   /**
    * File pattern of JSON. This setting controls the way a collection of JSON objects will be treated. The default value is 'setOfObjects'. It is case-sensitive.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  filePattern?: unknown;
+  filePattern?: Dfe<string>;
 
   /**
    * The write setting type.
@@ -21765,7 +20722,6 @@ model AvroSource extends CopySource {
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   additionalColumns?: unknown;
 
   /**
@@ -21790,26 +20746,22 @@ model CopySource {
   /**
    * Source retry count. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sourceRetryCount?: unknown;
+  sourceRetryCount?: Dfe<int32>;
 
   /**
    * Source retry wait. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sourceRetryWait?: unknown;
+  sourceRetryWait?: Dfe<string>;
 
   /**
    * The maximum concurrent connection count for the source data store. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxConcurrentConnections?: unknown;
+  maxConcurrentConnections?: Dfe<int32>;
 
   /**
    * If true, disable data store metrics collection. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  disableMetricsCollection?: unknown;
+  disableMetricsCollection?: Dfe<boolean>;
 }
 
 /**
@@ -21994,38 +20946,32 @@ model CopySink {
   /**
    * Write batch size. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBatchSize?: unknown;
+  writeBatchSize?: Dfe<int32>;
 
   /**
    * Write batch timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBatchTimeout?: unknown;
+  writeBatchTimeout?: Dfe<string>;
 
   /**
    * Sink retry count. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sinkRetryCount?: unknown;
+  sinkRetryCount?: Dfe<int32>;
 
   /**
    * Sink retry wait. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sinkRetryWait?: unknown;
+  sinkRetryWait?: Dfe<string>;
 
   /**
    * The maximum concurrent connection count for the sink data store. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxConcurrentConnections?: unknown;
+  maxConcurrentConnections?: Dfe<int32>;
 
   /**
    * If true, disable data store metrics collection. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  disableMetricsCollection?: unknown;
+  disableMetricsCollection?: Dfe<boolean>;
 }
 
 /**
@@ -22123,8 +21069,7 @@ model CopyActivityTypeProperties {
   /**
    * Specifies whether to copy data via an interim staging. Default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableStaging?: unknown;
+  enableStaging?: Dfe<boolean>;
 
   /**
    * Specifies interim staging settings when EnableStaging is true.
@@ -22134,20 +21079,17 @@ model CopyActivityTypeProperties {
   /**
    * Maximum number of concurrent sessions opened on the source or sink to avoid overloading the data store. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  parallelCopies?: unknown;
+  parallelCopies?: Dfe<int32>;
 
   /**
    * Maximum number of data integration units that can be used to perform this data movement. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dataIntegrationUnits?: unknown;
+  dataIntegrationUnits?: Dfe<int32>;
 
   /**
    * Whether to skip incompatible row. Default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableSkipIncompatibleRow?: unknown;
+  enableSkipIncompatibleRow?: Dfe<boolean>;
 
   /**
    * Redirect incompatible row settings when EnableSkipIncompatibleRow is true.
@@ -22177,8 +21119,7 @@ model CopyActivityTypeProperties {
   /**
    * Whether to enable Data Consistency validation. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  validateDataConsistency?: unknown;
+  validateDataConsistency?: Dfe<boolean>;
 
   /**
    * Specify the fault tolerance for data consistency.
@@ -22200,14 +21141,12 @@ model StagingSettings {
   /**
    * The path to storage for storing the interim data. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path?: unknown;
+  path?: Dfe<string>;
 
   /**
    * Specifies whether to use compression when copying data via an interim staging. Default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableCompression?: unknown;
+  enableCompression?: Dfe<boolean>;
 }
 
 /**
@@ -22219,14 +21158,12 @@ model RedirectIncompatibleRowSettings {
   /**
    * Name of the Azure Storage, Storage SAS, or Azure Data Lake Store linked service used for redirecting incompatible row. Must be specified if redirectIncompatibleRowSettings is specified. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  linkedServiceName: unknown;
+  linkedServiceName: Dfe<string>;
 
   /**
    * The path for storing the redirect incompatible row data. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path?: unknown;
+  path?: Dfe<string>;
 }
 
 /**
@@ -22243,20 +21180,17 @@ model LogStorageSettings {
   /**
    * The path to storage for storing detailed logs of activity execution. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path?: unknown;
+  path?: Dfe<string>;
 
   /**
    * Gets or sets the log level, support: Info, Warning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logLevel?: unknown;
+  logLevel?: Dfe<string>;
 
   /**
    * Specifies whether to enable reliable logging. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableReliableLogging?: unknown;
+  enableReliableLogging?: Dfe<boolean>;
 }
 
 /**
@@ -22266,8 +21200,7 @@ model LogSettings {
   /**
    * Specifies whether to enable copy activity log. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableCopyActivityLog?: unknown;
+  enableCopyActivityLog?: Dfe<boolean>;
 
   /**
    * Specifies settings for copy activity log.
@@ -22287,14 +21220,12 @@ model CopyActivityLogSettings {
   /**
    * Gets or sets the log level, support: Info, Warning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logLevel?: unknown;
+  logLevel?: Dfe<string>;
 
   /**
    * Specifies whether to enable reliable logging. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableReliableLogging?: unknown;
+  enableReliableLogging?: Dfe<boolean>;
 }
 
 /**
@@ -22309,8 +21240,7 @@ model LogLocationSettings {
   /**
    * The path to storage for storing detailed logs of activity execution. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  path?: unknown;
+  path?: Dfe<string>;
 }
 
 /**
@@ -22320,14 +21250,12 @@ model SkipErrorFile {
   /**
    * Skip if file is deleted by other client during copy. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  fileMissing?: unknown;
+  fileMissing?: Dfe<boolean>;
 
   /**
    * Skip if source/sink file changed by other concurrent write. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dataInconsistency?: unknown;
+  dataInconsistency?: Dfe<boolean>;
 }
 
 /**
@@ -22361,8 +21289,7 @@ alias TabularSourceProperties = {
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22383,14 +21310,12 @@ model AzureTableSource extends CopySource {
   /**
    * Azure Table source query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureTableSourceQuery?: unknown;
+  azureTableSourceQuery?: Dfe<string>;
 
   /**
    * Azure Table source ignore table not found. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureTableSourceIgnoreTableNotFound?: unknown;
+  azureTableSourceIgnoreTableNotFound?: Dfe<boolean>;
 
   /**
    * Copy source type.
@@ -22405,20 +21330,17 @@ model BlobSource extends CopySource {
   /**
    * Treat empty as null. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  treatEmptyAsNull?: unknown;
+  treatEmptyAsNull?: Dfe<boolean>;
 
   /**
    * Number of header lines to skip from each blob. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  skipHeaderLineCount?: unknown;
+  skipHeaderLineCount?: Dfe<int32>;
 
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Copy source type.
@@ -22433,20 +21355,17 @@ model DocumentDbCollectionSource extends CopySource {
   /**
    * Documents query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Nested properties separator. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  nestingSeparator?: unknown;
+  nestingSeparator?: Dfe<string>;
 
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22467,26 +21386,22 @@ model CosmosDbSqlApiSource extends CopySource {
   /**
    * SQL API query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Page size of the result. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  pageSize?: unknown;
+  pageSize?: Dfe<int32>;
 
   /**
    * Preferred regions. Type: array of strings (or Expression with resultType array of strings).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preferredRegions?: unknown;
+  preferredRegions?: Dfe<string[]>;
 
   /**
    * Whether detect primitive values as datetime values. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  detectDatetime?: unknown;
+  detectDatetime?: Dfe<boolean>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22507,8 +21422,7 @@ model DynamicsSource extends CopySource {
   /**
    * FetchXML is a proprietary query language that is used in Microsoft Dynamics (online & on-premises). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22529,8 +21443,7 @@ model DynamicsCrmSource extends CopySource {
   /**
    * FetchXML is a proprietary query language that is used in Microsoft Dynamics CRM (online & on-premises). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22551,8 +21464,7 @@ model CommonDataServiceForAppsSource extends CopySource {
   /**
    * FetchXML is a proprietary query language that is used in Microsoft Common Data Service for Apps (online & on-premises). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22573,8 +21485,7 @@ model RelationalSource extends CopySource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22595,8 +21506,7 @@ model InformixSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22611,8 +21521,7 @@ model MicrosoftAccessSource extends CopySource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22633,8 +21542,7 @@ model Db2Source extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22649,8 +21557,7 @@ model OdbcSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22665,8 +21572,7 @@ model MySqlSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22681,8 +21587,7 @@ model PostgreSqlSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22697,8 +21602,7 @@ model PostgreSqlV2Source extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22713,8 +21617,7 @@ model SybaseSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22729,8 +21632,7 @@ model SapBwSource extends TabularSource {
   /**
    * MDX query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22746,14 +21648,12 @@ model ODataSource extends CopySource {
   /**
    * OData query. For example, "$top=1". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22774,14 +21674,12 @@ model SalesforceSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The read behavior for the operation. Default is Query. Allowed values: Query/QueryAll. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  readBehavior?: unknown;
+  readBehavior?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22796,14 +21694,12 @@ model SalesforceServiceCloudSource extends CopySource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The read behavior for the operation. Default is Query. Allowed values: Query/QueryAll. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  readBehavior?: unknown;
+  readBehavior?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -22824,14 +21720,12 @@ model SapCloudForCustomerSource extends TabularSource {
   /**
    * SAP Cloud for Customer OData query. For example, "$top=1". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22846,14 +21740,12 @@ model SapEccSource extends TabularSource {
   /**
    * SAP ECC OData query. For example, "$top=1". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22868,20 +21760,17 @@ model SapHanaSource extends TabularSource {
   /**
    * SAP HANA Sql query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The packet size of data read from SAP HANA. Type: integer(or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  packetSize?: unknown;
+  packetSize?: Dfe<int32>;
 
   /**
    * The partition mechanism that will be used for SAP HANA read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "SapHanaDynamicRange".
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for SAP HANA source partitioning.
@@ -22901,8 +21790,7 @@ model SapHanaPartitionSettings {
   /**
    * The name of the column that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionColumnName?: unknown;
+  partitionColumnName?: Dfe<string>;
 }
 
 /**
@@ -22912,26 +21800,22 @@ model SapOpenHubSource extends TabularSource {
   /**
    * Whether to exclude the records of the last request. The default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  excludeLastRequest?: unknown;
+  excludeLastRequest?: Dfe<boolean>;
 
   /**
    * The ID of request for delta loading. Once it is set, only data with requestId larger than the value of this property will be retrieved. The default value is 0. Type: integer (or Expression with resultType integer ).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  baseRequestId?: unknown;
+  baseRequestId?: Dfe<int32>;
 
   /**
    * Specifies the custom RFC function module that will be used to read data from SAP Table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  customRfcReadTableFunctionModule?: unknown;
+  customRfcReadTableFunctionModule?: Dfe<string>;
 
   /**
    * The single character that will be used as delimiter passed to SAP RFC as well as splitting the output data retrieved. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sapDataColumnDelimiter?: unknown;
+  sapDataColumnDelimiter?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -22946,14 +21830,12 @@ model SapOdpSource extends TabularSource {
   /**
    * The extraction mode. Allowed value include: Full, Delta and Recovery. The default value is Full. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  extractionMode?: unknown;
+  extractionMode?: Dfe<string>;
 
   /**
    * The subscriber process to manage the delta process. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  subscriberProcess?: unknown;
+  subscriberProcess?: Dfe<string>;
 
   /**
    * Specifies the selection conditions from source data. Type: array of objects(selection) (or Expression with resultType array of objects).
@@ -22980,44 +21862,37 @@ model SapTableSource extends TabularSource {
   /**
    * The number of rows to be retrieved. Type: integer(or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rowCount?: unknown;
+  rowCount?: Dfe<int32>;
 
   /**
    * The number of rows that will be skipped. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rowSkips?: unknown;
+  rowSkips?: Dfe<int32>;
 
   /**
    * The fields of the SAP table that will be retrieved. For example, column0, column1. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rfcTableFields?: unknown;
+  rfcTableFields?: Dfe<string>;
 
   /**
    * The options for the filtering of the SAP Table. For example, COLUMN0 EQ SOME VALUE. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rfcTableOptions?: unknown;
+  rfcTableOptions?: Dfe<string>;
 
   /**
    * Specifies the maximum number of rows that will be retrieved at a time when retrieving data from SAP Table. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  batchSize?: unknown;
+  batchSize?: Dfe<int32>;
 
   /**
    * Specifies the custom RFC function module that will be used to read data from SAP Table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  customRfcReadTableFunctionModule?: unknown;
+  customRfcReadTableFunctionModule?: Dfe<string>;
 
   /**
    * The single character that will be used as delimiter passed to SAP RFC as well as splitting the output data retrieved. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sapDataColumnDelimiter?: unknown;
+  sapDataColumnDelimiter?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for SAP table read in parallel. Possible values include: "None", "PartitionOnInt", "PartitionOnCalendarYear", "PartitionOnCalendarMonth", "PartitionOnCalendarDate", "PartitionOnTime".
@@ -23043,26 +21918,22 @@ model SapTablePartitionSettings {
   /**
    * The name of the column that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionColumnName?: unknown;
+  partitionColumnName?: Dfe<string>;
 
   /**
    * The maximum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionUpperBound?: unknown;
+  partitionUpperBound?: Dfe<string>;
 
   /**
    * The minimum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionLowerBound?: unknown;
+  partitionLowerBound?: Dfe<string>;
 
   /**
    * The maximum value of partitions the table will be split into. Type: integer (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  maxPartitionsNumber?: unknown;
+  maxPartitionsNumber?: Dfe<int32>;
 }
 
 /**
@@ -23072,20 +21943,17 @@ model RestSink extends CopySink {
   /**
    * The HTTP method used to call the RESTful API. The default is POST. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestMethod?: unknown;
+  requestMethod?: Dfe<string>;
 
   /**
    * The additional HTTP headers in the request to the RESTful API. Type: key value pairs (value should be string type).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalHeaders?: unknown;
+  additionalHeaders?: Dfe<Record<string>>;
 
   /**
    * The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:01:40. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * The time to await before sending next request, in milliseconds
@@ -23096,8 +21964,7 @@ model RestSink extends CopySink {
   /**
    * Http Compression Type to Send data in compressed format with Optimal Compression Level, Default is None. And The Only Supported option is Gzip. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpCompressionType?: unknown;
+  httpCompressionType?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -23112,32 +21979,27 @@ model RestSource extends CopySource {
   /**
    * The HTTP method used to call the RESTful API. The default is GET. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestMethod?: unknown;
+  requestMethod?: Dfe<string>;
 
   /**
    * The HTTP request body to the RESTful API if requestMethod is POST. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  requestBody?: unknown;
+  requestBody?: Dfe<string>;
 
   /**
    * The additional HTTP headers in the request to the RESTful API. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalHeaders?: unknown;
+  additionalHeaders?: Dfe<string>;
 
   /**
    * The pagination rules to compose next page requests. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  paginationRules?: unknown;
+  paginationRules?: Dfe<string>;
 
   /**
    * The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:01:40. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * The time to await before sending next page request.
@@ -23148,8 +22010,7 @@ model RestSource extends CopySource {
   /**
    * Specifies the additional columns to be added to source data. Type: key value pairs (value should be string type).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalColumns?: unknown;
+  additionalColumns?: Dfe<Record<string>>;
 
   /**
    * Copy source type.
@@ -23164,14 +22025,12 @@ model SqlSource extends TabularSource {
   /**
    * SQL reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderQuery?: unknown;
+  sqlReaderQuery?: Dfe<string>;
 
   /**
    * Name of the stored procedure for a SQL Database source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderStoredProcedureName?: unknown;
+  sqlReaderStoredProcedureName?: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
@@ -23182,14 +22041,12 @@ model SqlSource extends TabularSource {
   /**
    * Specifies the transaction locking behavior for the SQL source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isolationLevel?: unknown;
+  isolationLevel?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for Sql read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for Sql source partitioning.
@@ -23209,20 +22066,17 @@ model SqlPartitionSettings {
   /**
    * The name of the column in integer or datetime type that will be used for proceeding partitioning. If not specified, the primary key of the table is auto-detected and used as the partition column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionColumnName?: unknown;
+  partitionColumnName?: Dfe<string>;
 
   /**
    * The maximum value of the partition column for partition range splitting. This value is used to decide the partition stride, not for filtering the rows in table. All rows in the table or query result will be partitioned and copied. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionUpperBound?: unknown;
+  partitionUpperBound?: Dfe<string>;
 
   /**
    * The minimum value of the partition column for partition range splitting. This value is used to decide the partition stride, not for filtering the rows in table. All rows in the table or query result will be partitioned and copied. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionLowerBound?: unknown;
+  partitionLowerBound?: Dfe<string>;
 }
 
 /**
@@ -23232,14 +22086,12 @@ model SqlServerSource extends TabularSource {
   /**
    * SQL reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderQuery?: unknown;
+  sqlReaderQuery?: Dfe<string>;
 
   /**
    * Name of the stored procedure for a SQL Database source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderStoredProcedureName?: unknown;
+  sqlReaderStoredProcedureName?: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
@@ -23250,20 +22102,17 @@ model SqlServerSource extends TabularSource {
   /**
    * Specifies the transaction locking behavior for the SQL source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isolationLevel?: unknown;
+  isolationLevel?: Dfe<string>;
 
   /**
    * Which additional types to produce.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   produceAdditionalTypes?: unknown;
 
   /**
    * The partition mechanism that will be used for Sql read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for Sql source partitioning.
@@ -23283,14 +22132,12 @@ model AmazonRdsForSqlServerSource extends TabularSource {
   /**
    * SQL reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderQuery?: unknown;
+  sqlReaderQuery?: Dfe<string>;
 
   /**
    * Name of the stored procedure for a SQL Database source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderStoredProcedureName?: unknown;
+  sqlReaderStoredProcedureName?: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
@@ -23301,8 +22148,7 @@ model AmazonRdsForSqlServerSource extends TabularSource {
   /**
    * Specifies the transaction locking behavior for the SQL source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isolationLevel?: unknown;
+  isolationLevel?: Dfe<string>;
 
   /**
    * Which additional types to produce.
@@ -23334,14 +22180,12 @@ model AzureSqlSource extends TabularSource {
   /**
    * SQL reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderQuery?: unknown;
+  sqlReaderQuery?: Dfe<string>;
 
   /**
    * Name of the stored procedure for a SQL Database source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderStoredProcedureName?: unknown;
+  sqlReaderStoredProcedureName?: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
@@ -23352,8 +22196,7 @@ model AzureSqlSource extends TabularSource {
   /**
    * Specifies the transaction locking behavior for the SQL source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isolationLevel?: unknown;
+  isolationLevel?: Dfe<string>;
 
   /**
    * Which additional types to produce.
@@ -23364,8 +22207,7 @@ model AzureSqlSource extends TabularSource {
   /**
    * The partition mechanism that will be used for Sql read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for Sql source partitioning.
@@ -23386,14 +22228,12 @@ model SqlMISource extends TabularSource {
   /**
    * SQL reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderQuery?: unknown;
+  sqlReaderQuery?: Dfe<string>;
 
   /**
    * Name of the stored procedure for a Azure SQL Managed Instance source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderStoredProcedureName?: unknown;
+  sqlReaderStoredProcedureName?: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
@@ -23404,8 +22244,7 @@ model SqlMISource extends TabularSource {
   /**
    * Specifies the transaction locking behavior for the SQL source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isolationLevel?: unknown;
+  isolationLevel?: Dfe<string>;
 
   /**
    * Which additional types to produce.
@@ -23416,8 +22255,7 @@ model SqlMISource extends TabularSource {
   /**
    * The partition mechanism that will be used for Sql read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for Sql source partitioning.
@@ -23438,14 +22276,12 @@ model SqlDWSource extends TabularSource {
   /**
    * SQL Data Warehouse reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderQuery?: unknown;
+  sqlReaderQuery?: Dfe<string>;
 
   /**
    * Name of the stored procedure for a SQL Data Warehouse source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderStoredProcedureName?: unknown;
+  sqlReaderStoredProcedureName?: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}". Type: object (or Expression with resultType object), itemType: StoredProcedureParameter.
@@ -23456,14 +22292,12 @@ model SqlDWSource extends TabularSource {
   /**
    * Specifies the transaction locking behavior for the SQL source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isolationLevel?: unknown;
+  isolationLevel?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for Sql read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "DynamicRange". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for Sql source partitioning.
@@ -23483,8 +22317,7 @@ model FileSystemSource extends CopySource {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -23505,8 +22338,7 @@ model HdfsSource extends CopySource {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Specifies Distcp-related settings.
@@ -23526,8 +22358,7 @@ model AzureMySqlSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -23542,8 +22373,7 @@ model AzureDataExplorerSource extends CopySource {
   /**
    * Database query. Should be a Kusto Query Language (KQL) query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query: unknown;
+  query: Dfe<string>;
 
   /**
    * The name of the Boolean option that controls whether truncation is applied to result-sets that go beyond a certain row-count limit.
@@ -23554,8 +22384,7 @@ model AzureDataExplorerSource extends CopySource {
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9]))..
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -23576,20 +22405,17 @@ model OracleSource extends CopySource {
   /**
    * Oracle reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  oracleReaderQuery?: unknown;
+  oracleReaderQuery?: Dfe<string>;
 
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for Oracle read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "DynamicRange".
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for Oracle source partitioning.
@@ -23605,14 +22431,12 @@ model OracleSource extends CopySource {
   /**
    * The decimal precision used to represent Oracle NUMBER type without precision and scale. The range is 1 to 256 and default value is 256 if not specified. Type: integer (or Expression with resultType integer). Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  numberPrecision?: unknown;
+  numberPrecision?: Dfe<int32>;
 
   /**
    * The decimal scale used to represent Oracle NUMBER type without precision and scale. The range is 0 to 130 and default value is 130 if not specified. Type: integer (or Expression with resultType integer). Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  numberScale?: unknown;
+  numberScale?: Dfe<int32>;
 
   /**
    * Copy source type.
@@ -23627,26 +22451,22 @@ model OraclePartitionSettings {
   /**
    * Names of the physical partitions of Oracle table.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   partitionNames?: unknown;
 
   /**
    * The name of the column in integer type that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionColumnName?: unknown;
+  partitionColumnName?: Dfe<string>;
 
   /**
    * The maximum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionUpperBound?: unknown;
+  partitionUpperBound?: Dfe<string>;
 
   /**
    * The minimum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionLowerBound?: unknown;
+  partitionLowerBound?: Dfe<string>;
 }
 
 /**
@@ -23656,20 +22476,17 @@ model AmazonRdsForOracleSource extends CopySource {
   /**
    * AmazonRdsForOracle reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  oracleReaderQuery?: unknown;
+  oracleReaderQuery?: Dfe<string>;
 
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for AmazonRdsForOracle read in parallel. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for AmazonRdsForOracle source partitioning.
@@ -23685,14 +22502,12 @@ model AmazonRdsForOracleSource extends CopySource {
   /**
    * The decimal precision used to represent Oracle NUMBER type without precision and scale. The range is 1 to 256 and default value is 256 if not specified. Type: integer (or Expression with resultType integer). Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  numberPrecision?: unknown;
+  numberPrecision?: Dfe<int32>;
 
   /**
    * The decimal scale used to represent Oracle NUMBER type without precision and scale. The range is 0 to 130 and default value is 130 if not specified. Type: integer (or Expression with resultType integer). Only used for Version 2.0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  numberScale?: unknown;
+  numberScale?: Dfe<int32>;
 
   /**
    * Copy source type.
@@ -23713,20 +22528,17 @@ model AmazonRdsForOraclePartitionSettings {
   /**
    * The name of the column in integer type that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionColumnName?: unknown;
+  partitionColumnName?: Dfe<string>;
 
   /**
    * The maximum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionUpperBound?: unknown;
+  partitionUpperBound?: Dfe<string>;
 
   /**
    * The minimum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionLowerBound?: unknown;
+  partitionLowerBound?: Dfe<string>;
 }
 
 /**
@@ -23736,14 +22548,12 @@ model TeradataSource extends TabularSource {
   /**
    * Teradata query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for teradata read in parallel. Possible values include: "None", "Hash", "DynamicRange".
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for teradata source partitioning.
@@ -23763,20 +22573,17 @@ model TeradataPartitionSettings {
   /**
    * The name of the column that will be used for proceeding range or hash partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionColumnName?: unknown;
+  partitionColumnName?: Dfe<string>;
 
   /**
    * The maximum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionUpperBound?: unknown;
+  partitionUpperBound?: Dfe<string>;
 
   /**
    * The minimum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionLowerBound?: unknown;
+  partitionLowerBound?: Dfe<string>;
 }
 
 /**
@@ -23801,8 +22608,7 @@ model TeradataImportCommand extends ImportSettings {
   /**
    * Additional format options for Teradata Copy Command. The format options only applies to direct copy from CSV source. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalFormatOptions": { "timeFormat": "HHhMImSSs" }
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalFormatOptions?: unknown;
+  additionalFormatOptions?: Dfe<Record<string>>;
 
   /**
    * The import setting type.
@@ -23847,8 +22653,7 @@ model CassandraSource extends TabularSource {
   /**
    * Database query. Should be a SQL-92 query expression or Cassandra Query Language (CQL) command. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The consistency level specifies how many Cassandra servers must respond to a read request before returning data to the client application. Cassandra checks the specified number of Cassandra servers for data to satisfy the read request. Must be one of cassandraSourceReadConsistencyLevels. The default value is 'ONE'. It is case-insensitive.
@@ -23868,8 +22673,7 @@ model MongoDbSource extends CopySource {
   /**
    * Database query. Should be a SQL-92 query expression. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -23890,8 +22694,7 @@ model MongoDbAtlasSource extends CopySource {
   /**
    * Specifies selection filter using query operators. To return all documents in a collection, omit this parameter or pass an empty document ({}). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  filter?: unknown;
+  filter?: Dfe<string>;
 
   /**
    * Cursor methods for Mongodb query
@@ -23901,14 +22704,12 @@ model MongoDbAtlasSource extends CopySource {
   /**
    * Specifies the number of documents to return in each batch of the response from MongoDB Atlas instance. In most cases, modifying the batch size will not affect the user or the application. This property's main purpose is to avoid hit the limitation of response size. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  batchSize?: unknown;
+  batchSize?: Dfe<int32>;
 
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -23931,26 +22732,22 @@ model MongoDbCursorMethodsProperties {
   /**
    * Specifies the fields to return in the documents that match the query filter. To return all fields in the matching documents, omit this parameter. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  project?: unknown;
+  project?: Dfe<string>;
 
   /**
    * Specifies the order in which the query returns matching documents. Type: string (or Expression with resultType string). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sort?: unknown;
+  sort?: Dfe<string>;
 
   /**
    * Specifies the how many documents skipped and where MongoDB begins returning results. This approach may be useful in implementing paginated results. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  skip?: unknown;
+  skip?: Dfe<int32>;
 
   /**
    * Specifies the maximum number of documents the server returns. limit() is analogous to the LIMIT statement in a SQL database. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  limit?: unknown;
+  limit?: Dfe<int32>;
 }
 
 /**
@@ -23960,8 +22757,7 @@ model MongoDbV2Source extends CopySource {
   /**
    * Specifies selection filter using query operators. To return all documents in a collection, omit this parameter or pass an empty document ({}). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  filter?: unknown;
+  filter?: Dfe<string>;
 
   /**
    * Cursor methods for Mongodb query
@@ -23971,14 +22767,12 @@ model MongoDbV2Source extends CopySource {
   /**
    * Specifies the number of documents to return in each batch of the response from MongoDB instance. In most cases, modifying the batch size will not affect the user or the application. This property's main purpose is to avoid hit the limitation of response size. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  batchSize?: unknown;
+  batchSize?: Dfe<int32>;
 
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -23999,8 +22793,7 @@ model CosmosDbMongoDbApiSource extends CopySource {
   /**
    * Specifies selection filter using query operators. To return all documents in a collection, omit this parameter or pass an empty document ({}). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  filter?: unknown;
+  filter?: Dfe<string>;
 
   /**
    * Cursor methods for Mongodb query.
@@ -24010,14 +22803,12 @@ model CosmosDbMongoDbApiSource extends CopySource {
   /**
    * Specifies the number of documents to return in each batch of the response from MongoDB instance. In most cases, modifying the batch size will not affect the user or the application. This property's main purpose is to avoid hit the limitation of response size. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  batchSize?: unknown;
+  batchSize?: Dfe<int32>;
 
   /**
    * Query timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  queryTimeout?: unknown;
+  queryTimeout?: Dfe<string>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -24038,38 +22829,32 @@ model Office365Source extends CopySource {
   /**
    * The groups containing all the users. Type: array of strings (or Expression with resultType array of strings).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowedGroups?: unknown;
+  allowedGroups?: Dfe<string[]>;
 
   /**
    * The user scope uri. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userScopeFilterUri?: unknown;
+  userScopeFilterUri?: Dfe<string>;
 
   /**
    * The Column to apply the <paramref name="StartTime"/> and <paramref name="EndTime"/>. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dateFilterColumn?: unknown;
+  dateFilterColumn?: Dfe<string>;
 
   /**
    * Start time of the requested range for this dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  startTime?: unknown;
+  startTime?: Dfe<string>;
 
   /**
    * End time of the requested range for this dataset. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  endTime?: unknown;
+  endTime?: Dfe<string>;
 
   /**
    * The columns to be read out from the Office 365 table. Type: array of objects (or Expression with resultType array of objects). itemType: OutputColumn. Example: [ { "name": "Id" }, { "name": "CreatedDateTime" } ]
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  outputColumns?: unknown;
+  outputColumns?: Dfe<OutputColumn[]>;
 
   /**
    * Copy source type.
@@ -24094,8 +22879,7 @@ model AzureDataLakeStoreSource extends CopySource {
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Copy source type.
@@ -24111,20 +22895,17 @@ model AzureBlobFSSource extends CopySource {
   /**
    * Treat empty as null. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  treatEmptyAsNull?: unknown;
+  treatEmptyAsNull?: Dfe<boolean>;
 
   /**
    * Number of header lines to skip from each blob. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  skipHeaderLineCount?: unknown;
+  skipHeaderLineCount?: Dfe<int32>;
 
   /**
    * If true, files under the folder path will be read recursively. Default is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * Copy source type.
@@ -24139,8 +22920,7 @@ model HttpSource extends CopySource {
   /**
    * Specifies the timeout for a HTTP client to get HTTP response from HTTP server. The default value is equivalent to System.Net.HttpWebRequest.Timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24156,8 +22936,7 @@ model AmazonMWSSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24172,8 +22951,7 @@ model AzurePostgreSqlSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24188,8 +22966,7 @@ model AzurePostgreSqlSink extends CopySink {
   /**
    * A query to execute before starting the copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * The write behavior for the operation. Default is Bulk Insert.
@@ -24214,8 +22991,7 @@ model AzurePostgreSqlSinkUpsertSettings {
   /**
    * Key column names for unique row identification. Type: array of strings (or Expression with resultType array of strings).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  keys?: unknown;
+  keys?: Dfe<string[]>;
 }
 
 /**
@@ -24225,8 +23001,7 @@ model AzureMySqlSink extends CopySink {
   /**
    * A query to execute before starting the copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -24241,8 +23016,7 @@ model ConcurSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24257,8 +23031,7 @@ model CouchbaseSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24273,8 +23046,7 @@ model DrillSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24289,8 +23061,7 @@ model EloquaSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24305,8 +23076,7 @@ model GoogleBigQuerySource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24321,8 +23091,7 @@ model GoogleBigQueryV2Source extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24337,8 +23106,7 @@ model GreenplumSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24354,8 +23122,7 @@ model HBaseSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24370,8 +23137,7 @@ model HiveSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24386,8 +23152,7 @@ model HubspotSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24402,8 +23167,7 @@ model ImpalaSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24418,8 +23182,7 @@ model JiraSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24434,8 +23197,7 @@ model MagentoSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24451,8 +23213,7 @@ model MariaDBSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24468,8 +23229,7 @@ model AzureMariaDBSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24484,8 +23244,7 @@ model MarketoSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24500,8 +23259,7 @@ model PaypalSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24516,8 +23274,7 @@ model PhoenixSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24532,8 +23289,7 @@ model PrestoSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24548,8 +23304,7 @@ model QuickBooksSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24564,8 +23319,7 @@ model ServiceNowSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24580,8 +23334,7 @@ model ShopifySource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24596,8 +23349,7 @@ model SparkSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24612,8 +23364,7 @@ model SquareSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24628,8 +23379,7 @@ model XeroSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24644,8 +23394,7 @@ model ZohoSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24660,14 +23409,12 @@ model NetezzaSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for Netezza read in parallel. Possible values include: "None", "DataSlice", "DynamicRange".
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * The settings that will be leveraged for Netezza source partitioning.
@@ -24687,20 +23434,17 @@ model NetezzaPartitionSettings {
   /**
    * The name of the column in integer type that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionColumnName?: unknown;
+  partitionColumnName?: Dfe<string>;
 
   /**
    * The maximum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionUpperBound?: unknown;
+  partitionUpperBound?: Dfe<string>;
 
   /**
    * The minimum value of column specified in partitionColumnName that will be used for proceeding range partitioning. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionLowerBound?: unknown;
+  partitionLowerBound?: Dfe<string>;
 }
 
 /**
@@ -24710,8 +23454,7 @@ model VerticaSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24726,8 +23469,7 @@ model SalesforceMarketingCloudSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24742,8 +23484,7 @@ model ResponsysSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24754,19 +23495,16 @@ model ResponsysSource extends TabularSource {
 /**
  * A copy activity Dynamics AX source.
  */
-#suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model DynamicsAXSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24781,8 +23519,7 @@ model OracleServiceCloudSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24797,8 +23534,7 @@ model GoogleAdWordsSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -24813,8 +23549,7 @@ model AmazonRedshiftSource extends TabularSource {
   /**
    * Database query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The Amazon S3 settings needed for the interim Amazon S3 when copying from Amazon Redshift with unload. With this, data from Amazon Redshift source will be unloaded into S3 first and then copied into the targeted sink from the interim S3.
@@ -24839,8 +23574,7 @@ model RedshiftUnloadSettings {
   /**
    * The bucket of the interim Amazon S3 which will be used to store the unloaded data from Amazon Redshift source. The bucket must be in the same region as the Amazon Redshift source. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bucketName: unknown;
+  bucketName: Dfe<string>;
 }
 
 /**
@@ -24850,14 +23584,12 @@ model LakeHouseTableSource extends CopySource {
   /**
    * Query an older snapshot by timestamp. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timestampAsOf?: unknown;
+  timestampAsOf?: Dfe<string>;
 
   /**
    * Query an older snapshot by version. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  versionAsOf?: unknown;
+  versionAsOf?: Dfe<int32>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -24878,8 +23610,7 @@ model SnowflakeSource extends CopySource {
   /**
    * Snowflake Sql query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Snowflake export settings.
@@ -24899,20 +23630,17 @@ model SnowflakeExportCopyCommand extends ExportSettings {
   /**
    * Additional copy options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalCopyOptions": { "DATE_FORMAT": "MM/DD/YYYY", "TIME_FORMAT": "'HH24:MI:SS.FF'" }
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalCopyOptions?: Record<unknown>;
+  additionalCopyOptions?: Dfe<Record<string>>;
 
   /**
    * Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalFormatOptions": { "OVERWRITE": "TRUE", "MAX_FILE_SIZE": "'FALSE'" }
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalFormatOptions?: Record<unknown>;
+  additionalFormatOptions?: Dfe<Record<string>>;
 
   /**
    * The name of the snowflake storage integration to use for the copy operation. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  storageIntegration?: unknown;
+  storageIntegration?: Dfe<string>;
 
   /**
    * The export setting type.
@@ -24941,8 +23669,7 @@ model SnowflakeV2Source extends CopySource {
   /**
    * Snowflake Sql query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Snowflake export settings.
@@ -24962,8 +23689,7 @@ model AzureDatabricksDeltaLakeSource extends CopySource {
   /**
    * Azure Databricks Delta Lake Sql query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * Azure Databricks Delta Lake export settings.
@@ -24983,14 +23709,12 @@ model AzureDatabricksDeltaLakeExportCommand extends ExportSettings {
   /**
    * Specify the date format for the csv in Azure Databricks Delta Lake Copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dateFormat?: unknown;
+  dateFormat?: Dfe<string>;
 
   /**
    * Specify the timestamp format for the csv in Azure Databricks Delta Lake Copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timestampFormat?: unknown;
+  timestampFormat?: Dfe<string>;
 
   /**
    * The export setting type.
@@ -25005,8 +23729,7 @@ model AzureDatabricksDeltaLakeSink extends CopySink {
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Azure Databricks Delta Lake import settings.
@@ -25026,14 +23749,12 @@ model AzureDatabricksDeltaLakeImportCommand extends ImportSettings {
   /**
    * Specify the date format for csv in Azure Databricks Delta Lake Copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dateFormat?: unknown;
+  dateFormat?: Dfe<string>;
 
   /**
    * Specify the timestamp format for csv in Azure Databricks Delta Lake Copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timestampFormat?: unknown;
+  timestampFormat?: Dfe<string>;
 
   /**
    * The import setting type.
@@ -25048,14 +23769,12 @@ model WarehouseSource extends TabularSource {
   /**
    * Microsoft Fabric Warehouse reader query. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderQuery?: unknown;
+  sqlReaderQuery?: Dfe<string>;
 
   /**
    * Name of the stored procedure for a Microsoft Fabric Warehouse source. This cannot be used at the same time as SqlReaderQuery. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlReaderStoredProcedureName?: unknown;
+  sqlReaderStoredProcedureName?: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}". Type: object (or Expression with resultType object), itemType: StoredProcedureParameter.
@@ -25066,8 +23785,7 @@ model WarehouseSource extends TabularSource {
   /**
    * Specifies the transaction locking behavior for the Microsoft Fabric Warehouse source. Allowed values: ReadCommitted/ReadUncommitted/RepeatableRead/Serializable/Snapshot. The default value is ReadCommitted. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  isolationLevel?: unknown;
+  isolationLevel?: Dfe<string>;
 
   /**
    * The partition mechanism that will be used for Sql read in parallel. Possible values include: "None", "PhysicalPartitionsOfTable", "DynamicRange".
@@ -25093,14 +23811,12 @@ model WarehouseSink extends CopySink {
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Indicates to use Copy Command to copy data into SQL Data Warehouse. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowCopyCommand?: unknown;
+  allowCopyCommand?: Dfe<boolean>;
 
   /**
    * Specifies Copy Command related settings when allowCopyCommand is true.
@@ -25110,14 +23826,12 @@ model WarehouseSink extends CopySink {
   /**
    * The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableOption?: unknown;
+  tableOption?: Dfe<string>;
 
   /**
    * Write behavior when copying data into azure Microsoft Fabric Data Warehouse. Type: DWWriteBehaviorEnum (or Expression with resultType DWWriteBehaviorEnum)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25139,8 +23853,7 @@ model DWCopyCommandSettings {
   /**
    * Additional options directly passed to SQL DW in Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalOptions": { "MAXERRORS": "1000", "DATEFORMAT": "'ymd'" }
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalOptions?: Record<string>;
+  additionalOptions?: Dfe<Record<string>>;
 }
 
 /**
@@ -25168,8 +23881,7 @@ model StoredProcedureParameter {
   /**
    * Stored procedure parameter value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<string>;
 
   /**
    * Stored procedure parameter type.
@@ -25189,8 +23901,7 @@ model SapCloudForCustomerSink extends CopySink {
   /**
    * The timeout (TimeSpan) to get an HTTP response. It is the timeout to get a response, not the timeout to read response data. Default value: 00:05:00. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25215,26 +23926,22 @@ model AzureTableSink extends CopySink {
   /**
    * Azure Table default partition key value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureTableDefaultPartitionKeyValue?: unknown;
+  azureTableDefaultPartitionKeyValue?: Dfe<string>;
 
   /**
    * Azure Table partition key name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureTablePartitionKeyName?: unknown;
+  azureTablePartitionKeyName?: Dfe<string>;
 
   /**
    * Azure Table row key name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureTableRowKeyName?: unknown;
+  azureTableRowKeyName?: Dfe<string>;
 
   /**
    * Azure Table insert type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  azureTableInsertType?: unknown;
+  azureTableInsertType?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25324,20 +24031,17 @@ model BlobSink extends CopySink {
   /**
    * Blob writer overwrite files. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  blobWriterOverwriteFiles?: unknown;
+  blobWriterOverwriteFiles?: Dfe<boolean>;
 
   /**
    * Blob writer date time format. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  blobWriterDateTimeFormat?: unknown;
+  blobWriterDateTimeFormat?: Dfe<string>;
 
   /**
    * Blob writer add header. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  blobWriterAddHeader?: unknown;
+  blobWriterAddHeader?: Dfe<boolean>;
 
   /**
    * The type of copy behavior for copy sink.
@@ -25364,8 +24068,7 @@ model FileSystemSink extends CopySink {
   /**
    * The type of copy behavior for copy sink.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  copyBehavior?: unknown;
+  copyBehavior?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25380,14 +24083,12 @@ model DocumentDbCollectionSink extends CopySink {
   /**
    * Nested properties separator. Default is . (dot). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  nestingSeparator?: unknown;
+  nestingSeparator?: Dfe<string>;
 
   /**
    * Describes how to write data to Azure Cosmos DB. Type: string (or Expression with resultType string). Allowed values: insert and upsert.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25402,8 +24103,7 @@ model CosmosDbSqlApiSink extends CopySink {
   /**
    * Describes how to write data to Azure Cosmos DB. Type: string (or Expression with resultType string). Allowed values: insert and upsert.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25418,20 +24118,17 @@ model SqlSink extends CopySink {
   /**
    * SQL writer stored procedure name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterStoredProcedureName?: unknown;
+  sqlWriterStoredProcedureName?: Dfe<string>;
 
   /**
    * SQL writer table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterTableType?: unknown;
+  sqlWriterTableType?: Dfe<string>;
 
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * SQL stored procedure parameters.
@@ -25442,26 +24139,22 @@ model SqlSink extends CopySink {
   /**
    * The stored procedure parameter name of the table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  storedProcedureTableTypeParameterName?: unknown;
+  storedProcedureTableTypeParameterName?: Dfe<string>;
 
   /**
    * The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableOption?: unknown;
+  tableOption?: Dfe<string>;
 
   /**
    * Whether to use table lock during bulk copy. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterUseTableLock?: unknown;
+  sqlWriterUseTableLock?: Dfe<boolean>;
 
   /**
    * Write behavior when copying data into sql. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * SQL upsert settings.
@@ -25481,21 +24174,17 @@ model SqlUpsertSettings {
   /**
    * Specifies whether to use temp db for upsert interim table. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useTempDB?: unknown;
+  useTempDB?: Dfe<boolean>;
 
   /**
    * Schema name for interim table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  interimSchemaName?: unknown;
+  interimSchemaName?: Dfe<string>;
 
   /**
    * Key column names for unique row identification. Type: array of strings (or Expression with resultType array of strings).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  keys?: unknown;
+  keys?: Dfe<string[]>;
 }
 
 /**
@@ -25505,20 +24194,17 @@ model SqlServerSink extends CopySink {
   /**
    * SQL writer stored procedure name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterStoredProcedureName?: unknown;
+  sqlWriterStoredProcedureName?: Dfe<string>;
 
   /**
    * SQL writer table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterTableType?: unknown;
+  sqlWriterTableType?: Dfe<string>;
 
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * SQL stored procedure parameters.
@@ -25529,26 +24215,22 @@ model SqlServerSink extends CopySink {
   /**
    * The stored procedure parameter name of the table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  storedProcedureTableTypeParameterName?: unknown;
+  storedProcedureTableTypeParameterName?: Dfe<string>;
 
   /**
    * The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableOption?: unknown;
+  tableOption?: Dfe<string>;
 
   /**
    * Whether to use table lock during bulk copy. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterUseTableLock?: unknown;
+  sqlWriterUseTableLock?: Dfe<boolean>;
 
   /**
    * Write behavior when copying data into sql server. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * SQL upsert settings.
@@ -25568,20 +24250,17 @@ model AzureSqlSink extends CopySink {
   /**
    * SQL writer stored procedure name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterStoredProcedureName?: unknown;
+  sqlWriterStoredProcedureName?: Dfe<string>;
 
   /**
    * SQL writer table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterTableType?: unknown;
+  sqlWriterTableType?: Dfe<string>;
 
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * SQL stored procedure parameters.
@@ -25592,20 +24271,17 @@ model AzureSqlSink extends CopySink {
   /**
    * The stored procedure parameter name of the table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  storedProcedureTableTypeParameterName?: unknown;
+  storedProcedureTableTypeParameterName?: Dfe<string>;
 
   /**
    * The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableOption?: unknown;
+  tableOption?: Dfe<string>;
 
   /**
    * Whether to use table lock during bulk copy. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterUseTableLock?: unknown;
+  sqlWriterUseTableLock?: Dfe<boolean>;
 
   /**
    * Write behavior when copying data into Azure SQL. Type: SqlWriteBehaviorEnum (or Expression with resultType SqlWriteBehaviorEnum)
@@ -25632,20 +24308,17 @@ model SqlMISink extends CopySink {
   /**
    * SQL writer stored procedure name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterStoredProcedureName?: unknown;
+  sqlWriterStoredProcedureName?: Dfe<string>;
 
   /**
    * SQL writer table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterTableType?: unknown;
+  sqlWriterTableType?: Dfe<string>;
 
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * SQL stored procedure parameters.
@@ -25656,26 +24329,22 @@ model SqlMISink extends CopySink {
   /**
    * The stored procedure parameter name of the table type. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  storedProcedureTableTypeParameterName?: unknown;
+  storedProcedureTableTypeParameterName?: Dfe<string>;
 
   /**
    * The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableOption?: unknown;
+  tableOption?: Dfe<string>;
 
   /**
    * Whether to use table lock during bulk copy. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterUseTableLock?: unknown;
+  sqlWriterUseTableLock?: Dfe<boolean>;
 
   /**
    * White behavior when copying data into azure SQL MI. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * SQL upsert settings.
@@ -25696,14 +24365,12 @@ model SqlDWSink extends CopySink {
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Indicates to use PolyBase to copy data into SQL Data Warehouse when applicable. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowPolyBase?: unknown;
+  allowPolyBase?: Dfe<boolean>;
 
   /**
    * Specifies PolyBase-related settings when allowPolyBase is true.
@@ -25713,8 +24380,7 @@ model SqlDWSink extends CopySink {
   /**
    * Indicates to use Copy Command to copy data into SQL Data Warehouse. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowCopyCommand?: unknown;
+  allowCopyCommand?: Dfe<boolean>;
 
   /**
    * Specifies Copy Command related settings when allowCopyCommand is true.
@@ -25724,20 +24390,17 @@ model SqlDWSink extends CopySink {
   /**
    * The option to handle sink table, such as autoCreate. For now only 'autoCreate' value is supported. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableOption?: unknown;
+  tableOption?: Dfe<string>;
 
   /**
    * Whether to use table lock during bulk copy. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sqlWriterUseTableLock?: unknown;
+  sqlWriterUseTableLock?: Dfe<boolean>;
 
   /**
    * Write behavior when copying data into azure SQL DW. Type: SqlDWWriteBehaviorEnum (or Expression with resultType SqlDWWriteBehaviorEnum)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * SQL DW upsert settings.
@@ -25764,20 +24427,17 @@ model PolybaseSettings {
   /**
    * Specifies the value or the percentage of rows that can be rejected before the query fails. Type: number (or Expression with resultType number), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rejectValue?: unknown;
+  rejectValue?: Dfe<int32>;
 
   /**
    * Determines the number of rows to attempt to retrieve before the PolyBase recalculates the percentage of rejected rows. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rejectSampleValue?: unknown;
+  rejectSampleValue?: Dfe<int32>;
 
   /**
    * Specifies how to handle missing values in delimited text files when PolyBase retrieves data from the text file. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  useTypeDefault?: unknown;
+  useTypeDefault?: Dfe<boolean>;
 }
 
 /**
@@ -25788,14 +24448,12 @@ model SqlDWUpsertSettings {
   /**
    * Schema name for interim table. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  interimSchemaName?: unknown;
+  interimSchemaName?: Dfe<string>;
 
   /**
    * Key column names for unique row identification. Type: array of strings (or Expression with resultType array of strings).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  keys?: unknown;
+  keys?: Dfe<string[]>;
 }
 
 /**
@@ -25805,8 +24463,7 @@ model SnowflakeSink extends CopySink {
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Snowflake import settings.
@@ -25826,20 +24483,17 @@ model SnowflakeImportCopyCommand extends ImportSettings {
   /**
    * Additional copy options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalCopyOptions": { "DATE_FORMAT": "MM/DD/YYYY", "TIME_FORMAT": "'HH24:MI:SS.FF'" }
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalCopyOptions?: Record<unknown>;
+  additionalCopyOptions?: Dfe<Record<string>>;
 
   /**
    * Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: "additionalFormatOptions": { "FORCE": "TRUE", "LOAD_UNCERTAIN_FILES": "'FALSE'" }
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  additionalFormatOptions?: Record<unknown>;
+  additionalFormatOptions?: Dfe<Record<string>>;
 
   /**
    * The name of the snowflake storage integration to use for the copy operation. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  storageIntegration?: unknown;
+  storageIntegration?: Dfe<string>;
 
   /**
    * The import setting type.
@@ -25854,8 +24508,7 @@ model SnowflakeV2Sink extends CopySink {
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Snowflake import settings.
@@ -25875,14 +24528,12 @@ model AdditionalColumns {
   /**
    * Additional column name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  name?: unknown;
+  name?: Dfe<string>;
 
   /**
    * Additional column value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<string>;
 }
 
 /**
@@ -25892,8 +24543,7 @@ model OracleSink extends CopySink {
   /**
    * SQL pre-copy script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25908,14 +24558,12 @@ model AzureDataLakeStoreSink extends CopySink {
   /**
    * The type of copy behavior for copy sink. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  copyBehavior?: unknown;
+  copyBehavior?: Dfe<string>;
 
   /**
    * Single File Parallel.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableAdlsSingleFileParallel?: unknown;
+  enableAdlsSingleFileParallel?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -25931,8 +24579,7 @@ model AzureBlobFSSink extends CopySink {
   /**
    * The type of copy behavior for copy sink. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  copyBehavior?: unknown;
+  copyBehavior?: Dfe<string>;
 
   /**
    * Specify the custom metadata to be added to sink data. Type: array of objects (or Expression with resultType array of objects).
@@ -25968,8 +24615,7 @@ model OdbcSink extends CopySink {
   /**
    * A query to execute before starting the copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -25984,8 +24630,7 @@ model InformixSink extends CopySink {
   /**
    * A query to execute before starting the copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -26000,8 +24645,7 @@ model MicrosoftAccessSink extends CopySink {
   /**
    * A query to execute before starting the copy. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  preCopyScript?: unknown;
+  preCopyScript?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -26021,26 +24665,22 @@ model DynamicsSink extends CopySink {
   /**
    * The flag indicating whether ignore null values from input dataset (except key fields) during write operation. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ignoreNullValues?: unknown;
+  ignoreNullValues?: Dfe<boolean>;
 
   /**
    * The logical name of the alternate key which will be used when upserting records. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  alternateKeyName?: unknown;
+  alternateKeyName?: Dfe<string>;
 
   /**
    * Controls the bypass of Dataverse custom business logic. Type: string (or Expression with resultType string). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bypassBusinessLogicExecution?: unknown;
+  bypassBusinessLogicExecution?: Dfe<string>;
 
   /**
    * Controls the bypass of Power Automate flows. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bypassPowerAutomateFlows?: unknown;
+  bypassPowerAutomateFlows?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -26060,26 +24700,22 @@ model DynamicsCrmSink extends CopySink {
   /**
    * The flag indicating whether to ignore null values from input dataset (except key fields) during write operation. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ignoreNullValues?: unknown;
+  ignoreNullValues?: Dfe<boolean>;
 
   /**
    * The logical name of the alternate key which will be used when upserting records. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  alternateKeyName?: unknown;
+  alternateKeyName?: Dfe<string>;
 
   /**
    * Controls the bypass of Dataverse custom business logic. Type: string (or Expression with resultType string). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bypassBusinessLogicExecution?: unknown;
+  bypassBusinessLogicExecution?: Dfe<string>;
 
   /**
    * Controls the bypass of Power Automate flows. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bypassPowerAutomateFlows?: unknown;
+  bypassPowerAutomateFlows?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -26099,26 +24735,22 @@ model CommonDataServiceForAppsSink extends CopySink {
   /**
    * The flag indicating whether to ignore null values from input dataset (except key fields) during write operation. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ignoreNullValues?: unknown;
+  ignoreNullValues?: Dfe<boolean>;
 
   /**
    * The logical name of the alternate key which will be used when upserting records. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  alternateKeyName?: unknown;
+  alternateKeyName?: Dfe<string>;
 
   /**
    * Controls the bypass of Dataverse custom business logic. Type: string (or Expression with resultType string). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bypassBusinessLogicExecution?: unknown;
+  bypassBusinessLogicExecution?: Dfe<string>;
 
   /**
    * Controls the bypass of Power Automate flows. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  bypassPowerAutomateFlows?: unknown;
+  bypassPowerAutomateFlows?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -26133,20 +24765,17 @@ model AzureDataExplorerSink extends CopySink {
   /**
    * A name of a pre-created csv mapping that was defined on the target Kusto table. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ingestionMappingName?: unknown;
+  ingestionMappingName?: Dfe<string>;
 
   /**
    * An explicit column mapping description provided in a json format. Type: string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ingestionMappingAsJson?: unknown;
+  ingestionMappingAsJson?: Dfe<string>;
 
   /**
    * If set to true, any aggregation will be skipped. Default is false. Type: boolean.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  flushImmediately?: unknown;
+  flushImmediately?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -26166,14 +24795,12 @@ model SalesforceSink extends CopySink {
   /**
    * The name of the external ID field for upsert operation. Default value is 'Id' column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  externalIdFieldName?: unknown;
+  externalIdFieldName?: Dfe<string>;
 
   /**
    * The flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ignoreNullValues?: unknown;
+  ignoreNullValues?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -26193,14 +24820,12 @@ model SalesforceServiceCloudSink extends CopySink {
   /**
    * The name of the external ID field for upsert operation. Default value is 'Id' column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  externalIdFieldName?: unknown;
+  externalIdFieldName?: Dfe<string>;
 
   /**
    * The flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ignoreNullValues?: unknown;
+  ignoreNullValues?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -26215,8 +24840,7 @@ model MongoDbAtlasSink extends CopySink {
   /**
    * Specifies whether the document with same key to be overwritten (upsert) rather than throw exception (insert). The default value is "insert". Type: string (or Expression with resultType string). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -26231,8 +24855,7 @@ model MongoDbV2Sink extends CopySink {
   /**
    * Specifies whether the document with same key to be overwritten (upsert) rather than throw exception (insert). The default value is "insert". Type: string (or Expression with resultType string). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -26247,8 +24870,7 @@ model CosmosDbMongoDbApiSink extends CopySink {
   /**
    * Specifies whether the document with same key to be overwritten (upsert) rather than throw exception (insert). The default value is "insert". Type: string (or Expression with resultType string). Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  writeBehavior?: unknown;
+  writeBehavior?: Dfe<string>;
 
   /**
    * Copy sink type.
@@ -26263,14 +24885,12 @@ model LakeHouseTableSink extends CopySink {
   /**
    * The type of table action for Lakehouse Table sink. Possible values include: "None", "Append", "Overwrite".
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tableActionOption?: unknown;
+  tableActionOption?: Dfe<string>;
 
   /**
    * Create partitions in folder structure based on one or multiple columns. Each distinct column value (pair) will be a new partition. Possible values include: "None", "PartitionByKey".
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * Specify the partition column names from sink columns. Type: array of objects (or Expression with resultType array of objects).
@@ -26305,8 +24925,7 @@ model TabularTranslator extends CopyTranslator {
   /**
    * Column mappings. Example: "UserId: MyUserId, Group: MyGroup, Name: MyName" Type: string (or Expression with resultType string). This property will be retired. Please use mappings property.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  columnMappings?: unknown;
+  columnMappings?: Dfe<string>;
 
   /**
    * The schema mapping to map between tabular data and hierarchical data. Example: {"Column1": "$.Column1", "Column2": "$.Column2.Property1", "Column3": "$.Column2.Property2"}. Type: object (or Expression with resultType object). This property will be retired. Please use mappings property.
@@ -26323,8 +24942,7 @@ model TabularTranslator extends CopyTranslator {
   /**
    * Whether to map complex (array and object) values to simple strings in json format. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mapComplexValuesToString?: unknown;
+  mapComplexValuesToString?: Dfe<boolean>;
 
   /**
    * Column mappings with logical types. Tabular->tabular example: [{"source":{"name":"CustomerName","type":"String"},"sink":{"name":"ClientName","type":"String"}},{"source":{"name":"CustomerAddress","type":"String"},"sink":{"name":"ClientAddress","type":"String"}}].  Hierarchical->tabular example: [{"source":{"path":"$.CustomerName","type":"String"},"sink":{"name":"ClientName","type":"String"}},{"source":{"path":"$.CustomerAddress","type":"String"},"sink":{"name":"ClientAddress","type":"String"}}]. Type: object (or Expression with resultType object).
@@ -26335,8 +24953,7 @@ model TabularTranslator extends CopyTranslator {
   /**
    * Whether to enable the advanced type conversion feature in the Copy activity. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  typeConversion?: unknown;
+  typeConversion?: Dfe<boolean>;
 
   /**
    * Type conversion settings
@@ -26356,50 +24973,42 @@ model TypeConversionSettings {
   /**
    * Whether to allow data truncation when converting the data. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  allowDataTruncation?: unknown;
+  allowDataTruncation?: Dfe<boolean>;
 
   /**
    * Whether to treat boolean values as numbers. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  treatBooleanAsNumber?: unknown;
+  treatBooleanAsNumber?: Dfe<boolean>;
 
   /**
    * The format for DateTime values. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dateTimeFormat?: unknown;
+  dateTimeFormat?: Dfe<string>;
 
   /**
    * The format for DateTimeOffset values. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dateTimeOffsetFormat?: unknown;
+  dateTimeOffsetFormat?: Dfe<string>;
 
   /**
    * The format for TimeSpan values. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeSpanFormat?: unknown;
+  timeSpanFormat?: Dfe<string>;
 
   /**
    * The format for Time values. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeFormat?: unknown;
+  timeFormat?: Dfe<string>;
 
   /**
    * The format for Date values. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  dateFormat?: unknown;
+  dateFormat?: Dfe<string>;
 
   /**
    * The culture used to convert data from/to string. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  culture?: unknown;
+  culture?: Dfe<string>;
 }
 
 /**
@@ -26443,8 +25052,7 @@ model HDInsightHiveActivityTypeProperties {
   /**
    * Script path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  scriptPath?: unknown;
+  scriptPath?: Dfe<string>;
 
   /**
    * Script linked service reference.
@@ -26499,8 +25107,7 @@ model HDInsightPigActivityTypeProperties {
   /**
    * User specified arguments to HDInsightActivity. Type: array (or Expression with resultType array).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  arguments?: unknown;
+  arguments?: Dfe<string[]>;
 
   /**
    * Debug info option.
@@ -26510,8 +25117,7 @@ model HDInsightPigActivityTypeProperties {
   /**
    * Script path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  scriptPath?: unknown;
+  scriptPath?: Dfe<string>;
 
   /**
    * Script linked service reference.
@@ -26565,14 +25171,12 @@ model HDInsightMapReduceActivityTypeProperties {
   /**
    * Class name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  className: unknown;
+  className: Dfe<string>;
 
   /**
    * Jar path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  jarFilePath: unknown;
+  jarFilePath: Dfe<string>;
 
   /**
    * Jar linked service reference.
@@ -26631,26 +25235,22 @@ model HDInsightStreamingActivityTypeProperties {
   /**
    * Mapper executable name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mapper: unknown;
+  mapper: Dfe<string>;
 
   /**
    * Reducer executable name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  reducer: unknown;
+  reducer: Dfe<string>;
 
   /**
    * Input blob path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  input: unknown;
+  input: Dfe<string>;
 
   /**
    * Output blob path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  output: unknown;
+  output: Dfe<string>;
 
   /**
    * Paths to streaming job files. Can be directories.
@@ -26665,8 +25265,7 @@ model HDInsightStreamingActivityTypeProperties {
   /**
    * Combiner executable name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  combiner?: unknown;
+  combiner?: Dfe<string>;
 
   /**
    * Command line environment values.
@@ -26704,14 +25303,12 @@ model HDInsightSparkActivityTypeProperties {
   /**
    * The root path in 'sparkJobLinkedService' for all the job’s files. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  rootPath: unknown;
+  rootPath: Dfe<string>;
 
   /**
    * The relative path to the root folder of the code/package to be executed. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  entryFilePath: unknown;
+  entryFilePath: Dfe<string>;
 
   /**
    * The user-specified arguments to HDInsightSparkActivity.
@@ -26736,8 +25333,7 @@ model HDInsightSparkActivityTypeProperties {
   /**
    * The user to impersonate that will execute the job. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  proxyUser?: unknown;
+  proxyUser?: Dfe<string>;
 
   /**
    * Spark configuration property.
@@ -26773,20 +25369,17 @@ model ExecuteSsisPackageActivityTypeProperties {
   /**
    * Specifies the runtime to execute SSIS package. The value should be "x86" or "x64". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  runtime?: unknown;
+  runtime?: Dfe<string>;
 
   /**
    * The logging level of SSIS package execution. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  loggingLevel?: unknown;
+  loggingLevel?: Dfe<string>;
 
   /**
    * The environment path to execute the SSIS package. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  environmentPath?: unknown;
+  environmentPath?: Dfe<string>;
 
   /**
    * The package execution credential.
@@ -26841,8 +25434,7 @@ model SsisPackageLocation {
   /**
    * The SSIS package path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  packagePath?: unknown;
+  packagePath?: Dfe<string>;
 
   /**
    * The type of SSIS package location.
@@ -26872,8 +25464,7 @@ model SsisPackageLocationTypeProperties {
   /**
    * The configuration file of the package execution. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  configurationPath?: unknown;
+  configurationPath?: Dfe<string>;
 
   /**
    * The configuration file access credential.
@@ -26888,8 +25479,7 @@ model SsisPackageLocationTypeProperties {
   /**
    * The embedded package content. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  packageContent?: unknown;
+  packageContent?: Dfe<string>;
 
   /**
    * The embedded package last modified date.
@@ -26910,14 +25500,12 @@ model SsisAccessCredential {
   /**
    * Domain for windows authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  domain: unknown;
+  domain: Dfe<string>;
 
   /**
    * UseName for windows authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName: unknown;
+  userName: Dfe<string>;
 
   /**
    * Password for windows authentication.
@@ -26932,8 +25520,7 @@ model SsisChildPackage {
   /**
    * Path for embedded child package. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  packagePath: unknown;
+  packagePath: Dfe<string>;
 
   /**
    * Name for embedded child package.
@@ -26943,8 +25530,7 @@ model SsisChildPackage {
   /**
    * Content for embedded child package. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  packageContent: unknown;
+  packageContent: Dfe<string>;
 
   /**
    * Last modified date for embedded child package.
@@ -26959,14 +25545,12 @@ model SsisExecutionCredential {
   /**
    * Domain for windows authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  domain: unknown;
+  domain: Dfe<string>;
 
   /**
    * UseName for windows authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userName: unknown;
+  userName: Dfe<string>;
 
   /**
    * Password for windows authentication.
@@ -26981,8 +25565,7 @@ model SsisExecutionParameter {
   /**
    * SSIS package execution parameter value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value: unknown;
+  value: Dfe<string>;
 }
 
 /**
@@ -26992,8 +25575,7 @@ model SsisPropertyOverride {
   /**
    * SSIS package property override value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value: unknown;
+  value: Dfe<string>;
 
   /**
    * Whether SSIS package property override value is sensitive data. Value will be encrypted in SSISDB if it is true
@@ -27008,8 +25590,7 @@ model SsisLogLocation {
   /**
    * The SSIS package execution log path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logPath: unknown;
+  logPath: Dfe<string>;
 
   /**
    * The type of SSIS log location.
@@ -27034,8 +25615,7 @@ model SsisLogLocationTypeProperties {
   /**
    * Specifies the interval to refresh log. The default interval is 5 minutes. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  logRefreshInterval?: unknown;
+  logRefreshInterval?: Dfe<string>;
 }
 
 /**
@@ -27060,8 +25640,7 @@ model CustomActivityTypeProperties {
   /**
    * Command for custom activity Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  command: unknown;
+  command: Dfe<string>;
 
   /**
    * Resource linked service reference.
@@ -27071,8 +25650,7 @@ model CustomActivityTypeProperties {
   /**
    * Folder path for resource files Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  folderPath?: unknown;
+  folderPath?: Dfe<string>;
 
   /**
    * Reference objects
@@ -27088,14 +25666,12 @@ model CustomActivityTypeProperties {
   /**
    * The retention time for the files submitted for custom activity. Type: double (or Expression with resultType double).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  retentionTimeInDays?: unknown;
+  retentionTimeInDays?: Dfe<float64>;
 
   /**
    * Elevation level and scope for the user, default is nonadmin task. Type: string (or Expression with resultType double).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  autoUserSpecification?: unknown;
+  autoUserSpecification?: Dfe<string>;
 }
 
 /**
@@ -27137,8 +25713,7 @@ model SqlServerStoredProcedureActivityTypeProperties {
   /**
    * Stored procedure name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  storedProcedureName: unknown;
+  storedProcedureName: Dfe<string>;
 
   /**
    * Value and type setting for stored procedure parameters. Example: "{Parameter1: {value: "1", type: "int"}}".
@@ -27222,8 +25797,7 @@ model DeleteActivityTypeProperties {
   /**
    * If true, files or sub-folders under current folder path will be deleted recursively. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  recursive?: unknown;
+  recursive?: Dfe<boolean>;
 
   /**
    * The max concurrent connections to connect data source at the same time.
@@ -27234,8 +25808,7 @@ model DeleteActivityTypeProperties {
   /**
    * Whether to record detailed logs of delete-activity execution. Default value is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  enableLogging?: unknown;
+  enableLogging?: Dfe<boolean>;
 
   /**
    * Log storage settings customer need to provide when enableLogging is true.
@@ -27275,14 +25848,12 @@ model AzureDataExplorerCommandActivityTypeProperties {
   /**
    * A control command, according to the Azure Data Explorer command syntax. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  command: unknown;
+  command: Dfe<string>;
 
   /**
    * Control command timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9]))..)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  commandTimeout?: unknown;
+  commandTimeout?: Dfe<string>;
 }
 
 /**
@@ -27317,14 +25888,12 @@ model LookupActivityTypeProperties {
   /**
    * Whether to return first row or all rows. Default value is true. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  firstRowOnly?: unknown;
+  firstRowOnly?: Dfe<boolean>;
 
   /**
    * Indicates whether to treat decimal values as strings to avoid value overflow issue. This option is enabled for SnowflakeV2 connector only. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  treatDecimalAsString?: unknown;
+  treatDecimalAsString?: Dfe<boolean>;
 }
 
 /**
@@ -27354,8 +25923,7 @@ model WebActivityTypeProperties {
   /**
    * Web activity target endpoint and path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * Represents the headers that will be sent to the request. For example, to set the language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with resultType string).
@@ -27366,8 +25934,7 @@ model WebActivityTypeProperties {
   /**
    * Represents the payload that will be sent to the endpoint. Required for POST/PUT method, not allowed for GET method Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  body?: unknown;
+  body?: Dfe<string>;
 
   /**
    * Authentication method used for calling the endpoint.
@@ -27382,8 +25949,7 @@ model WebActivityTypeProperties {
   /**
    * Timeout for the HTTP request to get a response. Format is in TimeSpan (hh:mm:ss). This value is the timeout to get a response, not the activity timeout. The default value is 00:01:00 (1 minute). The range is from 1 to 10 minutes
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Option to disable invoking HTTP GET on location given in response header of a HTTP 202 Response. If set true, it stops invoking HTTP GET on http location given in response header. If set false then continues to invoke HTTP GET call on location given in http response headers.
@@ -27425,8 +25991,7 @@ model WebActivityAuthentication {
   /**
    * Web activity authentication user name for basic authentication or ClientID when used for ServicePrincipal. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  username?: unknown;
+  username?: Dfe<string>;
 
   /**
    * Password for the PFX file or basic authentication / Secret when used for ServicePrincipal
@@ -27436,14 +26001,12 @@ model WebActivityAuthentication {
   /**
    * Resource for which Azure Auth token will be requested when using MSI Authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  resource?: unknown;
+  resource?: Dfe<string>;
 
   /**
    * TenantId for which Azure Auth token will be requested when using ServicePrincipal Authentication. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  userTenant?: unknown;
+  userTenant?: Dfe<string>;
 
   /**
    * The credential reference containing authentication information.
@@ -27674,8 +26237,7 @@ model AzureMLWebServiceFile {
   /**
    * The relative file path, including container name, in the Azure Blob Storage specified by the LinkedService. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  filePath: unknown;
+  filePath: Dfe<string>;
 
   /**
    * Reference to an Azure Storage LinkedService, where Azure ML WebService Input/Output file located.
@@ -27707,8 +26269,7 @@ model AzureMLUpdateResourceActivityTypeProperties {
   /**
    * Name of the Trained Model module in the Web Service experiment to be updated. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trainedModelName: unknown;
+  trainedModelName: Dfe<string>;
 
   /**
    * Name of Azure Storage linked service holding the .ilearner file that will be uploaded by the update operation.
@@ -27718,8 +26279,7 @@ model AzureMLUpdateResourceActivityTypeProperties {
   /**
    * The relative file path in trainedModelLinkedService to represent the .ilearner file that will be uploaded by the update operation.  Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  trainedModelFilePath: unknown;
+  trainedModelFilePath: Dfe<string>;
 }
 
 /**
@@ -27746,50 +26306,42 @@ model AzureMLExecutePipelineActivityTypeProperties {
   /**
    * ID of the published Azure ML pipeline. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mlPipelineId?: unknown;
+  mlPipelineId?: Dfe<string>;
 
   /**
    * ID of the published Azure ML pipeline endpoint. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mlPipelineEndpointId?: unknown;
+  mlPipelineEndpointId?: Dfe<string>;
 
   /**
    * Version of the published Azure ML pipeline endpoint. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  version?: unknown;
+  version?: Dfe<string>;
 
   /**
    * Run history experiment name of the pipeline run. This information will be passed in the ExperimentName property of the published pipeline execution request. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  experimentName?: unknown;
+  experimentName?: Dfe<string>;
 
   /**
    * Key,Value pairs to be passed to the published Azure ML pipeline endpoint. Keys must match the names of pipeline parameters defined in the published pipeline. Values will be passed in the ParameterAssignments property of the published pipeline execution request. Type: object with key value pairs (or Expression with resultType object).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mlPipelineParameters?: unknown;
+  mlPipelineParameters?: Dfe<Record<string>>;
 
   /**
    * Dictionary used for changing data path assignments without retraining. Values will be passed in the dataPathAssignments property of the published pipeline execution request. Type: object (or Expression with resultType object).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   dataPathAssignments?: unknown;
 
   /**
    * The parent Azure ML Service pipeline run id. This information will be passed in the ParentRunId property of the published pipeline execution request. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mlParentRunId?: unknown;
+  mlParentRunId?: Dfe<string>;
 
   /**
    * Whether to continue execution of other steps in the PipelineRun if a step fails. This information will be passed in the continueOnStepFailure property of the published pipeline execution request. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  continueOnStepFailure?: unknown;
+  continueOnStepFailure?: Dfe<boolean>;
 }
 
 /**
@@ -27814,8 +26366,7 @@ model DataLakeAnalyticsUsqlActivityTypeProperties {
   /**
    * Case-sensitive path to folder that contains the U-SQL script. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  scriptPath: unknown;
+  scriptPath: Dfe<string>;
 
   /**
    * Script linked service reference.
@@ -27825,32 +26376,27 @@ model DataLakeAnalyticsUsqlActivityTypeProperties {
   /**
    * The maximum number of nodes simultaneously used to run the job. Default value is 1. Type: integer (or Expression with resultType integer), minimum: 1.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  degreeOfParallelism?: unknown;
+  degreeOfParallelism?: Dfe<int32>;
 
   /**
    * Determines which jobs out of all that are queued should be selected to run first. The lower the number, the higher the priority. Default value is 1000. Type: integer (or Expression with resultType integer), minimum: 1.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  priority?: unknown;
+  priority?: Dfe<int32>;
 
   /**
    * Parameters for U-SQL job request.
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   parameters?: Record<unknown>;
 
   /**
    * Runtime version of the U-SQL engine to use. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  runtimeVersion?: unknown;
+  runtimeVersion?: Dfe<string>;
 
   /**
    * Compilation mode of U-SQL. Must be one of these values : Semantic, Full and SingleBox. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  compilationMode?: unknown;
+  compilationMode?: Dfe<string>;
 }
 
 /**
@@ -27875,8 +26421,7 @@ model WaitActivityTypeProperties {
   /**
    * Duration in seconds. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  waitTimeInSeconds: unknown;
+  waitTimeInSeconds: Dfe<int32>;
 }
 
 /**
@@ -27901,14 +26446,12 @@ model FailActivityTypeProperties {
   /**
    * The error message that surfaced in the Fail activity. It can be dynamic content that's evaluated to a non empty/blank string at runtime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  message: unknown;
+  message: Dfe<string>;
 
   /**
    * The error code that categorizes the error type of the Fail activity. It can be dynamic content that's evaluated to a non empty/blank string at runtime. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  errorCode: unknown;
+  errorCode: Dfe<string>;
 }
 
 /**
@@ -27938,8 +26481,7 @@ model UntilActivityTypeProperties {
   /**
    * Specifies the timeout for the activity to run. If there is no value specified, it takes the value of TimeSpan.FromDays(7) which is 1 week as default. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeout?: unknown;
+  timeout?: Dfe<string>;
 
   /**
    * List of activities to execute.
@@ -27970,26 +26512,22 @@ model ValidationActivityTypeProperties {
   /**
    * Specifies the timeout for the activity to run. If there is no value specified, it takes the value of TimeSpan.FromDays(7) which is 1 week as default. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  timeout?: unknown;
+  timeout?: Dfe<string>;
 
   /**
    * A delay in seconds between validation attempts. If no value is specified, 10 seconds will be used as the default. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sleep?: unknown;
+  sleep?: Dfe<int32>;
 
   /**
    * Can be used if dataset points to a file. The file must be greater than or equal in size to the value specified. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  minimumSize?: unknown;
+  minimumSize?: Dfe<int32>;
 
   /**
    * Can be used if dataset points to a folder. If set to true, the folder must have at least one file. If set to false, the folder must be empty. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  childItems?: unknown;
+  childItems?: Dfe<boolean>;
 
   /**
    * Validation activity dataset reference.
@@ -28049,8 +26587,7 @@ model DatabricksNotebookActivityTypeProperties {
   /**
    * The absolute path of the notebook to be run in the Databricks Workspace. This path must begin with a slash. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  notebookPath: unknown;
+  notebookPath: Dfe<string>;
 
   /**
    * Base parameters to be used for each run of this job.If the notebook takes a parameter that is not specified, the default value from the notebook will be used.
@@ -28087,8 +26624,7 @@ model DatabricksSparkJarActivityTypeProperties {
   /**
    * The full name of the class containing the main method to be executed. This class must be contained in a JAR provided as a library. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  mainClassName: unknown;
+  mainClassName: Dfe<string>;
 
   /**
    * Parameters that will be passed to the main method.
@@ -28124,8 +26660,7 @@ model DatabricksSparkPythonActivityTypeProperties {
   /**
    * The URI of the Python file to be executed. DBFS paths are supported. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  pythonFile: unknown;
+  pythonFile: Dfe<string>;
 
   /**
    * Command line parameters that will be passed to the Python file.
@@ -28161,8 +26696,7 @@ model DatabricksJobActivityTypeProperties {
   /**
    * The Id of the Databricks Job to be executed. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  jobId: unknown;
+  jobId: Dfe<string>;
 
   /**
    * Job parameters to be used for each run of this job. If the job takes a parameter that is not specified, the default value from the job will be used.
@@ -28203,8 +26737,7 @@ model SetVariableActivityTypeProperties {
   /**
    * Value to be set. Could be a static value or Expression.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<unknown>;
 
   /**
    * If set to true, it sets the pipeline run return value.
@@ -28254,8 +26787,7 @@ model AppendVariableActivityTypeProperties {
   /**
    * Value to be appended. Type: could be a static value matching type of the variable item or Expression with resultType matching type of the variable item
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<unknown>;
 }
 
 /**
@@ -28285,20 +26817,17 @@ model AzureFunctionActivityTypeProperties {
   /**
    * Name of the Function that the Azure Function Activity will call. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  functionName: unknown;
+  functionName: Dfe<string>;
 
   /**
    * Represents the headers that will be sent to the request. For example, to set the language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   headers?: Record<unknown>;
 
   /**
    * Represents the payload that will be sent to the endpoint. Required for POST/PUT method, not allowed for GET method Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  body?: unknown;
+  body?: Dfe<string>;
 }
 
 /**
@@ -28336,8 +26865,7 @@ model WebHookActivityTypeProperties {
   /**
    * WebHook activity target endpoint and path. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  url: unknown;
+  url: Dfe<string>;
 
   /**
    * The timeout within which the webhook should be called back. If there is no value specified, it defaults to 10 minutes. Type: string. Pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
@@ -28347,14 +26875,12 @@ model WebHookActivityTypeProperties {
   /**
    * Represents the headers that will be sent to the request. For example, to set the language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   headers?: Record<unknown>;
 
   /**
    * Represents the payload that will be sent to the endpoint. Required for POST/PUT method, not allowed for GET method Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  body?: unknown;
+  body?: Dfe<string>;
 
   /**
    * Authentication method used for calling the endpoint.
@@ -28364,8 +26890,7 @@ model WebHookActivityTypeProperties {
   /**
    * When set to true, statusCode, output and error in callback request body will be consumed by activity. The activity can be marked as failed by setting statusCode >= 400 in callback request. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  reportStatusOnCallBack?: unknown;
+  reportStatusOnCallBack?: Dfe<boolean>;
 }
 
 /**
@@ -28415,26 +26940,22 @@ model ExecuteDataFlowActivityTypeProperties {
   /**
    * Trace level setting used for data flow monitoring output. Supported values are: 'coarse', 'fine', and 'none'. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  traceLevel?: unknown;
+  traceLevel?: Dfe<string>;
 
   /**
    * Continue on error setting used for data flow execution. Enables processing to continue if a sink fails. Type: boolean (or Expression with resultType boolean)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  continueOnError?: unknown;
+  continueOnError?: Dfe<boolean>;
 
   /**
    * Concurrent run setting used for data flow execution. Allows sinks with the same save order to be processed concurrently. Type: boolean (or Expression with resultType boolean)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  runConcurrently?: unknown;
+  runConcurrently?: Dfe<boolean>;
 
   /**
    * Specify number of parallel staging for sources applicable to the sink. Type: integer (or Expression with resultType integer)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  sourceStagingConcurrency?: unknown;
+  sourceStagingConcurrency?: Dfe<int32>;
 }
 
 /**
@@ -28444,20 +26965,17 @@ model ContinuationSettingsReference {
   /**
    * Continuation TTL in minutes.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  continuationTtlInMinutes?: unknown;
+  continuationTtlInMinutes?: Dfe<int32>;
 
   /**
    * Idle condition.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  idleCondition?: unknown;
+  idleCondition?: Dfe<string>;
 
   /**
    * Customized checkpoint key.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  customizedCheckpointKey?: unknown;
+  customizedCheckpointKey?: Dfe<string>;
 }
 
 /**
@@ -28467,14 +26985,12 @@ model ExecuteDataFlowActivityTypePropertiesCompute {
   /**
    * Compute type of the cluster which will execute data flow job. Possible values include: 'General', 'MemoryOptimized', 'ComputeOptimized'. Type: string (or Expression with resultType string)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  computeType?: unknown;
+  computeType?: Dfe<string>;
 
   /**
    * Core count of the cluster which will execute data flow job. Supported values are: 8, 16, 32, 48, 80, 144 and 272. Type: integer (or Expression with resultType integer)
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  coreCount?: unknown;
+  coreCount?: Dfe<int32>;
 }
 
 /**
@@ -28554,8 +27070,7 @@ model ScriptActivityTypeProperties {
   /**
    * ScriptBlock execution timeout. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  scriptBlockExecutionTimeout?: unknown;
+  scriptBlockExecutionTimeout?: Dfe<string>;
 
   /**
    * Array of script blocks. Type: array.
@@ -28571,14 +27086,12 @@ model ScriptActivityTypeProperties {
   /**
    * Enable to retrieve result sets from multiple SQL statements and the number of rows affected by the DML statement. Supported connector: SnowflakeV2. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  returnMultistatementResult?: unknown;
+  returnMultistatementResult?: Dfe<boolean>;
 
   /**
    * Indicates whether to treat decimal values as strings to avoid value overflow issue. This option is enabled for SnowflakeV2 connector only. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  treatDecimalAsString?: unknown;
+  treatDecimalAsString?: Dfe<boolean>;
 }
 
 /**
@@ -28588,14 +27101,12 @@ model ScriptActivityScriptBlock {
   /**
    * The query text. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  text: unknown;
+  text: Dfe<string>;
 
   /**
    * The type of the query. Please refer to the ScriptType for valid options. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  type: unknown;
+  type: Dfe<string>;
 
   /**
    * Array of script parameters. Type: array.
@@ -28611,8 +27122,7 @@ model ScriptActivityParameter {
   /**
    * The name of the parameter. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  name?: unknown;
+  name?: Dfe<string>;
 
   /**
    * The type of the parameter.
@@ -28622,8 +27132,7 @@ model ScriptActivityParameter {
   /**
    * The value of the parameter. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<string>;
 
   /**
    * The direction of the parameter.
@@ -28658,14 +27167,12 @@ model SharePointOnlineListSource extends CopySource {
   /**
    * The OData query to filter the data in SharePoint Online list. For example, "$top=1". Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * The wait time to get a response from SharePoint Online. Default value is 5 minutes (00:05:00). Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  httpRequestTimeout?: unknown;
+  httpRequestTimeout?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -28705,32 +27212,27 @@ model SynapseNotebookActivityTypeProperties {
   /**
    * Notebook parameters.
    */
-  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   parameters?: Record<NotebookParameter>;
 
   /**
    * Number of core and memory to be used for executors allocated in the specified Spark pool for the session, which will be used for overriding 'executorCores' and 'executorMemory' of the notebook you provide. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  executorSize?: unknown;
+  executorSize?: Dfe<string>;
 
   /**
    * Spark configuration properties, which will override the 'conf' of the notebook you provide.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   conf?: unknown;
 
   /**
    * Number of core and memory to be used for driver allocated in the specified Spark pool for the session, which will be used for overriding 'driverCores' and 'driverMemory' of the notebook you provide. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  driverSize?: unknown;
+  driverSize?: Dfe<string>;
 
   /**
    * Number of executors to launch for this session, which will override the 'numExecutors' of the notebook you provide. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  numExecutors?: unknown;
+  numExecutors?: Dfe<int32>;
 
   /**
    * The type of the spark config.
@@ -28761,8 +27263,7 @@ model SynapseNotebookReference {
   /**
    * Reference notebook name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  referenceName: unknown;
+  referenceName: Dfe<string>;
 }
 
 /**
@@ -28777,8 +27278,7 @@ model BigDataPoolParametrizationReference {
   /**
    * Reference big data pool name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  referenceName: unknown;
+  referenceName: Dfe<string>;
 }
 
 /**
@@ -28788,8 +27288,7 @@ model NotebookParameter {
   /**
    * Notebook parameter value. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<string>;
 
   /**
    * Notebook parameter type.
@@ -28809,8 +27308,7 @@ model SparkConfigurationParametrizationReference {
   /**
    * Reference spark configuration name. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  referenceName: unknown;
+  referenceName: Dfe<string>;
 }
 
 /**
@@ -28845,20 +27343,17 @@ model SynapseSparkJobActivityTypeProperties {
   /**
    * The main file used for the job, which will override the 'file' of the spark job definition you provide. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  file?: unknown;
+  file?: Dfe<string>;
 
   /**
    * Scanning subfolders from the root folder of the main definition file, these files will be added as reference files. The folders named 'jars', 'pyFiles', 'files' or 'archives' will be scanned, and the folders name are case sensitive. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  scanFolder?: unknown;
+  scanFolder?: Dfe<boolean>;
 
   /**
    * The fully-qualified identifier or the main class that is in the main definition file, which will override the 'className' of the spark job definition you provide. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  className?: unknown;
+  className?: Dfe<string>;
 
   /**
    * (Deprecated. Please use pythonCodeReference and filesV2) Additional files used for reference in the main definition file, which will override the 'files' of the spark job definition you provide.
@@ -28883,26 +27378,22 @@ model SynapseSparkJobActivityTypeProperties {
   /**
    * Number of core and memory to be used for executors allocated in the specified Spark pool for the job, which will be used for overriding 'executorCores' and 'executorMemory' of the spark job definition you provide. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  executorSize?: unknown;
+  executorSize?: Dfe<string>;
 
   /**
    * Spark configuration properties, which will override the 'conf' of the spark job definition you provide.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   conf?: unknown;
 
   /**
    * Number of core and memory to be used for driver allocated in the specified Spark pool for the job, which will be used for overriding 'driverCores' and 'driverMemory' of the spark job definition you provide. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  driverSize?: unknown;
+  driverSize?: Dfe<string>;
 
   /**
    * Number of executors to launch for this job, which will override the 'numExecutors' of the spark job definition you provide. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  numExecutors?: unknown;
+  numExecutors?: Dfe<int32>;
 
   /**
    * The type of the spark config.
@@ -28933,8 +27424,7 @@ model SynapseSparkJobReference {
   /**
    * Reference spark job name. Expression with resultType string.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  referenceName: unknown;
+  referenceName: Dfe<string>;
 }
 
 /**
@@ -28944,33 +27434,27 @@ model SalesforceV2Source extends TabularSource {
   /**
    * Deprecating, please use 'query' property instead. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  SOQLQuery?: unknown;
+  SOQLQuery?: Dfe<string>;
 
   /**
    * You can only use Salesforce Object Query Language (SOQL) query with limitations. For SOQL limitations, see this article: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/queries.htm#SOQL%20Considerations. If query is not specified, all the data of the Salesforce object specified in ObjectApiName/reportId in dataset will be retrieved. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * This property control whether query result contains Deleted objects. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  includeDeletedObjects?: unknown;
+  includeDeletedObjects?: Dfe<boolean>;
 
   /**
    * Page size for each http request, too large pageSize will caused timeout, default 300,000. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  pageSize?: unknown;
+  pageSize?: Dfe<int32>;
 
   /**
    * Partition option for the SalesforceV2 connector in copy activity, AutoDetect or None. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  partitionOption?: unknown;
+  partitionOption?: Dfe<string>;
 
   /**
    * Copy source type.
@@ -28985,21 +27469,17 @@ model SalesforceServiceCloudV2Source extends CopySource {
   /**
    * Deprecating, please use 'query' property instead. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  SOQLQuery?: unknown;
+  SOQLQuery?: Dfe<string>;
 
   /**
    * You can only use Salesforce Object Query Language (SOQL) query with limitations. For SOQL limitations, see this article: https://developer.salesforce.com/docs/atlas.en-us.api_asynch.meta/api_asynch/queries.htm#SOQL%20Considerations. If query is not specified, all the data of the Salesforce object specified in ObjectApiName/reportId in dataset will be retrieved. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  query?: unknown;
+  query?: Dfe<string>;
 
   /**
    * This property control whether query result contains Deleted objects. Default is false. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  includeDeletedObjects?: unknown;
+  includeDeletedObjects?: Dfe<boolean>;
 
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
@@ -29025,14 +27505,12 @@ model SalesforceV2Sink extends CopySink {
   /**
    * The name of the external ID field for upsert operation. Default value is 'Id' column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  externalIdFieldName?: unknown;
+  externalIdFieldName?: Dfe<string>;
 
   /**
    * The flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ignoreNullValues?: unknown;
+  ignoreNullValues?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -29052,14 +27530,12 @@ model SalesforceServiceCloudV2Sink extends CopySink {
   /**
    * The name of the external ID field for upsert operation. Default value is 'Id' column. Type: string (or Expression with resultType string).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  externalIdFieldName?: unknown;
+  externalIdFieldName?: Dfe<string>;
 
   /**
    * The flag indicating whether or not to ignore null values from input dataset (except key fields) during write operation. Default value is false. If set it to true, it means ADF will leave the data in the destination object unchanged when doing upsert/update operation and insert defined default value when doing insert operation, versus ADF will update the data in the destination object to NULL when doing upsert/update operation and insert NULL value when doing insert operation. Type: boolean (or Expression with resultType boolean).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  ignoreNullValues?: unknown;
+  ignoreNullValues?: Dfe<boolean>;
 
   /**
    * Copy sink type.
@@ -29079,8 +27555,7 @@ model ServiceNowV2Source extends TabularSource {
   /**
    * Page size of the result. Type: integer (or Expression with resultType integer).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  pageSize?: unknown;
+  pageSize?: Dfe<int32>;
 
   /**
    * Copy source type.
@@ -29100,8 +27575,7 @@ model ExpressionV2 {
   /**
    * Value for Constant/Field Type: object.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  value?: unknown;
+  value?: Dfe<string>;
 
   /**
    * Expression operator value Type: list of strings.
@@ -29418,8 +27892,7 @@ model TumblingWindowTriggerTypeProperties {
   /**
    * Specifies how long the trigger waits past due time before triggering new run. It doesn't alter window start and end time. The default is 0. Type: string (or Expression with resultType string), pattern: ((\d+)\.)?(\d\d):(60|([0-5][0-9])):(60|([0-5][0-9])).
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  delay?: unknown;
+  delay?: Dfe<string>;
 
   /**
    * The max number of parallel time windows (ready for execution) for which a new run is triggered.
@@ -29447,8 +27920,7 @@ model RetryPolicy {
   /**
    * Maximum ordinary retry attempts. Default is 0. Type: integer (or Expression with resultType integer), minimum: 0.
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  count?: unknown;
+  count?: Dfe<int32>;
 
   /**
    * Interval between retries in seconds. Default is 30.
@@ -29658,8 +28130,7 @@ model ServicePrincipalCredentialTypeProperties {
   /**
    * The app ID of the service principal used to authenticate
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  servicePrincipalId?: unknown;
+  servicePrincipalId?: Dfe<string>;
 
   /**
    * The key of the service principal used to authenticate.
@@ -29669,8 +28140,7 @@ model ServicePrincipalCredentialTypeProperties {
   /**
    * The ID of the tenant to which the service principal belongs
    */
-  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  tenant?: unknown;
+  tenant?: Dfe<string>;
 }
 
 /**
