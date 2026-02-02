@@ -9177,7 +9177,6 @@
           "description": "<REGION>.azuredatabricks.net, domain name of your Databricks deployment. Type: string (or Expression with resultType string)."
         },
         "accessToken": {
-          "$ref": "#/definitions/SecretBase",
           "description": "Access token for databricks REST API. Refer to https://docs.azuredatabricks.net/api/latest/authentication.html. Type: string (or Expression with resultType string)."
         },
         "authentication": {
@@ -13273,13 +13272,30 @@
           ]
         },
         "additionalOptions": {
-          "type": "object",
-          "description": "Additional options directly passed to SQL DW in Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalOptions\": { \"MAXERRORS\": \"1000\", \"DATEFORMAT\": \"'ymd'\" }",
-          "additionalProperties": {
-            "type": "string"
-          }
+          "description": "Additional options directly passed to SQL DW in Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalOptions\": { \"MAXERRORS\": \"1000\", \"DATEFORMAT\": \"'ymd'\" }"
         }
       }
+    },
+    "DataFactoryElement": {
+      "type": "object",
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "Expression"
+          ],
+          "x-ms-enum": {
+            "modelAsString": false
+          }
+        },
+        "value": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "kind",
+        "value"
+      ]
     },
     "DataFlow": {
       "type": "object",
@@ -14983,7 +14999,6 @@
           "description": "Specify the application's client ID. Type: string (or Expression with resultType string)."
         },
         "servicePrincipalKey": {
-          "$ref": "#/definitions/SecretBase",
           "description": "Specify the application's key. Mark this field as a SecureString to store it securely in Data Factory, or reference a secret stored in Azure Key Vault. Type: string (or Expression with resultType string)."
         },
         "tenant": {
@@ -26823,7 +26838,6 @@
           "description": "The client ID associated with the Responsys application. Type: string (or Expression with resultType string)."
         },
         "clientSecret": {
-          "$ref": "#/definitions/SecretBase",
           "description": "The client secret associated with the Responsys application. Type: string (or Expression with resultType string)."
         },
         "useEncryptedEndpoints": {
@@ -27510,7 +27524,6 @@
           "description": "The client ID associated with the Salesforce Marketing Cloud application. Type: string (or Expression with resultType string)."
         },
         "clientSecret": {
-          "$ref": "#/definitions/SecretBase",
           "description": "The client secret associated with the Salesforce Marketing Cloud application. Type: string (or Expression with resultType string)."
         },
         "useEncryptedEndpoints": {
@@ -30611,14 +30624,10 @@
       "description": "Snowflake export command settings.",
       "properties": {
         "additionalCopyOptions": {
-          "type": "object",
-          "description": "Additional copy options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalCopyOptions\": { \"DATE_FORMAT\": \"MM/DD/YYYY\", \"TIME_FORMAT\": \"'HH24:MI:SS.FF'\" }",
-          "additionalProperties": {}
+          "description": "Additional copy options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalCopyOptions\": { \"DATE_FORMAT\": \"MM/DD/YYYY\", \"TIME_FORMAT\": \"'HH24:MI:SS.FF'\" }"
         },
         "additionalFormatOptions": {
-          "type": "object",
-          "description": "Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalFormatOptions\": { \"OVERWRITE\": \"TRUE\", \"MAX_FILE_SIZE\": \"'FALSE'\" }",
-          "additionalProperties": {}
+          "description": "Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalFormatOptions\": { \"OVERWRITE\": \"TRUE\", \"MAX_FILE_SIZE\": \"'FALSE'\" }"
         },
         "storageIntegration": {
           "description": "The name of the snowflake storage integration to use for the copy operation. Type: string (or Expression with resultType string)."
@@ -30636,14 +30645,10 @@
       "description": "Snowflake import command settings.",
       "properties": {
         "additionalCopyOptions": {
-          "type": "object",
-          "description": "Additional copy options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalCopyOptions\": { \"DATE_FORMAT\": \"MM/DD/YYYY\", \"TIME_FORMAT\": \"'HH24:MI:SS.FF'\" }",
-          "additionalProperties": {}
+          "description": "Additional copy options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalCopyOptions\": { \"DATE_FORMAT\": \"MM/DD/YYYY\", \"TIME_FORMAT\": \"'HH24:MI:SS.FF'\" }"
         },
         "additionalFormatOptions": {
-          "type": "object",
-          "description": "Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalFormatOptions\": { \"FORCE\": \"TRUE\", \"LOAD_UNCERTAIN_FILES\": \"'FALSE'\" }",
-          "additionalProperties": {}
+          "description": "Additional format options directly passed to snowflake Copy Command. Type: key value pairs (value should be string type) (or Expression with resultType object). Example: \"additionalFormatOptions\": { \"FORCE\": \"TRUE\", \"LOAD_UNCERTAIN_FILES\": \"'FALSE'\" }"
         },
         "storageIntegration": {
           "description": "The name of the snowflake storage integration to use for the copy operation. Type: string (or Expression with resultType string)."
@@ -31275,7 +31280,6 @@
           "description": "Write behavior when copying data into azure SQL DW. Type: SqlDWWriteBehaviorEnum (or Expression with resultType SqlDWWriteBehaviorEnum)"
         },
         "upsertSettings": {
-          "$ref": "#/definitions/SqlDWUpsertSettings",
           "description": "SQL DW upsert settings."
         }
       },

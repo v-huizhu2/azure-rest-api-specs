@@ -15,6 +15,7 @@ namespace Microsoft.DataFactory;
 @mediaTypeHint("application/json")
 scalar ChangeDataCaptureStatusResponse extends string;
 
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 #suppress "@azure-tools/typespec-autorest/union-unsupported" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 @Azure.ClientGenerator.Core.alternateType(
   {
@@ -24,10 +25,12 @@ scalar ChangeDataCaptureStatusResponse extends string;
 )
 @Azure.ClientGenerator.Core.alternateType(unknown, "!csharp")
 union Dfe<T> {
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   T,
   DataFactoryElement,
 }
 
+#suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model DataFactoryElement {
   kind: "Expression";
   value: string;
@@ -7164,6 +7167,7 @@ model JsonFormat extends DatasetStorageFormat {
   /**
    * File pattern of JSON. To be more specific, the way of separating a collection of JSON objects. The default value is 'setOfObjects'. It is case-sensitive.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   filePattern?: unknown;
 
   /**
@@ -7329,6 +7333,7 @@ model AvroDatasetTypeProperties {
    */
   avroCompressionCodec?: Dfe<string>;
 
+  #suppress "@azure-tools/typespec-azure-core/documentation-required" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @maxValue(9)
   @minValue(1)
   avroCompressionLevel?: int32;
@@ -7875,6 +7880,7 @@ model CustomDataset extends Dataset {
   /**
    * Custom dataset properties.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   typeProperties?: unknown;
 
   /**
@@ -8278,6 +8284,7 @@ model CosmosDbMongoDbApiCollectionDatasetTypeProperties {
 /**
  * The Open Data Protocol (OData) resource dataset.
  */
+#suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model ODataResourceDataset extends Dataset {
   /**
    * OData dataset properties.
@@ -9391,6 +9398,7 @@ model GreenplumDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   tableName?: unknown;
 
   /**
@@ -9677,6 +9685,7 @@ model PrestoDatasetTypeProperties {
   /**
    * This property will be retired. Please consider using schema + table properties instead.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   tableName?: unknown;
 
   /**
@@ -15402,6 +15411,7 @@ model CustomDataSourceLinkedService extends LinkedService {
   /**
    * Custom linked service properties.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   typeProperties: unknown;
 
   /**
@@ -15979,6 +15989,7 @@ model ConcurLinkedServiceTypeProperties {
   /**
    * Properties used to connect to Concur. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
@@ -16534,6 +16545,7 @@ model HiveLinkedServiceTypeProperties {
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
@@ -16681,6 +16693,7 @@ model ImpalaLinkedServiceTypeProperties {
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
@@ -17097,6 +17110,7 @@ model PhoenixLinkedServiceTypeProperties {
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
@@ -17188,6 +17202,7 @@ model PrestoLinkedServiceTypeProperties {
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false. Only used for Version 1.0.
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
@@ -17198,6 +17213,7 @@ model PrestoLinkedServiceTypeProperties {
   /**
    * The local time zone used by the connection. Valid values for this option are specified in the IANA Time Zone Database. The default value for Version 1.0 is the client system time zone. The default value for Version 2.0 is server system timeZone
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   timeZoneID?: Dfe<string>;
 
   /**
@@ -17229,6 +17245,7 @@ model QuickBooksLinkedServiceTypeProperties {
   /**
    * Properties used to connect to QuickBooks. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
@@ -17482,6 +17499,7 @@ model SparkLinkedServiceTypeProperties {
   /**
    * Specifies whether to require a CA-issued SSL certificate name to match the host name of the server when connecting over SSL. The default value is false.
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   allowHostNameCNMismatch?: Dfe<boolean>;
 
   /**
@@ -17648,6 +17666,7 @@ model ZohoLinkedServiceTypeProperties {
   /**
    * Properties used to connect to Zoho. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
@@ -18222,16 +18241,19 @@ model AzureDatabricksLinkedServiceTypeProperties {
   /**
    * A set of optional, user-specified Spark configuration key-value pairs.
    */
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   newClusterSparkConf?: Record<unknown>;
 
   /**
    * A set of optional, user-specified Spark environment variables key-value pairs.
    */
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   newClusterSparkEnvVars?: Record<unknown>;
 
   /**
    * Additional tags for cluster resources. This property is ignored in instance pool configurations.
    */
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   newClusterCustomTags?: Record<unknown>;
 
   /**
@@ -18514,11 +18536,13 @@ model GoogleAdWordsLinkedServiceTypeProperties {
   /**
    * (Deprecated) Properties used to connect to GoogleAds. It is mutually exclusive with any other properties in the linked service. Type: object.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   connectionProperties?: unknown;
 
   /**
    * The Client customer ID of the AdWords account that you want to fetch report data for. Type: string (or Expression with resultType string).
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   clientCustomerID?: Dfe<string>;
 
   /**
@@ -18574,6 +18598,7 @@ model GoogleAdWordsLinkedServiceTypeProperties {
   /**
    * The customer ID of the Google Ads Manager account through which you want to fetch report data of specific Customer. Type: string (or Expression with resultType string).
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   loginCustomerID?: Dfe<string>;
 
   /**
@@ -20177,6 +20202,7 @@ model HttpReadSettings extends StoreReadSettings {
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   additionalColumns?: unknown;
 
   /**
@@ -20327,6 +20353,7 @@ model AzureBlobStorageWriteSettings extends StoreWriteSettings {
   /**
    * Indicates the block size(MB) when writing data to blob. Type: integer (or Expression with resultType integer).
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   blockSizeInMB?: Dfe<int32>;
 
   /**
@@ -20722,6 +20749,7 @@ model AvroSource extends CopySource {
   /**
    * Specifies the additional columns to be added to source data. Type: array of objects(AdditionalColumns) (or Expression with resultType array of objects).
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   additionalColumns?: unknown;
 
   /**
@@ -22107,6 +22135,7 @@ model SqlServerSource extends TabularSource {
   /**
    * Which additional types to produce.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   produceAdditionalTypes?: unknown;
 
   /**
@@ -22451,6 +22480,7 @@ model OraclePartitionSettings {
   /**
    * Names of the physical partitions of Oracle table.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   partitionNames?: unknown;
 
   /**
@@ -23495,6 +23525,7 @@ model ResponsysSource extends TabularSource {
 /**
  * A copy activity Dynamics AX source.
  */
+#suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model DynamicsAXSource extends TabularSource {
   /**
    * A query to retrieve data from source. Type: string (or Expression with resultType string).
@@ -24174,6 +24205,7 @@ model SqlUpsertSettings {
   /**
    * Specifies whether to use temp db for upsert interim table. Type: boolean (or Expression with resultType boolean).
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   useTempDB?: Dfe<boolean>;
 
   /**
@@ -26331,6 +26363,7 @@ model AzureMLExecutePipelineActivityTypeProperties {
   /**
    * Dictionary used for changing data path assignments without retraining. Values will be passed in the dataPathAssignments property of the published pipeline execution request. Type: object (or Expression with resultType object).
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   dataPathAssignments?: unknown;
 
   /**
@@ -26386,6 +26419,7 @@ model DataLakeAnalyticsUsqlActivityTypeProperties {
   /**
    * Parameters for U-SQL job request.
    */
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   parameters?: Record<unknown>;
 
   /**
@@ -26822,6 +26856,7 @@ model AzureFunctionActivityTypeProperties {
   /**
    * Represents the headers that will be sent to the request. For example, to set the language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with resultType string).
    */
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   headers?: Record<unknown>;
 
   /**
@@ -26875,6 +26910,7 @@ model WebHookActivityTypeProperties {
   /**
    * Represents the headers that will be sent to the request. For example, to set the language and type on a request: "headers" : { "Accept-Language": "en-us", "Content-Type": "application/json" }. Type: string (or Expression with resultType string).
    */
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   headers?: Record<unknown>;
 
   /**
@@ -27212,6 +27248,7 @@ model SynapseNotebookActivityTypeProperties {
   /**
    * Notebook parameters.
    */
+  #suppress "@azure-tools/typespec-azure-resource-manager/arm-no-record" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   parameters?: Record<NotebookParameter>;
 
   /**
@@ -27222,6 +27259,7 @@ model SynapseNotebookActivityTypeProperties {
   /**
    * Spark configuration properties, which will override the 'conf' of the notebook you provide.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   conf?: unknown;
 
   /**
@@ -27383,6 +27421,7 @@ model SynapseSparkJobActivityTypeProperties {
   /**
    * Spark configuration properties, which will override the 'conf' of the spark job definition you provide.
    */
+  #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   conf?: unknown;
 
   /**
@@ -27434,6 +27473,7 @@ model SalesforceV2Source extends TabularSource {
   /**
    * Deprecating, please use 'query' property instead. Type: string (or Expression with resultType string).
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   SOQLQuery?: Dfe<string>;
 
   /**
@@ -27469,6 +27509,7 @@ model SalesforceServiceCloudV2Source extends CopySource {
   /**
    * Deprecating, please use 'query' property instead. Type: string (or Expression with resultType string).
    */
+  #suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   SOQLQuery?: Dfe<string>;
 
   /**

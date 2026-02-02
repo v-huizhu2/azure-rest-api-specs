@@ -13,6 +13,7 @@ namespace Microsoft.DataFactory;
 /**
  * Factory resource type.
  */
+#suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 model Factory
   is Azure.ResourceManager.Legacy.TrackedResourceWithOptionalLocation<FactoryProperties> {
   ...ResourceNameParameter<
