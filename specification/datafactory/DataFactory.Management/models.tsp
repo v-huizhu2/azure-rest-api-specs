@@ -5791,10 +5791,10 @@ model ManagedVirtualNetwork {
   `alias`?: string;
 }
 
-/**
+#suppress "@azure-tools/typespec-azure-core/casing-style" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details" /**
  * A list of managed private endpoint resources.
  */
-model ManagedPrivateEndpointListResponse
+model managedPrivateEndpointListResponse
   is Azure.Core.Page<ManagedPrivateEndpointResource>;
 
 /**

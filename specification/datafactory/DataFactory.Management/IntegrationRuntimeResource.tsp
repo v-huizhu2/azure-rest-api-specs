@@ -203,7 +203,9 @@ interface IntegrationRuntimeResources {
   stop is ArmResourceActionAsync<
     IntegrationRuntimeResource,
     void,
-    OkResponse,
+    {
+      @body body: void;
+    },
     Error = CloudError
   >;
 

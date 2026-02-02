@@ -335,7 +335,7 @@ interface Factories {
   executeCommand is ArmResourceActionAsync<
     Factory,
     DataFlowDebugCommandRequest,
-    ArmResponse<DataFlowDebugCommandResponse>,
+    DataFlowDebugCommandResponse,
     Error = CloudError
   >;
 

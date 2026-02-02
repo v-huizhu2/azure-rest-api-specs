@@ -80,7 +80,7 @@ interface ManagedPrivateEndpointResources {
   @tag("managedPrivateEndpoints")
   listByFactory is ArmResourceListByParent<
     ManagedPrivateEndpointResource,
-    Response = ArmResponse<ManagedPrivateEndpointListResponse>,
+    Response = ArmResponse<managedPrivateEndpointListResponse>,
     Error = CloudError
   >;
 }

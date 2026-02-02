@@ -2018,7 +2018,7 @@
         },
         "x-ms-long-running-operation-options": {
           "final-state-via": "location",
-          "final-state-schema": "#/definitions/Azure.ResourceManager.ArmResponse%3CDataFlowDebugCommandResponse%3E"
+          "final-state-schema": "#/definitions/DataFlowDebugCommandResponse"
         },
         "x-ms-long-running-operation": true
       }
@@ -3688,7 +3688,7 @@
         ],
         "responses": {
           "200": {
-            "description": "The request has succeeded."
+            "description": "Azure operation completed successfully."
           },
           "202": {
             "description": "Resource operation accepted.",
@@ -3717,8 +3717,7 @@
           }
         },
         "x-ms-long-running-operation-options": {
-          "final-state-via": "location",
-          "final-state-schema": "#/definitions/TypeSpec.Http.OkResponse"
+          "final-state-via": "location"
         },
         "x-ms-long-running-operation": true
       }
@@ -4326,7 +4325,7 @@
           "200": {
             "description": "Azure operation completed successfully.",
             "schema": {
-              "$ref": "#/definitions/ManagedPrivateEndpointListResponse"
+              "$ref": "#/definitions/managedPrivateEndpointListResponse"
             }
           },
           "default": {
@@ -8087,19 +8086,6 @@
       },
       "required": [
         "version"
-      ]
-    },
-    "Azure.ResourceManager.ArmResponse<DataFlowDebugCommandResponse>": {
-      "type": "object",
-      "description": "Azure operation completed successfully.",
-      "properties": {
-        "body": {
-          "$ref": "#/definitions/DataFlowDebugCommandResponse",
-          "description": "The body type of the operation request or response."
-        }
-      },
-      "required": [
-        "body"
       ]
     },
     "AzureBatchLinkedService": {
@@ -22112,27 +22098,6 @@
       },
       "additionalProperties": {}
     },
-    "ManagedPrivateEndpointListResponse": {
-      "type": "object",
-      "description": "A list of managed private endpoint resources.",
-      "properties": {
-        "value": {
-          "type": "array",
-          "description": "The ManagedPrivateEndpointResource items on this page",
-          "items": {
-            "$ref": "#/definitions/ManagedPrivateEndpointResource"
-          }
-        },
-        "nextLink": {
-          "type": "string",
-          "format": "uri",
-          "description": "The link to the next page of items"
-        }
-      },
-      "required": [
-        "value"
-      ]
-    },
     "ManagedPrivateEndpointResource": {
       "type": "object",
       "description": "Managed private endpoint resource type.",
@@ -34124,10 +34089,6 @@
         }
       }
     },
-    "TypeSpec.Http.OkResponse": {
-      "type": "object",
-      "description": "The request has succeeded."
-    },
     "UntilActivity": {
       "type": "object",
       "description": "This activity executes inner activities until the specified boolean expression results to true or timeout is reached, whichever is earlier.",
@@ -35440,6 +35401,27 @@
         }
       ],
       "x-ms-discriminator-value": "ZohoSource"
+    },
+    "managedPrivateEndpointListResponse": {
+      "type": "object",
+      "description": "Paged collection of ManagedPrivateEndpointResource items",
+      "properties": {
+        "value": {
+          "type": "array",
+          "description": "The ManagedPrivateEndpointResource items on this page",
+          "items": {
+            "$ref": "#/definitions/ManagedPrivateEndpointResource"
+          }
+        },
+        "nextLink": {
+          "type": "string",
+          "format": "uri",
+          "description": "The link to the next page of items"
+        }
+      },
+      "required": [
+        "value"
+      ]
     }
   },
   "parameters": {}
