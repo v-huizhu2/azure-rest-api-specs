@@ -26,11 +26,13 @@ model DataFlowResource is Azure.ResourceManager.ProxyResource<DataFlow, false> {
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@tag("dataFlows")
+@armResourceOperations(#{ omitTags: true })
 interface DataFlowResources {
   /**
    * Gets a data flow.
    */
+  @tag("dataFlows")
   get is ArmResourceRead<
     DataFlowResource,
     Parameters = {
@@ -48,6 +50,7 @@ interface DataFlowResources {
    * Creates or updates a data flow.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("dataFlows")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     DataFlowResource,
     Parameters = {
@@ -65,11 +68,13 @@ interface DataFlowResources {
   /**
    * Deletes a data flow.
    */
+  @tag("dataFlows")
   delete is ArmResourceDeleteSync<DataFlowResource, Error = CloudError>;
 
   /**
    * Lists data flows.
    */
+  @tag("dataFlows")
   listByFactory is ArmResourceListByParent<
     DataFlowResource,
     Response = ArmResponse<DataFlowListResponse>,

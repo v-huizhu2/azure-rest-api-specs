@@ -27,11 +27,12 @@ model ChangeDataCaptureResource
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface ChangeDataCaptureResources {
   /**
    * Gets a change data capture.
    */
+  @tag("changeDataCapture")
   get is ArmResourceRead<
     ChangeDataCaptureResource,
     Parameters = {
@@ -49,6 +50,7 @@ interface ChangeDataCaptureResources {
    * Creates or updates a change data capture resource.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("changeDataCapture")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     ChangeDataCaptureResource,
     Parameters = {
@@ -66,6 +68,7 @@ interface ChangeDataCaptureResources {
   /**
    * Deletes a change data capture.
    */
+  @tag("changeDataCapture")
   delete is ArmResourceDeleteSync<
     ChangeDataCaptureResource,
     Error = CloudError
@@ -74,6 +77,7 @@ interface ChangeDataCaptureResources {
   /**
    * Lists all resources of type change data capture.
    */
+  @tag("changeDataCapture")
   listByFactory is ArmResourceListByParent<
     ChangeDataCaptureResource,
     Response = ArmResponse<ChangeDataCaptureListResponse>,
@@ -83,6 +87,7 @@ interface ChangeDataCaptureResources {
   /**
    * Starts a change data capture.
    */
+  @tag("changeDataCapture")
   start is ArmResourceActionSync<
     ChangeDataCaptureResource,
     void,
@@ -93,6 +98,7 @@ interface ChangeDataCaptureResources {
   /**
    * Stops a change data capture.
    */
+  @tag("changeDataCapture")
   stop is ArmResourceActionSync<
     ChangeDataCaptureResource,
     void,
@@ -103,6 +109,7 @@ interface ChangeDataCaptureResources {
   /**
    * Gets the current status for the change data capture resource.
    */
+  @tag("changeDataCapture")
   @get
   status is ArmResourceActionSync<
     ChangeDataCaptureResource,

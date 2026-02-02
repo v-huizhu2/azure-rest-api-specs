@@ -27,17 +27,19 @@ model GlobalParameterResource
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface GlobalParameterResources {
   /**
    * Gets a Global parameter
    */
+  @tag("globalParameters")
   get is ArmResourceRead<GlobalParameterResource, Error = CloudError>;
 
   /**
    * Creates or updates a Global parameter
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("globalParameters")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     GlobalParameterResource,
     Response = ArmResourceUpdatedResponse<GlobalParameterResource>,
@@ -47,11 +49,13 @@ interface GlobalParameterResources {
   /**
    * Deletes a Global parameter
    */
+  @tag("globalParameters")
   delete is ArmResourceDeleteSync<GlobalParameterResource, Error = CloudError>;
 
   /**
    * Lists Global parameters
    */
+  @tag("globalParameters")
   listByFactory is ArmResourceListByParent<
     GlobalParameterResource,
     Response = ArmResponse<GlobalParameterListResponse>,

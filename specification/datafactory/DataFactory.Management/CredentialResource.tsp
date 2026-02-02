@@ -27,11 +27,12 @@ model CredentialResource
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface CredentialResources {
   /**
    * Gets a credential.
    */
+  @tag("credentials")
   get is ArmResourceRead<
     CredentialResource,
     Parameters = {
@@ -50,6 +51,7 @@ interface CredentialResources {
    * Creates or updates a credential.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("credentials")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     CredentialResource,
     Parameters = {
@@ -67,11 +69,13 @@ interface CredentialResources {
   /**
    * Deletes a credential.
    */
+  @tag("credentials")
   delete is ArmResourceDeleteSync<CredentialResource, Error = CloudError>;
 
   /**
    * List credentials.
    */
+  @tag("credentials")
   listByFactory is ArmResourceListByParent<
     CredentialResource,
     Response = ArmResponse<CredentialListResponse>,

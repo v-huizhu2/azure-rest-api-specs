@@ -18,6 +18,7 @@ interface FactoriesOperationGroup {
   /**
    * Updates a factory's repo information.
    */
+  @tag("factories")
   @autoRoute
   configureFactoryRepo is ArmProviderActionSync<
     Request = FactoryRepoUpdate,
@@ -40,6 +41,7 @@ interface ExposureControlOperationGroup {
   /**
    * Get exposure control feature for specific location.
    */
+  @tag("exposureControl")
   @autoRoute
   getFeatureValue is ArmProviderActionSync<
     Request = ExposureControlRequest,

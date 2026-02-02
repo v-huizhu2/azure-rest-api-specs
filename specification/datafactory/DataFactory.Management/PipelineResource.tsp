@@ -26,11 +26,12 @@ model PipelineResource is Azure.ResourceManager.ProxyResource<Pipeline, false> {
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface PipelineResources {
   /**
    * Gets a pipeline.
    */
+  @tag("pipelines")
   get is ArmResourceRead<
     PipelineResource,
     Parameters = {
@@ -49,6 +50,7 @@ interface PipelineResources {
    * Creates or updates a pipeline.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("pipelines")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     PipelineResource,
     Parameters = {
@@ -66,11 +68,13 @@ interface PipelineResources {
   /**
    * Deletes a pipeline.
    */
+  @tag("pipelines")
   delete is ArmResourceDeleteSync<PipelineResource, Error = CloudError>;
 
   /**
    * Lists pipelines.
    */
+  @tag("pipelines")
   listByFactory is ArmResourceListByParent<
     PipelineResource,
     Response = ArmResponse<PipelineListResponse>,
@@ -80,6 +84,7 @@ interface PipelineResources {
   /**
    * Creates a run of a pipeline.
    */
+  @tag("pipelines")
   createRun is ArmResourceActionSync<
     PipelineResource,
     Record<unknown>,

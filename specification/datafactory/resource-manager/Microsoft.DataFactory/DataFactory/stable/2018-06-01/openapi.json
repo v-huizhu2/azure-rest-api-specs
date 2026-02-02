@@ -39,46 +39,85 @@
   },
   "tags": [
     {
+      "name": "operations"
+    },
+    {
       "name": "Operations"
     },
     {
-      "name": "Factories"
+      "name": "factories"
     },
     {
-      "name": "IntegrationRuntimeResources"
+      "name": "exposureControl"
     },
     {
-      "name": "LinkedServiceResources"
+      "name": "pipelineruns"
     },
     {
-      "name": "DatasetResources"
+      "name": "activityruns"
     },
     {
-      "name": "PipelineResources"
+      "name": "triggers"
     },
     {
-      "name": "TriggerResources"
+      "name": "triggerruns"
     },
     {
-      "name": "DataFlowResources"
+      "name": "dataFlowDebugSession"
     },
     {
-      "name": "ManagedVirtualNetworkResources"
+      "name": "privateLinkResources"
     },
     {
-      "name": "ManagedPrivateEndpointResources"
+      "name": "integrationRuntimes"
     },
     {
-      "name": "CredentialResources"
+      "name": "integrationRuntimeObjectMetadata"
     },
     {
-      "name": "PrivateEndpointConnectionResources"
+      "name": "integrationRuntimeNodes"
     },
     {
-      "name": "GlobalParameterResources"
+      "name": "integrationRuntimeEnableInteractiveQuery"
     },
     {
-      "name": "ChangeDataCaptureResources"
+      "name": "integrationRuntimeDisableInteractiveQuery"
+    },
+    {
+      "name": "linkedServices"
+    },
+    {
+      "name": "datasets"
+    },
+    {
+      "name": "pipelines"
+    },
+    {
+      "name": "trigger"
+    },
+    {
+      "name": "dataFlows"
+    },
+    {
+      "name": "managedVirtualNetworks"
+    },
+    {
+      "name": "managedPrivateEndpoints"
+    },
+    {
+      "name": "credentials"
+    },
+    {
+      "name": "privateEndpointConnections"
+    },
+    {
+      "name": "privateEndPointConnections"
+    },
+    {
+      "name": "globalParameters"
+    },
+    {
+      "name": "changeDataCapture"
     }
   ],
   "paths": {
@@ -86,6 +125,7 @@
       "get": {
         "operationId": "Operations_List",
         "tags": [
+          "operations",
           "Operations"
         ],
         "description": "Lists the available Azure Data Factory API operations.",
@@ -122,7 +162,7 @@
       "get": {
         "operationId": "Factories_List",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Lists factories under the specified subscription.",
         "parameters": [
@@ -160,6 +200,9 @@
     "/subscriptions/{subscriptionId}/providers/Microsoft.DataFactory/locations/{locationId}/configureFactoryRepo": {
       "post": {
         "operationId": "Factories_ConfigureFactoryRepo",
+        "tags": [
+          "factories"
+        ],
         "description": "Updates a factory's repo information.",
         "parameters": [
           {
@@ -209,6 +252,9 @@
     "/subscriptions/{subscriptionId}/providers/Microsoft.DataFactory/locations/{locationId}/getFeatureValue": {
       "post": {
         "operationId": "ExposureControl_GetFeatureValue",
+        "tags": [
+          "exposureControl"
+        ],
         "description": "Get exposure control feature for specific location.",
         "parameters": [
           {
@@ -259,7 +305,7 @@
       "get": {
         "operationId": "Factories_ListByResourceGroup",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Lists factories.",
         "parameters": [
@@ -301,7 +347,7 @@
       "get": {
         "operationId": "Factories_Get",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Gets a factory.",
         "parameters": [
@@ -359,7 +405,7 @@
       "put": {
         "operationId": "Factories_CreateOrUpdate",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Creates or updates a factory.",
         "parameters": [
@@ -423,7 +469,7 @@
       "patch": {
         "operationId": "Factories_Update",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Updates a factory.",
         "parameters": [
@@ -479,7 +525,7 @@
       "delete": {
         "operationId": "Factories_Delete",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Deletes a factory.",
         "parameters": [
@@ -528,7 +574,7 @@
       "post": {
         "operationId": "DataFlowDebugSession_AddDataFlow",
         "tags": [
-          "Factories"
+          "dataFlowDebugSession"
         ],
         "description": "Add a data flow into debug session.",
         "parameters": [
@@ -586,7 +632,7 @@
       "get": {
         "operationId": "ChangeDataCapture_ListByFactory",
         "tags": [
-          "ChangeDataCaptureResources"
+          "changeDataCapture"
         ],
         "description": "Lists all resources of type change data capture.",
         "parameters": [
@@ -638,7 +684,7 @@
       "get": {
         "operationId": "ChangeDataCapture_Get",
         "tags": [
-          "ChangeDataCaptureResources"
+          "changeDataCapture"
         ],
         "description": "Gets a change data capture.",
         "parameters": [
@@ -703,7 +749,7 @@
       "put": {
         "operationId": "ChangeDataCapture_CreateOrUpdate",
         "tags": [
-          "ChangeDataCaptureResources"
+          "changeDataCapture"
         ],
         "description": "Creates or updates a change data capture resource.",
         "parameters": [
@@ -780,7 +826,7 @@
       "delete": {
         "operationId": "ChangeDataCapture_Delete",
         "tags": [
-          "ChangeDataCaptureResources"
+          "changeDataCapture"
         ],
         "description": "Deletes a change data capture.",
         "parameters": [
@@ -839,7 +885,7 @@
       "post": {
         "operationId": "ChangeDataCapture_Start",
         "tags": [
-          "ChangeDataCaptureResources"
+          "changeDataCapture"
         ],
         "description": "Starts a change data capture.",
         "parameters": [
@@ -895,7 +941,7 @@
       "get": {
         "operationId": "ChangeDataCapture_Status",
         "tags": [
-          "ChangeDataCaptureResources"
+          "changeDataCapture"
         ],
         "description": "Gets the current status for the change data capture resource.",
         "parameters": [
@@ -954,7 +1000,7 @@
       "post": {
         "operationId": "ChangeDataCapture_Stop",
         "tags": [
-          "ChangeDataCaptureResources"
+          "changeDataCapture"
         ],
         "description": "Stops a change data capture.",
         "parameters": [
@@ -1010,7 +1056,7 @@
       "post": {
         "operationId": "DataFlowDebugSession_Create",
         "tags": [
-          "Factories"
+          "dataFlowDebugSession"
         ],
         "description": "Creates a data flow debug session.",
         "parameters": [
@@ -1078,7 +1124,7 @@
         },
         "x-ms-long-running-operation-options": {
           "final-state-via": "location",
-          "final-state-schema": "#/definitions/Azure.ResourceManager.ArmResponse%3CCreateDataFlowDebugSessionResponse%3E"
+          "final-state-schema": "#/definitions/CreateDataFlowDebugSessionResponse"
         },
         "x-ms-long-running-operation": true
       }
@@ -1087,7 +1133,7 @@
       "get": {
         "operationId": "CredentialOperations_ListByFactory",
         "tags": [
-          "CredentialResources"
+          "credentials"
         ],
         "description": "List credentials.",
         "parameters": [
@@ -1139,7 +1185,7 @@
       "get": {
         "operationId": "CredentialOperations_Get",
         "tags": [
-          "CredentialResources"
+          "credentials"
         ],
         "description": "Gets a credential.",
         "parameters": [
@@ -1207,7 +1253,7 @@
       "put": {
         "operationId": "CredentialOperations_CreateOrUpdate",
         "tags": [
-          "CredentialResources"
+          "credentials"
         ],
         "description": "Creates or updates a credential.",
         "parameters": [
@@ -1281,7 +1327,7 @@
       "delete": {
         "operationId": "CredentialOperations_Delete",
         "tags": [
-          "CredentialResources"
+          "credentials"
         ],
         "description": "Deletes a credential.",
         "parameters": [
@@ -1340,7 +1386,7 @@
       "get": {
         "operationId": "DataFlows_ListByFactory",
         "tags": [
-          "DataFlowResources"
+          "dataFlows"
         ],
         "description": "Lists data flows.",
         "parameters": [
@@ -1392,7 +1438,7 @@
       "get": {
         "operationId": "DataFlows_Get",
         "tags": [
-          "DataFlowResources"
+          "dataFlows"
         ],
         "description": "Gets a data flow.",
         "parameters": [
@@ -1457,7 +1503,7 @@
       "put": {
         "operationId": "DataFlows_CreateOrUpdate",
         "tags": [
-          "DataFlowResources"
+          "dataFlows"
         ],
         "description": "Creates or updates a data flow.",
         "parameters": [
@@ -1534,7 +1580,7 @@
       "delete": {
         "operationId": "DataFlows_Delete",
         "tags": [
-          "DataFlowResources"
+          "dataFlows"
         ],
         "description": "Deletes a data flow.",
         "parameters": [
@@ -1593,7 +1639,7 @@
       "get": {
         "operationId": "Datasets_ListByFactory",
         "tags": [
-          "DatasetResources"
+          "datasets"
         ],
         "description": "Lists datasets.",
         "parameters": [
@@ -1645,7 +1691,7 @@
       "get": {
         "operationId": "Datasets_Get",
         "tags": [
-          "DatasetResources"
+          "datasets"
         ],
         "description": "Gets a dataset.",
         "parameters": [
@@ -1713,7 +1759,7 @@
       "put": {
         "operationId": "Datasets_CreateOrUpdate",
         "tags": [
-          "DatasetResources"
+          "datasets"
         ],
         "description": "Creates or updates a dataset.",
         "parameters": [
@@ -1790,7 +1836,7 @@
       "delete": {
         "operationId": "Datasets_Delete",
         "tags": [
-          "DatasetResources"
+          "datasets"
         ],
         "description": "Deletes a dataset.",
         "parameters": [
@@ -1849,7 +1895,7 @@
       "post": {
         "operationId": "DataFlowDebugSession_Delete",
         "tags": [
-          "Factories"
+          "dataFlowDebugSession"
         ],
         "description": "Deletes a data flow debug session.",
         "parameters": [
@@ -1904,7 +1950,7 @@
       "post": {
         "operationId": "DataFlowDebugSession_ExecuteCommand",
         "tags": [
-          "Factories"
+          "dataFlowDebugSession"
         ],
         "description": "Execute a data flow debug command.",
         "parameters": [
@@ -1981,7 +2027,7 @@
       "post": {
         "operationId": "Factories_GetDataPlaneAccess",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Get Data Plane access.",
         "parameters": [
@@ -2039,7 +2085,7 @@
       "post": {
         "operationId": "ExposureControl_GetFeatureValueByFactory",
         "tags": [
-          "Factories"
+          "exposureControl"
         ],
         "description": "Get exposure control feature for specific factory.",
         "parameters": [
@@ -2097,7 +2143,7 @@
       "post": {
         "operationId": "Factories_GetGitHubAccessToken",
         "tags": [
-          "Factories"
+          "factories"
         ],
         "description": "Get GitHub Access Token.",
         "parameters": [
@@ -2155,7 +2201,7 @@
       "get": {
         "operationId": "GlobalParameters_ListByFactory",
         "tags": [
-          "GlobalParameterResources"
+          "globalParameters"
         ],
         "description": "Lists Global parameters",
         "parameters": [
@@ -2207,7 +2253,7 @@
       "get": {
         "operationId": "GlobalParameters_Get",
         "tags": [
-          "GlobalParameterResources"
+          "globalParameters"
         ],
         "description": "Gets a Global parameter",
         "parameters": [
@@ -2264,7 +2310,7 @@
       "put": {
         "operationId": "GlobalParameters_CreateOrUpdate",
         "tags": [
-          "GlobalParameterResources"
+          "globalParameters"
         ],
         "description": "Creates or updates a Global parameter",
         "parameters": [
@@ -2333,7 +2379,7 @@
       "delete": {
         "operationId": "GlobalParameters_Delete",
         "tags": [
-          "GlobalParameterResources"
+          "globalParameters"
         ],
         "description": "Deletes a Global parameter",
         "parameters": [
@@ -2392,7 +2438,7 @@
       "get": {
         "operationId": "IntegrationRuntimes_ListByFactory",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Lists integration runtimes.",
         "parameters": [
@@ -2444,7 +2490,7 @@
       "get": {
         "operationId": "IntegrationRuntimes_Get",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Gets an integration runtime.",
         "parameters": [
@@ -2512,7 +2558,7 @@
       "put": {
         "operationId": "IntegrationRuntimes_CreateOrUpdate",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Creates or updates an integration runtime.",
         "parameters": [
@@ -2586,7 +2632,7 @@
       "patch": {
         "operationId": "IntegrationRuntimes_Update",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Updates an integration runtime.",
         "parameters": [
@@ -2652,7 +2698,7 @@
       "delete": {
         "operationId": "IntegrationRuntimes_Delete",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Deletes an integration runtime.",
         "parameters": [
@@ -2711,7 +2757,7 @@
       "post": {
         "operationId": "IntegrationRuntime_DisableInteractiveQuery",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeDisableInteractiveQuery"
         ],
         "description": "Disable interactive authoring of Managed Virtual Network integration runtime.",
         "parameters": [
@@ -2794,7 +2840,7 @@
       "post": {
         "operationId": "IntegrationRuntime_EnableInteractiveQuery",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeEnableInteractiveQuery"
         ],
         "description": "Enable interactive authoring of Managed Virtual Network integration runtime.",
         "parameters": [
@@ -2886,7 +2932,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_GetConnectionInfo",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Gets the on-premises integration runtime connection information for encrypting the on-premises data source credentials.",
         "parameters": [
@@ -2945,7 +2991,7 @@
       "post": {
         "operationId": "IntegrationRuntimeObjectMetadata_Get",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeObjectMetadata"
         ],
         "description": "Get a SSIS integration runtime object metadata by specified path. The return is pageable metadata list.",
         "parameters": [
@@ -3013,7 +3059,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_GetStatus",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Gets detailed status information for an integration runtime.",
         "parameters": [
@@ -3072,7 +3118,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_CreateLinkedIntegrationRuntime",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Create a linked integration runtime entry in a shared integration runtime.",
         "parameters": [
@@ -3140,7 +3186,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_ListAuthKeys",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Retrieves the authentication keys for an integration runtime.",
         "parameters": [
@@ -3199,7 +3245,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_GetMonitoringData",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Get the integration runtime monitoring data, which includes the monitor data for all the nodes under this integration runtime.",
         "parameters": [
@@ -3258,7 +3304,7 @@
       "get": {
         "operationId": "IntegrationRuntimes_ListOutboundNetworkDependenciesEndpoints",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.",
         "parameters": [
@@ -3317,7 +3363,7 @@
       "post": {
         "operationId": "IntegrationRuntimeObjectMetadata_Refresh",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeObjectMetadata"
         ],
         "description": "Refresh a SSIS integration runtime object metadata.",
         "parameters": [
@@ -3386,7 +3432,7 @@
         },
         "x-ms-long-running-operation-options": {
           "final-state-via": "location",
-          "final-state-schema": "#/definitions/Azure.ResourceManager.ArmResponse%3CSsisObjectMetadataStatusResponse%3E"
+          "final-state-schema": "#/definitions/SsisObjectMetadataStatusResponse"
         },
         "x-ms-long-running-operation": true
       }
@@ -3395,7 +3441,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_RegenerateAuthKey",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Regenerates the authentication key for an integration runtime.",
         "parameters": [
@@ -3463,7 +3509,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_RemoveLinks",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Remove all linked integration runtimes under specific data factory in a self-hosted integration runtime.",
         "parameters": [
@@ -3528,7 +3574,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_Start",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Starts a ManagedReserved type integration runtime.",
         "parameters": [
@@ -3597,7 +3643,7 @@
         },
         "x-ms-long-running-operation-options": {
           "final-state-via": "location",
-          "final-state-schema": "#/definitions/Azure.ResourceManager.ArmResponse%3CIntegrationRuntimeStatusResponse%3E"
+          "final-state-schema": "#/definitions/IntegrationRuntimeStatusResponse"
         },
         "x-ms-long-running-operation": true
       }
@@ -3606,7 +3652,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_Stop",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Stops a ManagedReserved type integration runtime.",
         "parameters": [
@@ -3681,7 +3727,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_SyncCredentials",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Force the integration runtime to synchronize credentials across integration runtime nodes, and this will override the credentials across all worker nodes with those available on the dispatcher node. If you already have the latest credential backup file, you should manually import it (preferred) on any self-hosted integration runtime node than using this API directly.",
         "parameters": [
@@ -3737,7 +3783,7 @@
       "post": {
         "operationId": "IntegrationRuntimes_Upgrade",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimes"
         ],
         "description": "Upgrade self-hosted integration runtime to latest version if availability.",
         "parameters": [
@@ -3793,7 +3839,7 @@
       "get": {
         "operationId": "LinkedServices_ListByFactory",
         "tags": [
-          "LinkedServiceResources"
+          "linkedServices"
         ],
         "description": "Lists linked services.",
         "parameters": [
@@ -3845,7 +3891,7 @@
       "get": {
         "operationId": "LinkedServices_Get",
         "tags": [
-          "LinkedServiceResources"
+          "linkedServices"
         ],
         "description": "Gets a linked service.",
         "parameters": [
@@ -3913,7 +3959,7 @@
       "put": {
         "operationId": "LinkedServices_CreateOrUpdate",
         "tags": [
-          "LinkedServiceResources"
+          "linkedServices"
         ],
         "description": "Creates or updates a linked service.",
         "parameters": [
@@ -3990,7 +4036,7 @@
       "delete": {
         "operationId": "LinkedServices_Delete",
         "tags": [
-          "LinkedServiceResources"
+          "linkedServices"
         ],
         "description": "Deletes a linked service.",
         "parameters": [
@@ -4049,7 +4095,7 @@
       "get": {
         "operationId": "ManagedVirtualNetworks_ListByFactory",
         "tags": [
-          "ManagedVirtualNetworkResources"
+          "managedVirtualNetworks"
         ],
         "description": "Lists managed Virtual Networks.",
         "parameters": [
@@ -4101,7 +4147,7 @@
       "get": {
         "operationId": "ManagedVirtualNetworks_Get",
         "tags": [
-          "ManagedVirtualNetworkResources"
+          "managedVirtualNetworks"
         ],
         "description": "Gets a managed Virtual Network.",
         "parameters": [
@@ -4166,7 +4212,7 @@
       "put": {
         "operationId": "ManagedVirtualNetworks_CreateOrUpdate",
         "tags": [
-          "ManagedVirtualNetworkResources"
+          "managedVirtualNetworks"
         ],
         "description": "Creates or updates a managed Virtual Network.",
         "parameters": [
@@ -4242,7 +4288,7 @@
       "get": {
         "operationId": "ManagedPrivateEndpoints_ListByFactory",
         "tags": [
-          "ManagedPrivateEndpointResources"
+          "managedPrivateEndpoints"
         ],
         "description": "Lists managed private endpoints.",
         "parameters": [
@@ -4304,7 +4350,7 @@
       "get": {
         "operationId": "ManagedPrivateEndpoints_Get",
         "tags": [
-          "ManagedPrivateEndpointResources"
+          "managedPrivateEndpoints"
         ],
         "description": "Gets a managed private endpoint.",
         "parameters": [
@@ -4379,7 +4425,7 @@
       "put": {
         "operationId": "ManagedPrivateEndpoints_CreateOrUpdate",
         "tags": [
-          "ManagedPrivateEndpointResources"
+          "managedPrivateEndpoints"
         ],
         "description": "Creates or updates a managed private endpoint.",
         "parameters": [
@@ -4463,7 +4509,7 @@
       "delete": {
         "operationId": "ManagedPrivateEndpoints_Delete",
         "tags": [
-          "ManagedPrivateEndpointResources"
+          "managedPrivateEndpoints"
         ],
         "description": "Deletes a managed private endpoint.",
         "parameters": [
@@ -4532,7 +4578,7 @@
       "get": {
         "operationId": "Pipelines_ListByFactory",
         "tags": [
-          "PipelineResources"
+          "pipelines"
         ],
         "description": "Lists pipelines.",
         "parameters": [
@@ -4584,7 +4630,7 @@
       "get": {
         "operationId": "Pipelines_Get",
         "tags": [
-          "PipelineResources"
+          "pipelines"
         ],
         "description": "Gets a pipeline.",
         "parameters": [
@@ -4652,7 +4698,7 @@
       "put": {
         "operationId": "Pipelines_CreateOrUpdate",
         "tags": [
-          "PipelineResources"
+          "pipelines"
         ],
         "description": "Creates or updates a pipeline.",
         "parameters": [
@@ -4729,7 +4775,7 @@
       "delete": {
         "operationId": "Pipelines_Delete",
         "tags": [
-          "PipelineResources"
+          "pipelines"
         ],
         "description": "Deletes a pipeline.",
         "parameters": [
@@ -4788,7 +4834,7 @@
       "post": {
         "operationId": "Pipelines_CreateRun",
         "tags": [
-          "PipelineResources"
+          "pipelines"
         ],
         "description": "Creates a run of a pipeline.",
         "parameters": [
@@ -4885,7 +4931,7 @@
       "get": {
         "operationId": "privateEndPointConnections_ListByFactory",
         "tags": [
-          "PrivateEndpointConnectionResources"
+          "privateEndPointConnections"
         ],
         "description": "Lists Private endpoint connections",
         "parameters": [
@@ -4937,7 +4983,7 @@
       "get": {
         "operationId": "PrivateEndpointConnection_Get",
         "tags": [
-          "PrivateEndpointConnectionResources"
+          "privateEndpointConnections"
         ],
         "description": "Gets a private endpoint connection",
         "parameters": [
@@ -4999,7 +5045,7 @@
       "put": {
         "operationId": "PrivateEndpointConnection_CreateOrUpdate",
         "tags": [
-          "PrivateEndpointConnectionResources"
+          "privateEndpointConnections"
         ],
         "description": "Approves or rejects a private endpoint connection",
         "parameters": [
@@ -5070,7 +5116,7 @@
       "delete": {
         "operationId": "PrivateEndpointConnection_Delete",
         "tags": [
-          "PrivateEndpointConnectionResources"
+          "privateEndpointConnections"
         ],
         "description": "Deletes a private endpoint connection",
         "parameters": [
@@ -5126,7 +5172,7 @@
       "get": {
         "operationId": "privateLinkResources_Get",
         "tags": [
-          "Factories"
+          "privateLinkResources"
         ],
         "description": "Gets the private link resources",
         "parameters": [
@@ -5175,7 +5221,7 @@
       "post": {
         "operationId": "DataFlowDebugSession_QueryByFactory",
         "tags": [
-          "Factories"
+          "dataFlowDebugSession"
         ],
         "description": "Query all active data flow debug sessions.",
         "parameters": [
@@ -5227,7 +5273,7 @@
       "post": {
         "operationId": "ExposureControl_QueryFeatureValuesByFactory",
         "tags": [
-          "Factories"
+          "exposureControl"
         ],
         "description": "Get list of exposure control features for specific factory.",
         "parameters": [
@@ -5285,7 +5331,7 @@
       "post": {
         "operationId": "PipelineRuns_QueryByFactory",
         "tags": [
-          "Factories"
+          "pipelineruns"
         ],
         "description": "Query pipeline runs in the factory based on input filter conditions.",
         "parameters": [
@@ -5343,7 +5389,7 @@
       "post": {
         "operationId": "TriggerRuns_QueryByFactory",
         "tags": [
-          "Factories"
+          "triggerruns"
         ],
         "description": "Query trigger runs.",
         "parameters": [
@@ -5401,7 +5447,7 @@
       "post": {
         "operationId": "Triggers_QueryByFactory",
         "tags": [
-          "Factories"
+          "triggers"
         ],
         "description": "Query triggers.",
         "parameters": [
@@ -5459,7 +5505,7 @@
       "get": {
         "operationId": "Triggers_ListByFactory",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Lists triggers.",
         "parameters": [
@@ -5511,7 +5557,7 @@
       "get": {
         "operationId": "Triggers_Get",
         "tags": [
-          "TriggerResources"
+          "trigger"
         ],
         "description": "Gets a trigger.",
         "parameters": [
@@ -5579,7 +5625,7 @@
       "put": {
         "operationId": "Triggers_CreateOrUpdate",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Creates or updates a trigger.",
         "parameters": [
@@ -5656,7 +5702,7 @@
       "delete": {
         "operationId": "Triggers_Delete",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Deletes a trigger.",
         "parameters": [
@@ -5715,7 +5761,7 @@
       "post": {
         "operationId": "Triggers_GetEventSubscriptionStatus",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Get a trigger's event subscription status.",
         "parameters": [
@@ -5774,7 +5820,7 @@
       "post": {
         "operationId": "Triggers_Start",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Starts a trigger.",
         "parameters": [
@@ -5840,7 +5886,7 @@
       "post": {
         "operationId": "Triggers_Stop",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Stops a trigger.",
         "parameters": [
@@ -5906,7 +5952,7 @@
       "post": {
         "operationId": "Triggers_SubscribeToEvents",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Subscribe event trigger to events.",
         "parameters": [
@@ -5975,7 +6021,7 @@
         },
         "x-ms-long-running-operation-options": {
           "final-state-via": "location",
-          "final-state-schema": "#/definitions/Azure.ResourceManager.ArmResponse%3CTriggerSubscriptionOperationStatus%3E"
+          "final-state-schema": "#/definitions/TriggerSubscriptionOperationStatus"
         },
         "x-ms-long-running-operation": true
       }
@@ -5984,7 +6030,7 @@
       "post": {
         "operationId": "Triggers_UnsubscribeFromEvents",
         "tags": [
-          "TriggerResources"
+          "triggers"
         ],
         "description": "Unsubscribe event trigger from events.",
         "parameters": [
@@ -6053,7 +6099,7 @@
         },
         "x-ms-long-running-operation-options": {
           "final-state-via": "location",
-          "final-state-schema": "#/definitions/Azure.ResourceManager.ArmResponse%3CTriggerSubscriptionOperationStatus%3E"
+          "final-state-schema": "#/definitions/TriggerSubscriptionOperationStatus"
         },
         "x-ms-long-running-operation": true
       }
@@ -6062,7 +6108,7 @@
       "get": {
         "operationId": "IntegrationRuntimeNodes_Get",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeNodes"
         ],
         "description": "Gets a self-hosted integration runtime node.",
         "parameters": [
@@ -6127,7 +6173,7 @@
       "patch": {
         "operationId": "IntegrationRuntimeNodes_Update",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeNodes"
         ],
         "description": "Updates a self-hosted integration runtime node.",
         "parameters": [
@@ -6201,7 +6247,7 @@
       "delete": {
         "operationId": "IntegrationRuntimeNodes_Delete",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeNodes"
         ],
         "description": "Deletes a self-hosted integration runtime node.",
         "parameters": [
@@ -6268,7 +6314,7 @@
       "post": {
         "operationId": "IntegrationRuntimeNodes_GetIpAddress",
         "tags": [
-          "IntegrationRuntimeResources"
+          "integrationRuntimeNodes"
         ],
         "description": "Get the IP address of self-hosted integration runtime node.",
         "parameters": [
@@ -6335,7 +6381,7 @@
       "get": {
         "operationId": "PipelineRuns_Get",
         "tags": [
-          "Factories"
+          "pipelineruns"
         ],
         "description": "Get a pipeline run by its run ID.",
         "parameters": [
@@ -6390,7 +6436,7 @@
       "post": {
         "operationId": "PipelineRuns_Cancel",
         "tags": [
-          "Factories"
+          "pipelineruns"
         ],
         "description": "Cancel a pipeline run by its run ID.",
         "parameters": [
@@ -6449,7 +6495,7 @@
       "post": {
         "operationId": "ActivityRuns_QueryByPipelineRun",
         "tags": [
-          "Factories"
+          "activityruns"
         ],
         "description": "Query activity runs based on input filter conditions.",
         "parameters": [
@@ -6513,7 +6559,7 @@
       "post": {
         "operationId": "TriggerRuns_Cancel",
         "tags": [
-          "TriggerResources"
+          "triggerruns"
         ],
         "description": "Cancel a single trigger instance by runId.",
         "parameters": [
@@ -6574,7 +6620,7 @@
       "post": {
         "operationId": "TriggerRuns_Rerun",
         "tags": [
-          "TriggerResources"
+          "triggerruns"
         ],
         "description": "Rerun single trigger instance by runId.",
         "parameters": [
@@ -8043,64 +8089,12 @@
         "version"
       ]
     },
-    "Azure.ResourceManager.ArmResponse<CreateDataFlowDebugSessionResponse>": {
-      "type": "object",
-      "description": "Azure operation completed successfully.",
-      "properties": {
-        "body": {
-          "$ref": "#/definitions/CreateDataFlowDebugSessionResponse",
-          "description": "The body type of the operation request or response."
-        }
-      },
-      "required": [
-        "body"
-      ]
-    },
     "Azure.ResourceManager.ArmResponse<DataFlowDebugCommandResponse>": {
       "type": "object",
       "description": "Azure operation completed successfully.",
       "properties": {
         "body": {
           "$ref": "#/definitions/DataFlowDebugCommandResponse",
-          "description": "The body type of the operation request or response."
-        }
-      },
-      "required": [
-        "body"
-      ]
-    },
-    "Azure.ResourceManager.ArmResponse<IntegrationRuntimeStatusResponse>": {
-      "type": "object",
-      "description": "Azure operation completed successfully.",
-      "properties": {
-        "body": {
-          "$ref": "#/definitions/IntegrationRuntimeStatusResponse",
-          "description": "The body type of the operation request or response."
-        }
-      },
-      "required": [
-        "body"
-      ]
-    },
-    "Azure.ResourceManager.ArmResponse<SsisObjectMetadataStatusResponse>": {
-      "type": "object",
-      "description": "Azure operation completed successfully.",
-      "properties": {
-        "body": {
-          "$ref": "#/definitions/SsisObjectMetadataStatusResponse",
-          "description": "The body type of the operation request or response."
-        }
-      },
-      "required": [
-        "body"
-      ]
-    },
-    "Azure.ResourceManager.ArmResponse<TriggerSubscriptionOperationStatus>": {
-      "type": "object",
-      "description": "Azure operation completed successfully.",
-      "properties": {
-        "body": {
-          "$ref": "#/definitions/TriggerSubscriptionOperationStatus",
           "description": "The body type of the operation request or response."
         }
       },

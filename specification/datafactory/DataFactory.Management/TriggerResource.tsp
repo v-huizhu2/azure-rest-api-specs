@@ -56,11 +56,12 @@ alias TriggerRunsOps = Azure.ResourceManager.Legacy.RoutedOperations<
   }
 >;
 
-@armResourceOperations(#{ allowStaticRoutes: true })
+@armResourceOperations(#{ allowStaticRoutes: true, omitTags: true })
 interface TriggerResources {
   /**
    * Gets a trigger.
    */
+  @tag("trigger")
   get is ArmResourceRead<
     TriggerResource,
     Parameters = {
@@ -79,6 +80,7 @@ interface TriggerResources {
    * Creates or updates a trigger.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("triggers")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     TriggerResource,
     Parameters = {
@@ -96,11 +98,13 @@ interface TriggerResources {
   /**
    * Deletes a trigger.
    */
+  @tag("triggers")
   delete is ArmResourceDeleteSync<TriggerResource, Error = CloudError>;
 
   /**
    * Lists triggers.
    */
+  @tag("triggers")
   listByFactory is ArmResourceListByParent<
     TriggerResource,
     Response = ArmResponse<TriggerListResponse>,
@@ -110,16 +114,18 @@ interface TriggerResources {
   /**
    * Subscribe event trigger to events.
    */
+  @tag("triggers")
   subscribeToEvents is ArmResourceActionAsync<
     TriggerResource,
     void,
-    ArmResponse<TriggerSubscriptionOperationStatus>,
+    TriggerSubscriptionOperationStatus,
     Error = CloudError
   >;
 
   /**
    * Get a trigger's event subscription status.
    */
+  @tag("triggers")
   getEventSubscriptionStatus is ArmResourceActionSync<
     TriggerResource,
     void,
@@ -130,10 +136,11 @@ interface TriggerResources {
   /**
    * Unsubscribe event trigger from events.
    */
+  @tag("triggers")
   unsubscribeFromEvents is ArmResourceActionAsync<
     TriggerResource,
     void,
-    ArmResponse<TriggerSubscriptionOperationStatus>,
+    TriggerSubscriptionOperationStatus,
     Error = CloudError
   >;
 
@@ -141,6 +148,7 @@ interface TriggerResources {
    * Starts a trigger.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-post-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("triggers")
   start is ArmResourceActionAsyncBase<
     TriggerResource,
     void,
@@ -153,6 +161,7 @@ interface TriggerResources {
    * Stops a trigger.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-post-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("triggers")
   stop is ArmResourceActionAsyncBase<
     TriggerResource,
     void,
@@ -164,6 +173,7 @@ interface TriggerResources {
   /**
    * Rerun single trigger instance by runId.
    */
+  @tag("triggerruns")
   @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/triggerRuns/{runId}/rerun")
   rerun is TriggerRunsOps.ActionSync<
     TriggerResource,
@@ -182,6 +192,7 @@ interface TriggerResources {
   /**
    * Cancel a single trigger instance by runId.
    */
+  @tag("triggerruns")
   @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.DataFactory/factories/{factoryName}/triggers/{triggerName}/triggerRuns/{runId}/cancel")
   cancel is TriggerRunsOps.ActionSync<
     TriggerResource,

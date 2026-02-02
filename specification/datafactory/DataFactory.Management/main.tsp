@@ -8,6 +8,7 @@
  * Date: 2025-11-17T07:35:26.914Z
  */
 import "@typespec/rest";
+import "@typespec/openapi";
 import "@typespec/versioning";
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
@@ -30,6 +31,7 @@ import "./routes.tsp";
 
 using TypeSpec.Rest;
 using TypeSpec.Http;
+using TypeSpec.OpenAPI;
 using Azure.ResourceManager.Foundations;
 using Azure.Core;
 using Azure.ResourceManager;
@@ -51,6 +53,7 @@ enum Versions {
   v2018_06_01: "2018-06-01",
 }
 
+@tag("operations")
 interface Operations
   extends Azure.ResourceManager.Legacy.Operations<
       Response = ArmResponse<OperationListResponse>,

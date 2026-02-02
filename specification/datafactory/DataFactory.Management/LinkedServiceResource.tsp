@@ -27,11 +27,12 @@ model LinkedServiceResource
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface LinkedServiceResources {
   /**
    * Gets a linked service.
    */
+  @tag("linkedServices")
   get is ArmResourceRead<
     LinkedServiceResource,
     Parameters = {
@@ -50,6 +51,7 @@ interface LinkedServiceResources {
    * Creates or updates a linked service.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("linkedServices")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     LinkedServiceResource,
     Parameters = {
@@ -67,11 +69,13 @@ interface LinkedServiceResources {
   /**
    * Deletes a linked service.
    */
+  @tag("linkedServices")
   delete is ArmResourceDeleteSync<LinkedServiceResource, Error = CloudError>;
 
   /**
    * Lists linked services.
    */
+  @tag("linkedServices")
   listByFactory is ArmResourceListByParent<
     LinkedServiceResource,
     Response = ArmResponse<LinkedServiceListResponse>,

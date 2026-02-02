@@ -28,11 +28,12 @@ model ManagedVirtualNetworkResource
 }
 
 #suppress "@azure-tools/typespec-azure-resource-manager/no-resource-delete-operation" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface ManagedVirtualNetworkResources {
   /**
    * Gets a managed Virtual Network.
    */
+  @tag("managedVirtualNetworks")
   get is ArmResourceRead<
     ManagedVirtualNetworkResource,
     Parameters = {
@@ -50,6 +51,7 @@ interface ManagedVirtualNetworkResources {
    * Creates or updates a managed Virtual Network.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("managedVirtualNetworks")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     ManagedVirtualNetworkResource,
     Parameters = {
@@ -67,6 +69,7 @@ interface ManagedVirtualNetworkResources {
   /**
    * Lists managed Virtual Networks.
    */
+  @tag("managedVirtualNetworks")
   listByFactory is ArmResourceListByParent<
     ManagedVirtualNetworkResource,
     Response = ArmResponse<ManagedVirtualNetworkListResponse>,

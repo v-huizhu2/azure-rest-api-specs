@@ -52,11 +52,12 @@ alias PipelineRunsOps = Azure.ResourceManager.Legacy.RoutedOperations<
   }
 >;
 
-@armResourceOperations(#{ allowStaticRoutes: true })
+@armResourceOperations(#{ allowStaticRoutes: true, omitTags: true })
 interface Factories {
   /**
    * Gets a factory.
    */
+  @tag("factories")
   get is ArmResourceRead<
     Factory,
     Parameters = {
@@ -75,6 +76,7 @@ interface Factories {
    * Creates or updates a factory.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("factories")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     Factory,
     Parameters = {
@@ -92,6 +94,7 @@ interface Factories {
   /**
    * Updates a factory.
    */
+  @tag("factories")
   @patch(#{ implicitOptionality: false })
   update is ArmCustomPatchSync<
     Factory,
@@ -102,11 +105,13 @@ interface Factories {
   /**
    * Deletes a factory.
    */
+  @tag("factories")
   delete is ArmResourceDeleteSync<Factory, Error = CloudError>;
 
   /**
    * Lists factories.
    */
+  @tag("factories")
   listByResourceGroup is ArmResourceListByParent<
     Factory,
     Response = ArmResponse<FactoryListResponse>,
@@ -116,6 +121,7 @@ interface Factories {
   /**
    * Lists factories under the specified subscription.
    */
+  @tag("factories")
   list is ArmListBySubscription<
     Factory,
     Response = ArmResponse<FactoryListResponse>,
@@ -125,6 +131,7 @@ interface Factories {
   /**
    * Get GitHub Access Token.
    */
+  @tag("factories")
   getGitHubAccessToken is ArmResourceActionSync<
     Factory,
     GitHubAccessTokenRequest,
@@ -135,6 +142,7 @@ interface Factories {
   /**
    * Get Data Plane access.
    */
+  @tag("factories")
   getDataPlaneAccess is ArmResourceActionSync<
     Factory,
     UserAccessPolicy,
@@ -145,6 +153,7 @@ interface Factories {
   /**
    * Get exposure control feature for specific factory.
    */
+  @tag("exposureControl")
   @action("getFeatureValue")
   getFeatureValueByFactory is ArmResourceActionSync<
     Factory,
@@ -156,6 +165,7 @@ interface Factories {
   /**
    * Get list of exposure control features for specific factory.
    */
+  @tag("exposureControl")
   @action("queryFeaturesValue")
   queryFeatureValuesByFactory is ArmResourceActionSync<
     Factory,
@@ -167,6 +177,7 @@ interface Factories {
   /**
    * Query pipeline runs in the factory based on input filter conditions.
    */
+  @tag("pipelineruns")
   @list
   @action("queryPipelineRuns")
   queryByFactory is ArmResourceActionSync<
@@ -179,6 +190,7 @@ interface Factories {
   /**
    * Get a pipeline run by its run ID.
    */
+  @tag("pipelineruns")
   @get
   @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}")
   pipelineRunsGet is PipelineRunsOps.ActionSync<
@@ -198,6 +210,7 @@ interface Factories {
   /**
    * Cancel a pipeline run by its run ID.
    */
+  @tag("pipelineruns")
   @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/cancel")
   cancel is PipelineRunsOps.ActionSync<
     Factory,
@@ -222,6 +235,7 @@ interface Factories {
   /**
    * Query activity runs based on input filter conditions.
    */
+  @tag("activityruns")
   @list
   @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/queryActivityruns")
   queryByPipelineRun is PipelineRunsOps.ActionSync<
@@ -241,6 +255,7 @@ interface Factories {
   /**
    * Query triggers.
    */
+  @tag("triggers")
   @list
   @action("querytriggers")
   triggersQueryByFactory is ArmResourceActionSync<
@@ -253,6 +268,7 @@ interface Factories {
   /**
    * Query trigger runs.
    */
+  @tag("triggerruns")
   @list
   @action("queryTriggerRuns")
   triggerRunsQueryByFactory is ArmResourceActionSync<
@@ -265,17 +281,19 @@ interface Factories {
   /**
    * Creates a data flow debug session.
    */
+  @tag("dataFlowDebugSession")
   @action("createDataFlowDebugSession")
   create is ArmResourceActionAsync<
     Factory,
     CreateDataFlowDebugSessionRequest,
-    ArmResponse<CreateDataFlowDebugSessionResponse>,
+    CreateDataFlowDebugSessionResponse,
     Error = CloudError
   >;
 
   /**
    * Query all active data flow debug sessions.
    */
+  @tag("dataFlowDebugSession")
   @list
   @action("queryDataFlowDebugSessions")
   dataFlowDebugSessionQueryByFactory is ArmResourceActionSync<
@@ -288,6 +306,7 @@ interface Factories {
   /**
    * Add a data flow into debug session.
    */
+  @tag("dataFlowDebugSession")
   @action("addDataFlowToDebugSession")
   addDataFlow is ArmResourceActionSync<
     Factory,
@@ -299,6 +318,7 @@ interface Factories {
   /**
    * Deletes a data flow debug session.
    */
+  @tag("dataFlowDebugSession")
   @action("deleteDataFlowDebugSession")
   dataFlowDebugSessionDelete is ArmResourceActionSync<
     Factory,
@@ -310,6 +330,7 @@ interface Factories {
   /**
    * Execute a data flow debug command.
    */
+  @tag("dataFlowDebugSession")
   @action("executeDataFlowDebugCommand")
   executeCommand is ArmResourceActionAsync<
     Factory,
@@ -323,6 +344,7 @@ interface Factories {
    */
   #suppress "@azure-tools/typespec-azure-core/no-openapi" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @operationId("privateLinkResources_Get")
+  @tag("privateLinkResources")
   @list
   @get
   @action("privateLinkResources")

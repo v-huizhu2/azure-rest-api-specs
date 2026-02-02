@@ -27,11 +27,12 @@ model ManagedPrivateEndpointResource
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface ManagedPrivateEndpointResources {
   /**
    * Gets a managed private endpoint.
    */
+  @tag("managedPrivateEndpoints")
   get is ArmResourceRead<
     ManagedPrivateEndpointResource,
     Parameters = {
@@ -49,6 +50,7 @@ interface ManagedPrivateEndpointResources {
    * Creates or updates a managed private endpoint.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("managedPrivateEndpoints")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     ManagedPrivateEndpointResource,
     Parameters = {
@@ -66,6 +68,7 @@ interface ManagedPrivateEndpointResources {
   /**
    * Deletes a managed private endpoint.
    */
+  @tag("managedPrivateEndpoints")
   delete is ArmResourceDeleteSync<
     ManagedPrivateEndpointResource,
     Error = CloudError
@@ -74,6 +77,7 @@ interface ManagedPrivateEndpointResources {
   /**
    * Lists managed private endpoints.
    */
+  @tag("managedPrivateEndpoints")
   listByFactory is ArmResourceListByParent<
     ManagedPrivateEndpointResource,
     Response = ArmResponse<ManagedPrivateEndpointListResponse>,

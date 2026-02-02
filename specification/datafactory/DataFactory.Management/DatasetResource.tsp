@@ -26,11 +26,12 @@ model DatasetResource is Azure.ResourceManager.ProxyResource<Dataset, false> {
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface DatasetResources {
   /**
    * Gets a dataset.
    */
+  @tag("datasets")
   get is ArmResourceRead<
     DatasetResource,
     Parameters = {
@@ -49,6 +50,7 @@ interface DatasetResources {
    * Creates or updates a dataset.
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("datasets")
   createOrUpdate is ArmResourceCreateOrReplaceSync<
     DatasetResource,
     Parameters = {
@@ -66,11 +68,13 @@ interface DatasetResources {
   /**
    * Deletes a dataset.
    */
+  @tag("datasets")
   delete is ArmResourceDeleteSync<DatasetResource, Error = CloudError>;
 
   /**
    * Lists datasets.
    */
+  @tag("datasets")
   listByFactory is ArmResourceListByParent<
     DatasetResource,
     Response = ArmResponse<DatasetListResponse>,

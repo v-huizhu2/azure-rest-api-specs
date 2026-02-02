@@ -27,11 +27,12 @@ model PrivateEndpointConnectionResource
   ...Azure.ResourceManager.Legacy.EntityTagProperty;
 }
 
-@armResourceOperations
+@armResourceOperations(#{ omitTags: true })
 interface PrivateEndpointConnectionResources {
   /**
    * Gets a private endpoint connection
    */
+  @tag("privateEndpointConnections")
   get is ArmResourceRead<
     PrivateEndpointConnectionResource,
     Parameters = {
@@ -49,6 +50,7 @@ interface PrivateEndpointConnectionResources {
    * Approves or rejects a private endpoint connection
    */
   #suppress "@azure-tools/typespec-azure-resource-manager/arm-put-operation-response-codes" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("privateEndpointConnections")
   createOrUpdate is Azure.ResourceManager.Legacy.CreateOrUpdateSync<
     PrivateEndpointConnectionResource,
     Request = PrivateLinkConnectionApprovalRequestResource,
@@ -67,6 +69,7 @@ interface PrivateEndpointConnectionResources {
   /**
    * Deletes a private endpoint connection
    */
+  @tag("privateEndpointConnections")
   delete is ArmResourceDeleteSync<
     PrivateEndpointConnectionResource,
     Error = CloudError
@@ -76,6 +79,7 @@ interface PrivateEndpointConnectionResources {
    * Lists Private endpoint connections
    */
   #suppress "@azure-tools/typespec-azure-core/no-openapi" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
+  @tag("privateEndPointConnections")
   @operationId("privateEndPointConnections_ListByFactory")
   listByFactory is ArmResourceListByParent<
     PrivateEndpointConnectionResource,
