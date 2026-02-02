@@ -24405,7 +24405,7 @@ model SqlDWSink extends CopySink {
   /**
    * SQL DW upsert settings.
    */
-  upsertSettings?: SqlDWUpsertSettings;
+  upsertSettings?: Dfe<string[]>;
 
   /**
    * Copy sink type.
