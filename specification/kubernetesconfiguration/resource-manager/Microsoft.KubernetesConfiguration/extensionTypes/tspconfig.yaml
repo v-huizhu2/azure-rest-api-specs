@@ -28,7 +28,6 @@ options:
   "@azure-tools/typespec-ts":
     service-dir: sdk/kubernetesconfiguration
     emitter-output-dir: "{output-dir}/{service-dir}/arm-kubernetesconfiguration-extensiontypes"
-    compatibility-lro: true
     flavor: "azure"
     experimental-extensible-enums: true
     package-details:
