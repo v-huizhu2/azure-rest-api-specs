@@ -17832,7 +17832,7 @@ model SalesforceMarketingCloudLinkedServiceTypeProperties {
   /**
    * The client secret associated with the Salesforce Marketing Cloud application. Type: string (or Expression with resultType string).
    */
-  clientSecret?: SecretBase;
+  clientSecret?: Dfe<string>;
 
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Type: boolean (or Expression with resultType boolean).
@@ -17881,7 +17881,7 @@ model HDInsightOnDemandLinkedServiceTypeProperties {
    * Number of worker/data nodes in the cluster. Suggestion value: 4. Type: int (or Expression with resultType int).
    */
   #suppress "@azure-tools/typespec-azure-core/no-unknown" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
-  clusterSize: unknown;
+  clusterSize: Dfe<int32>;
 
   /**
    * The allowed idle time for the on-demand HDInsight cluster. Specifies how long the on-demand HDInsight cluster stays alive after completion of an activity run if there are no other active jobs in the cluster. The minimum value is 5 mins. Type: string (or Expression with resultType string).
@@ -18182,7 +18182,7 @@ model AzureDatabricksLinkedServiceTypeProperties {
   /**
    * Access token for databricks REST API. Refer to https://docs.azuredatabricks.net/api/latest/authentication.html. Type: string (or Expression with resultType string).
    */
-  accessToken?: SecretBase;
+  accessToken?: Dfe<string>;
 
   /**
    * Required to specify MSI, if using Workspace resource id for databricks REST API. Type: string (or Expression with resultType string).
@@ -18359,7 +18359,7 @@ model ResponsysLinkedServiceTypeProperties {
   /**
    * The client secret associated with the Responsys application. Type: string (or Expression with resultType string).
    */
-  clientSecret?: SecretBase;
+  clientSecret?: Dfe<string>;
 
   /**
    * Specifies whether the data source endpoints are encrypted using HTTPS. The default value is true. Type: boolean (or Expression with resultType boolean).
