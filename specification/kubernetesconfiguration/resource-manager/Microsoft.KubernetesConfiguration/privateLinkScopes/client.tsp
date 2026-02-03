@@ -19,12 +19,24 @@ using Azure.ClientGenerator.Core;
   "Connection",
   "java"
 );
+@@clientName(Azure.ResourceManager.CommonTypes.PrivateEndpointConnectionListResult,
+  "ConnectionListResult",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.KubernetesConfigurationPrivateLinkScope,
+  "PrivateLinkScope",
+  "java"
+);
 @@clientName(Microsoft.KubernetesConfiguration.KubernetesConfigurationPrivateLinkScopes,
   "Scopes",
   "java"
 );
 @@clientName(Microsoft.KubernetesConfiguration.PrivateEndpointConnections,
   "Connections",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.PrivateEndpointConnection,
+  "Connection",
   "java"
 );
 @@clientName(Microsoft.KubernetesConfiguration.PrivateLinkResources,
