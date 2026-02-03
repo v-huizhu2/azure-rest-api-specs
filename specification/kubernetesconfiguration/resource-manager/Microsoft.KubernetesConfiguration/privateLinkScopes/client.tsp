@@ -15,10 +15,6 @@ using Azure.ClientGenerator.Core;
   "ArmPrivateEndpointConnection",
   "python"
 );
-@@clientName(Azure.ResourceManager.CommonTypes.PrivateEndpointConnection,
-  "Connection",
-  "java"
-);
 @@clientName(Azure.ResourceManager.CommonTypes.PrivateEndpointConnectionListResult,
   "ConnectionListResult",
   "java"
