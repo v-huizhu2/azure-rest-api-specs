@@ -16,6 +16,18 @@ using Azure.ClientGenerator.Core;
   "python"
 );
 @@clientName(Azure.ResourceManager.CommonTypes.PrivateEndpointConnection,
-  "ArmPrivateEndpointConnection",
+  "Connection",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.KubernetesConfigurationPrivateLinkScopes,
+  "Scopes",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.PrivateEndpointConnections,
+  "Connections",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.PrivateLinkResources,
+  "Resources",
   "java"
 );
