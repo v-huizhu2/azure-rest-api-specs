@@ -31,12 +31,20 @@ using Azure.ClientGenerator.Core;
   "ServiceConnectionStatus",
   "java"
 );
+@@clientName(Azure.ResourceManager.CommonTypes.PrivateEndpointConnectionProvisioningState,
+  "ConnectionProvisioningState",
+  "java"
+);
 @@clientName(Microsoft.KubernetesConfiguration.KubernetesConfigurationPrivateLinkScope,
   "PrivateLinkScope",
   "java"
 );
 @@clientName(Microsoft.KubernetesConfiguration.KubernetesConfigurationPrivateLinkScopes,
   "Scopes",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.KubernetesConfigurationPrivateLinkScopeProperties,
+  "PrivateLinkScopeProperties",
   "java"
 );
 @@clientName(Microsoft.KubernetesConfiguration.PrivateEndpointConnections,
