@@ -53,7 +53,6 @@ enum Versions {
   v2018_06_01: "2018-06-01",
 }
 
-@tag("operations")
 interface Operations
   extends Azure.ResourceManager.Legacy.Operations<
       Response = ArmResponse<OperationListResponse>,

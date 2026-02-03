@@ -39,9 +39,6 @@
   },
   "tags": [
     {
-      "name": "operations"
-    },
-    {
       "name": "Operations"
     },
     {
@@ -125,7 +122,6 @@
       "get": {
         "operationId": "Operations_List",
         "tags": [
-          "operations",
           "Operations"
         ],
         "description": "Lists the available Azure Data Factory API operations.",
