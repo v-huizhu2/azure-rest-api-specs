@@ -26,8 +26,8 @@ options:
     service-name: "Scope" # human-readable service name, whitespace allowed
     flavor: azure
     rename-model:
-      PrivateEndpointConnection: Connection
-      PrivateLinkResource: Resources
+      PrivateEndpointConnectionListResult: ConnectionListResult
+      PrivateLinkResourceListResult: ResourceListResult
   "@azure-tools/typespec-ts":
     service-dir: sdk/kubernetesconfiguration
     emitter-output-dir: "{output-dir}/{service-dir}/arm-kubernetesconfiguration-privatelinkscopes"
