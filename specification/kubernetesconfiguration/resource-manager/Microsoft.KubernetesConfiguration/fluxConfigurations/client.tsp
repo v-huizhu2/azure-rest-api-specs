@@ -41,3 +41,15 @@ using Azure.ClientGenerator.Core;
   "OciRepositoryRefPatchDefinition",
   "java"
 );
+@@clientName(Microsoft.KubernetesConfiguration.FluxConfigurations.fluxConfigOperationStatusGet,
+  "OperationStatus",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.FluxConfigurations,
+  "FluxConfigs",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.FluxConfigurationPatchProperties,
+  "FluxConfigPatchProperties",
+  "java"
+);
