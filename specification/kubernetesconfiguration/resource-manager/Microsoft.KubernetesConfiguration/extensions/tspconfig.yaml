@@ -33,7 +33,7 @@ options:
     package-details:
       name: "@azure/arm-kubernetesconfiguration-extensions"
   "@azure-tools/typespec-go":
-    service-dir: "sdk/resourcemanager/extensions"
+    service-dir: "sdk/resourcemanager/kubernetesconfiguration"
     emitter-output-dir: "{output-dir}/{service-dir}/armextensions"
     module: "github.com/Azure/azure-sdk-for-go/{service-dir}/armextensions"
     fix-const-stuttering: true

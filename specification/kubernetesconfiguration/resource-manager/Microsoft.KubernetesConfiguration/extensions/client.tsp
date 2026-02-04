@@ -12,3 +12,8 @@ using Azure.ClientGenerator.Core;
   "AksIdentityType",
   "java"
 );
+
+@@alternateType(Azure.ResourceManager.CommonTypes.Identity.type,
+  "SystemAssigned",
+  "go"
+);
