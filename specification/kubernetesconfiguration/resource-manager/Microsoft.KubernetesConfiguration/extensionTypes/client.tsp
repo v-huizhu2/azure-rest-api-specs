@@ -11,6 +11,10 @@ using Azure.ClientGenerator.Core;
   "ExtensionTypesClient",
   "javascript"
 );
+@@clientName(Microsoft.KubernetesConfiguration,
+  "ExtensionTypesMgmtClient",
+  "java"
+);
 @@clientName(Microsoft.KubernetesConfiguration.ExtensionTypeVersionForReleaseTrainProperties,
   "VersionForReleaseTrainProperties",
   "java"

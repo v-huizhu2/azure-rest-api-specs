@@ -7,12 +7,10 @@ using Microsoft.KubernetesConfiguration;
 @@Legacy.flattenProperty(FluxConfigurationPatch.properties);
 
 @@clientName(FluxConfigurations.createOrUpdate::parameters.resource,
-  "fluxConfiguration",
-  "!java"
+  "fluxConfiguration"
 );
 @@clientName(FluxConfigurations.update::parameters.properties,
-  "fluxConfigurationPatch",
-  "!java"
+  "fluxConfigurationPatch"
 );
 @@clientLocation(FluxConfigurations.fluxConfigOperationStatusGet,
   "FluxConfigOperationStatus",
