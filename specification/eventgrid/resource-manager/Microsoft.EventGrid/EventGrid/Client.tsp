@@ -1,5 +1,6 @@
 import "@azure-tools/typespec-azure-core";
 import "@azure-tools/typespec-azure-resource-manager";
+import "@azure-tools/typespec-client-generator-core";
 import "@typespec/openapi";
 import "@typespec/rest";
 import "./models.tsp";
@@ -9,6 +10,7 @@ using TypeSpec.Rest;
 using Azure.ResourceManager;
 using TypeSpec.Http;
 using TypeSpec.OpenAPI;
+using Azure.ClientGenerator.Core;
 
 namespace Microsoft.EventGrid;
 /**
@@ -76,3 +78,7 @@ interface Clients {
 @@doc(Client.name, "Name of the client.");
 @@doc(Client.properties, "The properties of client.");
 @@doc(Clients.createOrUpdate::parameters.resource, "Client information.");
+
+@@clientName(TlsVersion.`1.0`, "One0", "go");
+@@clientName(TlsVersion.`1.1`, "One1", "go");
+@@clientName(TlsVersion.`1.2`, "One2", "go");
