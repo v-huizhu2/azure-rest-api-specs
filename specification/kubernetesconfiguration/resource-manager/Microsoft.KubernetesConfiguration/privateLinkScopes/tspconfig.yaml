@@ -33,7 +33,7 @@ options:
     package-details:
       name: "@azure/arm-kubernetesconfiguration-privatelinkscopes"
   "@azure-tools/typespec-go":
-    service-dir: "sdk/resourcemanager/armprivatelinkscopes"
+    service-dir: "sdk/resourcemanager/privatelinkscopes"
     emitter-output-dir: "{output-dir}/{service-dir}/armprivatelinkscopes"
     module: "github.com/Azure/azure-sdk-for-go/{service-dir}/armprivatelinkscopes"
     fix-const-stuttering: true
