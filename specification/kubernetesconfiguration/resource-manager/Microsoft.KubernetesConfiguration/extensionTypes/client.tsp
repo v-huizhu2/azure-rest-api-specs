@@ -11,3 +11,19 @@ using Azure.ClientGenerator.Core;
   "ExtensionTypesClient",
   "javascript"
 );
+@@clientName(Microsoft.KubernetesConfiguration.ExtensionTypeVersionForReleaseTrainProperties,
+  "VersionForReleaseTrainProperties",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.ExtensionTypeVersionUnsupportedKubernetesMatrixItem,
+  "UnsupportedKubernetesMatrixItem",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.ExtensionTypeVersionForReleaseTrainPropertiesUnsupportedKubernetesVersions,
+  "UnsupportedKubernetesVersions",
+  "java"
+);
+@@clientName(Microsoft.KubernetesConfiguration.ExtensionTypeVersionForReleaseTrain,
+  "VersionForReleaseTrain",
+  "java"
+);
