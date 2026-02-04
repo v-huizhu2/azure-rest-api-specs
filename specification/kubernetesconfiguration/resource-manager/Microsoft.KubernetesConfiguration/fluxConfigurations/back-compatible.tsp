@@ -7,13 +7,16 @@ using Microsoft.KubernetesConfiguration;
 @@Legacy.flattenProperty(FluxConfigurationPatch.properties);
 
 @@clientName(FluxConfigurations.createOrUpdate::parameters.resource,
-  "fluxConfiguration"
+  "fluxConfiguration",
+  "!java"
 );
 @@clientName(FluxConfigurations.update::parameters.properties,
-  "fluxConfigurationPatch"
+  "fluxConfigurationPatch",
+  "!java"
 );
 @@clientLocation(FluxConfigurations.fluxConfigOperationStatusGet,
-  "FluxConfigOperationStatus"
+  "FluxConfigOperationStatus",
+  "!java"
 );
 @@clientName(FluxConfigurations.fluxConfigOperationStatusGet, "Get");
 #suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
