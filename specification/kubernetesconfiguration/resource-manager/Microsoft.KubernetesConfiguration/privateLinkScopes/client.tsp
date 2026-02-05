@@ -15,10 +15,7 @@ using Azure.ClientGenerator.Core;
   "ArmPrivateEndpointConnection",
   "python"
 );
-@@clientName(Microsoft.KubernetesConfiguration,
-  "ScopeClient",
-  "java"
-);
+@@clientName(Microsoft.KubernetesConfiguration, "ScopeClient", "java");
 @@clientName(Azure.ResourceManager.CommonTypes.PrivateEndpointConnectionListResult,
   "ConnectionListResult",
   "java"
