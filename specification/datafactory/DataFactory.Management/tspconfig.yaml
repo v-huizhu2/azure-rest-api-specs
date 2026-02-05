@@ -31,8 +31,8 @@ options:
       name: "@azure/arm-datafactory"
   "@azure-tools/typespec-go":
     service-dir: "sdk/resourcemanager/datafactory"
-    emitter-output-dir: "{output-dir}/{service-dir}/arm-datafactory"
-    module: "github.com/Azure/azure-sdk-for-go/{service-dir}/arm-datafactory"
+    emitter-output-dir: "{output-dir}/{service-dir}/armdatafactory"
+    module: "github.com/Azure/azure-sdk-for-go/{service-dir}/armdatafactory"
     fix-const-stuttering: true
     flavor: "azure"
     generate-samples: true
