@@ -235,7 +235,6 @@ interface Factories {
    * Query activity runs based on input filter conditions.
    */
   @tag("activityruns")
-  @list
   @route("/subscriptions/{subscriptionId}/resourceGroups/{resourceGroupName}/providers/microsoft.DataFactory/factories/{factoryName}/pipelineruns/{runId}/queryActivityruns")
   queryByPipelineRun is PipelineRunsOps.ActionSync<
     Factory,
