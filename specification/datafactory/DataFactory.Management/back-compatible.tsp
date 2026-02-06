@@ -852,8 +852,6 @@ using Microsoft.DataFactory;
 
 @@clientName(SalesforceV2Source.SOQLQuery, "soqlQuery");
 
-@@clientName(SalesforceServiceCloudV2Source.SOQLQuery, "soqlQuery");
-
 #suppress "@azure-tools/typespec-azure-core/no-legacy-usage" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
 @@Legacy.flattenProperty(ScheduleTrigger.typeProperties);
 
