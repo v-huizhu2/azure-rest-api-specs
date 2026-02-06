@@ -9,3 +9,4 @@ using Microsoft.DataFactory;
   "ArmResource",
   "python"
 );
+@@clientName(FactoryVstsConfiguration, "FactoryVSTSConfiguration", "go");
