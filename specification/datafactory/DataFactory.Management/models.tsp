@@ -368,7 +368,7 @@ union ParameterType {
 /**
  * Linked service reference type.
  */
-union Type {
+union LinkedServiceReferenceType {
   string,
 
   /**
@@ -4669,7 +4669,7 @@ model LinkedServiceReference {
   /**
    * Linked service reference type.
    */
-  type: Type;
+  type: LinkedServiceReferenceType;
 
   /**
    * Reference LinkedService name.

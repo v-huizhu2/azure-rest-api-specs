@@ -21567,7 +21567,7 @@
       "description": "Linked service reference type.",
       "properties": {
         "type": {
-          "$ref": "#/definitions/Type",
+          "$ref": "#/definitions/LinkedServiceReferenceType",
           "description": "Linked service reference type."
         },
         "referenceName": {
@@ -21584,6 +21584,24 @@
         "type",
         "referenceName"
       ]
+    },
+    "LinkedServiceReferenceType": {
+      "type": "string",
+      "description": "Linked service reference type.",
+      "enum": [
+        "LinkedServiceReference"
+      ],
+      "x-ms-enum": {
+        "name": "LinkedServiceReferenceType",
+        "modelAsString": true,
+        "values": [
+          {
+            "name": "LinkedServiceReference",
+            "value": "LinkedServiceReference",
+            "description": "LinkedServiceReference"
+          }
+        ]
+      }
     },
     "LinkedServiceResource": {
       "type": "object",
@@ -34039,24 +34057,6 @@
         "userName",
         "password"
       ]
-    },
-    "Type": {
-      "type": "string",
-      "description": "Linked service reference type.",
-      "enum": [
-        "LinkedServiceReference"
-      ],
-      "x-ms-enum": {
-        "name": "Type",
-        "modelAsString": true,
-        "values": [
-          {
-            "name": "LinkedServiceReference",
-            "value": "LinkedServiceReference",
-            "description": "LinkedServiceReference"
-          }
-        ]
-      }
     },
     "TypeConversionSettings": {
       "type": "object",
