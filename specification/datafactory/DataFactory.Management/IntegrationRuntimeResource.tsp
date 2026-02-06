@@ -142,7 +142,6 @@ interface IntegrationRuntimeResources {
    * Gets the list of outbound network dependencies for a given Azure-SSIS integration runtime.
    */
   @tag("integrationRuntimes")
-  @list
   @get
   @action("outboundNetworkDependenciesEndpoints")
   listOutboundNetworkDependenciesEndpoints is ArmResourceActionSync<

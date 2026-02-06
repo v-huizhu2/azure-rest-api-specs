@@ -178,7 +178,6 @@ interface Factories {
    * Query pipeline runs in the factory based on input filter conditions.
    */
   @tag("pipelineruns")
-  @list
   @action("queryPipelineRuns")
   queryByFactory is ArmResourceActionSync<
     Factory,
@@ -256,7 +255,6 @@ interface Factories {
    * Query triggers.
    */
   @tag("triggers")
-  @list
   @action("querytriggers")
   triggersQueryByFactory is ArmResourceActionSync<
     Factory,
@@ -269,7 +267,6 @@ interface Factories {
    * Query trigger runs.
    */
   @tag("triggerruns")
-  @list
   @action("queryTriggerRuns")
   triggerRunsQueryByFactory is ArmResourceActionSync<
     Factory,
@@ -345,7 +342,6 @@ interface Factories {
   #suppress "@azure-tools/typespec-azure-core/no-openapi" "FIXME: Update justification, follow aka.ms/tsp/conversion-fix for details"
   @operationId("privateLinkResources_Get")
   @tag("privateLinkResources")
-  @list
   @get
   @action("privateLinkResources")
   privateLinkResourcesGet is ArmResourceActionSync<
