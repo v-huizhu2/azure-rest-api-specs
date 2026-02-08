@@ -22,7 +22,6 @@ options:
     emitter-output-dir: "{output-dir}/{service-dir}/azure-resourcemanager-recoveryservicessiterecovery"
     namespace: "com.azure.resourcemanager.recoveryservicessiterecovery"
     service-name: "RecoveryServicesSiteRecovery"
-    premium: true
     enable-sync-stack: true
     client-side-validations: true
     flavor: azure
