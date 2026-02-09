@@ -10,3 +10,13 @@ using Microsoft.DataFactory;
   "python"
 );
 @@clientName(FactoryVstsConfiguration, "FactoryVSTSConfiguration", "go");
+
+@@clientName(CMKIdentityDefinition, "CmkIdentityDefinition", "java");
+@@clientName(AmazonMWSObjectDataset, "AmazonMwsObjectDataset", "java");
+@@clientName(AmazonMWSLinkedService, "AmazonMwsLinkedService", "java");
+@@clientName(WebHookActivity, "WebhookActivity", "java");
+@@clientName(WebHookActivityMethod, "WebhookActivityMethod", "java");
+@@clientName(PrivateEndpointConnectionResources,
+  "PrivateEndpointConnectionOperations",
+  "java"
+);
