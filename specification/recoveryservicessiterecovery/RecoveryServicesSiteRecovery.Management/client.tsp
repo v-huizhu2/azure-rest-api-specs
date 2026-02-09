@@ -209,3 +209,8 @@ using Azure.ClientGenerator.Core;
   "testStaticIpAddress",
   "java"
 );
+
+@@clientName(Microsoft.RecoveryServices.TargetComputeSizeProperties.vCPUsAvailable,
+  "vCpusAvailable",
+  "java"
+);
