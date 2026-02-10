@@ -94,3 +94,9 @@ using Microsoft.DataFactory;
 @@clientName(TeamDeskLinkedServiceTypeProperties.userName, "username", "java");
 @@clientName(TwilioLinkedServiceTypeProperties.userName, "username", "java");
 @@clientName(ZendeskLinkedServiceTypeProperties.userName, "username", "java");
+
+@@clientName(AmazonMWSLinkedServiceTypeProperties.marketplaceID,
+  "marketplaceId",
+  "java"
+);
+@@clientName(AmazonMWSLinkedServiceTypeProperties.sellerID, "sellerId", "java");
