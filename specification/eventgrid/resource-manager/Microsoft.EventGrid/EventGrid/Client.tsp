@@ -87,3 +87,8 @@ interface Clients {
   "WebhookEventSubscriptionDestinationProperties",
   "java"
 );
+
+@@clientName(WebHookEventSubscriptionDestination,
+  "WebhookEventSubscriptionDestination",
+  "java"
+);
