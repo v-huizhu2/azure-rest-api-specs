@@ -21,7 +21,6 @@ options:
     emitter-output-dir: "{output-dir}/{service-dir}/azure-resourcemanager-hdinsight"
     namespace: "com.azure.resourcemanager.hdinsight"
     service-name: "HDInsight"
-    premium: true
     enable-sync-stack: true
     client-side-validations: true
     flavor: azure
