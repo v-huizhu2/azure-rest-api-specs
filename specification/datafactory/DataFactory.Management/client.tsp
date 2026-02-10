@@ -20,3 +20,77 @@ using Microsoft.DataFactory;
   "PrivateEndpointConnectionOperations",
   "java"
 );
+
+@@clientName(AmazonMWSLinkedServiceTypeProperties,
+  "AmazonMwsLinkedServiceTypeProperties",
+  "java"
+);
+@@clientName(AmazonMWSSource, "AmazonMwsSource", "java");
+
+@@clientName(CommonDataServiceForAppsLinkedServiceTypeProperties.hostName,
+  "hostname",
+  "java"
+);
+@@clientName(DynamicsCrmLinkedServiceTypeProperties.hostName,
+  "hostname",
+  "java"
+);
+@@clientName(DynamicsLinkedServiceTypeProperties.hostName, "hostname", "java");
+@@clientName(FactoryGitHubConfiguration.hostName, "hostname", "java");
+
+@@clientName(Resource.eTag, "etag", "java");
+
+@@clientName(AmazonRdsForSqlServerLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(AppFiguresLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(AzureSqlDatabaseLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(AzureSqlDWLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(AzureSqlMILinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(CmdkeySetupTypeProperties.userName, "username", "java");
+@@clientName(FtpServerLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(HdfsLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(HDInsightLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(HttpLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(InformixLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(MicrosoftAccessLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(ODataLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(OdbcLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(RestServiceLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(SapBWLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(SapHanaLinkedServiceProperties.userName, "username", "java");
+@@clientName(SapOdpLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(SapOpenHubLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(SapTableLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(SftpServerLinkedServiceTypeProperties.userName,
+  "username",
+  "java"
+);
+@@clientName(SqlServerLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(SsisAccessCredential.userName, "username", "java");
+@@clientName(SsisExecutionCredential.userName, "username", "java");
+@@clientName(TeamDeskLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(TwilioLinkedServiceTypeProperties.userName, "username", "java");
+@@clientName(ZendeskLinkedServiceTypeProperties.userName, "username", "java");
