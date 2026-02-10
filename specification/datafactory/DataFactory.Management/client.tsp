@@ -100,3 +100,8 @@ using Microsoft.DataFactory;
   "java"
 );
 @@clientName(AmazonMWSLinkedServiceTypeProperties.sellerID, "sellerId", "java");
+
+@@clientName(SqlServerBaseLinkedServiceTypeProperties.hostNameInCertificate,
+  "hostnameInCertificate",
+  "java"
+);
