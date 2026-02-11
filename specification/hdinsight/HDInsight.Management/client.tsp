@@ -16,3 +16,20 @@ using Azure.ClientGenerator.Core;
   "python"
 );
 @@clientName(Role.VMGroupName, "$DO_NOT_NORMALIZE$vMGroupName", "javascript");
+
+@@clientName(PrivateIPAllocationMethod, "PrivateIpAllocationMethod", "java");
+@@clientName(IPConfiguration, "IpConfiguration", "java");
+@@clientName(ApplicationGetEndpoint.privateIPAddress,
+  "privateIpAddress",
+  "java"
+);
+@@clientName(ApplicationGetHttpsEndpoint.privateIPAddress,
+  "privateIpAddress",
+  "java"
+);
+@@clientName(ConnectivityEndpoint.privateIPAddress, "privateIpAddress", "java");
+@@clientName(GatewaySettings.`restAuthCredential.username`, "username", "java");
+@@clientName(UpdateGatewaySettingsParameters.`restAuthCredential.username`,
+  "username",
+  "java"
+);
