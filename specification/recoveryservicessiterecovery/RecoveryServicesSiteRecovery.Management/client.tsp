@@ -39,39 +39,6 @@ using Azure.ClientGenerator.Core;
   "java"
 );
 
-@@clientLocation(Microsoft.RecoveryServices.StorageClassifications.get,
-  "StorageClassifications",
-  "java"
-);
-@@clientLocation(Microsoft.RecoveryServices.StorageClassifications.listByReplicationFabrics,
-  "StorageClassifications",
-  "java"
-);
-@@clientLocation(Microsoft.RecoveryServices.StorageClassificationMappings.get,
-  "StorageClassificationMappings",
-  "java"
-);
-@@clientLocation(Microsoft.RecoveryServices.StorageClassificationMappings.create,
-  "StorageClassificationMappings",
-  "java"
-);
-@@clientLocation(Microsoft.RecoveryServices.StorageClassificationMappings.delete,
-  "StorageClassificationMappings",
-  "java"
-);
-@@clientLocation(Microsoft.RecoveryServices.StorageClassificationMappings.listByReplicationStorageClassifications,
-  "StorageClassificationMappings",
-  "java"
-);
-@@clientLocation(Microsoft.RecoveryServices.ReplicationStorageClassificationsOperationGroup.list,
-  "StorageClassifications",
-  "java"
-);
-@@clientLocation(Microsoft.RecoveryServices.ReplicationStorageClassificationMappingsOperationGroup.list,
-  "StorageClassificationMappings",
-  "java"
-);
-
 @@clientName(Microsoft.RecoveryServices.GatewayOperationDetails.hostName,
   "hostname",
   "java"
