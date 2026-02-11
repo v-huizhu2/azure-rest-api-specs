@@ -33,3 +33,5 @@ using Azure.ClientGenerator.Core;
   "username",
   "java"
 );
+
+@@clientName(IPConfigurationProperties, "IpConfigurationProperties", "java");
