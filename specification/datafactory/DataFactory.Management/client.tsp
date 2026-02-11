@@ -17,7 +17,7 @@ using Microsoft.DataFactory;
 @@clientName(WebHookActivity, "WebhookActivity", "java");
 @@clientName(WebHookActivityMethod, "WebhookActivityMethod", "java");
 @@clientName(PrivateEndpointConnectionResources,
-  "PrivateEndpointConnectionOperations",
+  "PrivateEndpointConnection",
   "java"
 );
 
