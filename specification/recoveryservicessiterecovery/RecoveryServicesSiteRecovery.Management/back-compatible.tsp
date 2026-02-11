@@ -241,26 +241,32 @@ using Microsoft.RecoveryServices;
 );
 
 @@clientLocation(StorageClassifications.get,
-  "ReplicationStorageClassifications"
+  "ReplicationStorageClassifications",
+  "!java"
 );
 @@clientLocation(StorageClassifications.listByReplicationFabrics,
-  "ReplicationStorageClassifications"
+  "ReplicationStorageClassifications",
+  "!java"
 );
 
 @@clientLocation(StorageClassificationMappings.get,
-  "ReplicationStorageClassificationMappings"
+  "ReplicationStorageClassificationMappings",
+  "!java"
 );
 @@clientLocation(StorageClassificationMappings.create,
-  "ReplicationStorageClassificationMappings"
+  "ReplicationStorageClassificationMappings",
+  "!java"
 );
 @@clientName(StorageClassificationMappings.create::parameters.resource,
   "pairingInput"
 );
 @@clientLocation(StorageClassificationMappings.delete,
-  "ReplicationStorageClassificationMappings"
+  "ReplicationStorageClassificationMappings",
+  "!java"
 );
 @@clientLocation(StorageClassificationMappings.listByReplicationStorageClassifications,
-  "ReplicationStorageClassificationMappings"
+  "ReplicationStorageClassificationMappings",
+  "!java"
 );
 
 @@clientLocation(VCenters.get, "ReplicationvCenters");
@@ -349,11 +355,13 @@ using Microsoft.RecoveryServices;
 );
 
 @@clientLocation(ReplicationStorageClassificationsOperationGroup.list,
-  "ReplicationStorageClassifications"
+  "ReplicationStorageClassifications",
+  "!java"
 );
 
 @@clientLocation(ReplicationStorageClassificationMappingsOperationGroup.list,
-  "ReplicationStorageClassificationMappings"
+  "ReplicationStorageClassificationMappings",
+  "!java"
 );
 
 @@clientLocation(ReplicationvCentersOperationGroup.list, "ReplicationvCenters");
