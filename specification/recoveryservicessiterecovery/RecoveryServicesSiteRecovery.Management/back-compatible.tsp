@@ -365,12 +365,12 @@ using Microsoft.RecoveryServices;
 );
 
 @@clientLocation(ReplicationStorageClassificationsOperationGroup.list,
-  "StorageClassifications",
+  StorageClassifications,
   "java"
 );
 
 @@clientLocation(ReplicationStorageClassificationMappingsOperationGroup.list,
-  "StorageClassificationMappings",
+  StorageClassificationMappings,
   "java"
 );
 
