@@ -35,3 +35,12 @@ using Azure.ClientGenerator.Core;
 );
 
 @@clientName(IPConfigurationProperties, "IpConfigurationProperties", "java");
+@@clientName(ErrorResponse, "HdinsightErrorResponse", "java");
+@@clientName(IPConfigurationProperties.privateIPAddress,
+  "privateIpAddress",
+  "java"
+);
+@@clientName(IPConfigurationProperties.privateIPAllocationMethod,
+  "privateIpAllocationMethod",
+  "java"
+);
