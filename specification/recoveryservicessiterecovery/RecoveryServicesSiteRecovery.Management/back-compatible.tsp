@@ -258,7 +258,8 @@ using Microsoft.RecoveryServices;
   "!java"
 );
 @@clientName(StorageClassificationMappings.create::parameters.resource,
-  "pairingInput"
+  "pairingInput",
+  "!java"
 );
 @@clientLocation(StorageClassificationMappings.delete,
   "ReplicationStorageClassificationMappings",
