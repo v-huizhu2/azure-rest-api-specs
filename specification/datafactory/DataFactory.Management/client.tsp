@@ -16,10 +16,6 @@ using Microsoft.DataFactory;
 @@clientName(AmazonMWSLinkedService, "AmazonMwsLinkedService", "java");
 @@clientName(WebHookActivity, "WebhookActivity", "java");
 @@clientName(WebHookActivityMethod, "WebhookActivityMethod", "java");
-@@clientName(PrivateEndpointConnectionResources,
-  "PrivateEndpointConnection",
-  "java"
-);
 
 @@clientName(AmazonMWSLinkedServiceTypeProperties,
   "AmazonMwsLinkedServiceTypeProperties",
